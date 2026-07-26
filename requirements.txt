@@ -1,0 +1,25 @@
+# --- Data processing ---
+pandas
+numpy
+
+# --- Embedding + Vector DB ---
+sentence-transformers   # dùng cho BAAI/bge-m3 hoặc model multilingual khác
+chromadb
+
+# --- LLM API ---
+groq
+
+# --- Backend ---
+fastapi
+uvicorn[standard]
+pydantic
+python-dotenv
+
+# --- Frontend (chọn 1, bỏ dòng không dùng) ---
+streamlit
+requests
+# gradio
+
+# --- Eval ---
+scikit-learn
+tqdm

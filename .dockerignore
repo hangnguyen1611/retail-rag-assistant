@@ -1,0 +1,11 @@
+venv/
+chroma_db/
+notebooks/
+
+.git/
+.gitignore
+__pycache__/
+*.pyc
+
+.env
+README.pdf

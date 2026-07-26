@@ -1,0 +1,22 @@
+# Env & secrets
+.env
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Vector store (regenerated from data)
+chroma_db/
+
+# Data (giữ raw + processed nhỏ trong git là tuỳ bạn; nếu file lớn thì ignore)
+# data/raw/styles.csv
+
+# OS / IDE
+.DS_Store
+.vscode/
+.ipynb_checkpoints/
+
+# Docker
+*.log

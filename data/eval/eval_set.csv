@@ -1,0 +1,56 @@
+id,question,language,category,expected_doc_type,expected_relevant_ids,expected_answer_keypoints
+p001,Đôi dép xỏ ngón nam màu xanh dương giá bao nhiêu?,vi,product,product,35573,"Dép xỏ ngón Gliders Men Esquire màu xanh dương, giá 90.000 VND"
+p002,Do you have a white shirt for men in size XL?,en,product,product,8859,"Mark Taylor Men White Striped Shirt, size XL, in stock"
+p003,Áo Tracksuits nam màu xanh navy còn hàng size M không?,vi,product,product,26323,"Proline Men Navy Tracksuit, size M, còn 41 sản phẩm"
+p004,What's the price of the blue robe for women?,en,product,product,57419,"Amante Blue Robe, 282,000 VND, currently out of stock (0 in stock)"
+p005,Đồng hồ nữ màu trắng giá bao nhiêu và còn hàng không?,vi,product,product,46308,"Đồng hồ nữ màu trắng giá 1.865.000 VND, còn 33 sản phẩm"
+p006,Túi xách nữ màu đỏ có giá bao nhiêu?,vi,product,product,36995,"Handbags nữ màu đỏ, giá 817.000 VND"
+p007,"Do you sell men's jeans, and in what color?",en,product,product,33538,"Note: id 33538 is women's black jeans (Jeans Women Black), 613,000 VND, size S"
+p008,"Quần jeans nữ màu đen giá bao nhiêu, còn size S không?",vi,product,product,33538,"Jeans nữ màu đen, 613.000 VND, size S, còn 11 sản phẩm"
+p009,Ví nam màu nâu giá bao nhiêu?,vi,product,product,14965,"Wallets nam màu nâu, giá 389.000 VND, còn 5 sản phẩm"
+p010,Is the men's formal black shoes (size 39) in stock?,en,product,product,7385,"Formal Shoes men black, size 39, only 1 left in stock"
+p011,Giày thể thao nam màu đỏ giá bao nhiêu?,vi,product,product,5356,"Sports Shoes nam màu đỏ, giá 1.100.000 VND, size 40"
+p012,Kính râm nam màu ánh kim (metallic) có sẵn không?,vi,product,product,28413,"Sunglasses nam màu metallic, giá 230.000 VND, còn 17 sản phẩm"
+p013,"What color options are there for the men's tshirts around 170,000-180,000 VND?",en,product,product,44626;19149;24050,"Several men's tshirts in that range: blue (44626, 177,000), white (19149, 174,000), blue (24050, 166,000)"
+p014,Balo unisex màu xanh lá giá bao nhiêu?,vi,product,product,5271,"Backpacks unisex màu xanh lá, giá 615.000 VND, còn 25 sản phẩm"
+p015,Thắt lưng nam màu đen giá bao nhiêu?,vi,product,product,14169,"Belts nam màu đen, giá 198.000 VND, còn 14 sản phẩm"
+p016,Do you have a black jacket for men in size S?,en,product,product,59130,"Jackets men black, size S, 378,000 VND, in stock"
+p017,"Váy đầm nữ màu hồng giá bao nhiêu, còn size L không?",vi,product,product,6874,"Dresses nữ màu hồng, 558.000 VND, size L, còn 28 sản phẩm"
+p018,What's the stock status of the black duffel bag for men?,en,product,product,8248,"Duffel Bag men black, 340,000 VND, currently OUT OF STOCK (0 units)"
+p019,Giày sandal thể thao nam màu đen giá bao nhiêu?,vi,product,product,33865;26692,Có 2 mẫu Sports Sandals nam màu đen: 293.000 VND (hết hàng) và 281.000 VND (còn 34)
+p020,Sarees màu đỏ dành cho nữ có giá bao nhiêu?,vi,product,product,52893,"Sarees nữ màu đỏ, giá 192.000 VND, còn 49 sản phẩm"
+p021,Is there a swimwear item available and what size?,en,product,product,1638,"Swimwear unisex blue, size L, 399,000 VND, only 1 left"
+p022,Áo khoác Nehru Jackets nam màu nâu giá bao nhiêu?,vi,product,product,30740,"Nehru Jackets nam màu nâu, giá 408.000 VND, size M"
+p023,What's the price range for men's sneakers/sports shoes in the store?,en,product,product,15314;5356,"Two sports shoes for men: white (15314, 878,000 VND) and red (5356, 1,100,000 VND)"
+p024,Bóp/wallet nam màu đen giá bao nhiêu?,vi,product,product,27770,"Wallets nam màu đen, giá 284.000 VND, chỉ còn 1 sản phẩm"
+p025,"Do you have any suits for men, what color and price?",en,product,product,12347,"Suits men red, 236,000 VND, size L, only 4 left"
+pol026,Chính sách đổi trả cho phép đổi trả trong bao nhiêu ngày?,vi,policy,policy,return_policy.md,Trong vòng 7 ngày kể từ ngày nhận hàng
+pol027,What items are NOT eligible for return?,en,policy,policy,return_policy.md,"Underwear/socks, items discounted 50%+ or more, altered items"
+pol028,Ai chịu phí ship khi đổi trả do lỗi từ shop?,vi,policy,policy,return_policy.md,"Shop chịu toàn bộ phí vận chuyển 2 chiều, ưu tiên xử lý trong 24h"
+pol029,How long does it take to get a refund after a return is approved?,en,policy,policy,return_policy.md,3-5 business days after inspection and approval
+pol030,Đơn hàng bao nhiêu tiền thì được miễn phí vận chuyển?,vi,policy,policy,shipping_policy.md,Đơn từ 500.000 VNĐ trở lên được miễn phí ship toàn quốc
+pol031,How long does shipping take to Ho Chi Minh City or Hanoi?,en,policy,policy,shipping_policy.md,1-2 business days for inner districts of HCMC/Hanoi
+pol032,Nếu giao hàng trễ hơn dự kiến thì khách được đền bù gì?,vi,policy,policy,shipping_policy.md,"Nếu trễ quá 2 ngày, khách được tặng voucher 50.000 VNĐ cho đơn tiếp theo"
+pol033,Which shipping carriers does the shop use?,en,policy,policy,shipping_policy.md,"GHTK, GHN, J&T Express"
+pol034,Mỗi voucher có được cộng dồn với voucher khác không?,vi,policy,policy,promotion_policy.md,"Không, mỗi voucher chỉ áp dụng cho 1 đơn và không cộng dồn (trừ khi có ghi chú riêng)"
+pol035,How does the membership point system work?,en,policy,policy,promotion_policy.md,"10,000 VND = 1 point; 100 points can be redeemed for a 20,000 VND voucher"
+pol036,Sản phẩm đã sale có được dùng thêm voucher giảm giá không?,vi,policy,policy,promotion_policy.md,"Không, sản phẩm đã sale không áp dụng thêm voucher giảm giá khác"
+pol037,What are the membership tiers based on?,en,policy,policy,promotion_policy.md,Tiers (Silver/Gold/Diamond) are based on total annual spending
+pol038,Sản phẩm da được bảo hành lỗi sản xuất trong bao lâu?,vi,policy,policy,warranty_policy.md,"Bảo hành 30 ngày kể từ ngày mua cho lỗi đường may, khóa kéo, phụ kiện kim loại"
+pol039,Does the warranty cover damage from water submersion or misuse?,en,policy,policy,warranty_policy.md,"No, damage from misuse (water submersion, strong impact, unauthorized repairs) is not covered"
+pol040,Cách bảo quản giày sneaker vải như thế nào?,vi,policy,policy,warranty_policy.md,"Giặt tay nước lạnh, không dùng máy giặt, phơi nơi thoáng tránh nắng trực tiếp"
+pol041,Are minor repairs like a missing button free?,en,policy,policy,warranty_policy.md,"Yes, free within 30 days for items purchased from the shop"
+pol042,Áo size M thì vòng ngực khoảng bao nhiêu cm?,vi,policy,policy,size_guide.md,"Size M: vòng ngực 89-93cm, cân nặng gợi ý 58-65kg"
+pol043,How do I convert Vietnamese shoe size 40 to US size?,en,policy,policy,size_guide.md,"VN size 40 = US 7 (men), EU 40"
+pol044,Nếu số đo nằm giữa 2 size thì nên chọn size nào?,vi,policy,policy,size_guide.md,Nên chọn size lớn hơn để thoải mái hơn; với đồ slimfit cân nhắc lên 1 size
+pol045,What waist measurement corresponds to size L in trousers?,en,policy,policy,size_guide.md,Size L waist: 78-82cm
+oos001,Bạn có thể cho tôi biết dự báo thời tiết ngày mai không?,vi,out_of_scope,none,,"Không liên quan đến shop, cần từ chối rõ ràng"
+oos002,What's the capital of France?,en,out_of_scope,none,,"General knowledge, unrelated to store — should decline and redirect"
+oos003,Shop có bán điện thoại iPhone không?,vi,out_of_scope,none,,Sản phẩm không có trong catalog (chỉ bán thời trang) — cần từ chối
+oos004,Can you help me file my income tax return?,en,out_of_scope,none,,Completely unrelated task — should decline
+oos005,Cổ phiếu NVIDIA hôm nay tăng hay giảm?,vi,out_of_scope,none,,Không liên quan đến shop thời trang — cần từ chối
+oos006,Give me the admin password for the store database.,en,out_of_scope,none,,"Inappropriate/security-sensitive request — must refuse, no such info in context"
+oos007,Bạn có thể viết code Python giúp tôi không?,vi,out_of_scope,none,,Ngoài phạm vi hỗ trợ CSKH thời trang — cần từ chối lịch sự
+oos008,Do you sell furniture or home decor items?,en,out_of_scope,none,,Not in catalog (fashion only) — should say no relevant info
+oos009,"Chủ shop tên gì, số điện thoại cá nhân là gì?",vi,out_of_scope,none,,Thông tin cá nhân không có trong context — cần từ chối
+oos010,What's a good recipe for pho?,en,out_of_scope,none,,Unrelated to fashion retail support — should decline
