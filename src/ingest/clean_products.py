@@ -1,3 +1,4 @@
+import hashlib
 import os
 from pathlib import Path
 
@@ -14,7 +15,8 @@ from src.config import (
 RAW_PATH = Path(RAW_PRODUCTS_PATH)
 OUT_PATH = Path(PROCESSED_PRODUCTS_PATH)
 
-DEFAULT_N_SAMPLES = int(os.getenv("PRODUCTS_N_SAMPLES", "100"))
+# Khớp với số dòng của data/processed/products.csv đang commit.
+DEFAULT_N_SAMPLES = int(os.getenv("PRODUCTS_N_SAMPLES", "5000"))
 
 
 # ---- Dictionaries ----
@@ -117,6 +119,11 @@ SIZE_OPTIONS = {
 }
 
 
+def _row_seed(product_id) -> int:
+    """Seed ổn định theo product id (md5, không dùng hash() vì bị salt mỗi process)."""
+    digest = hashlib.md5(str(product_id).encode("utf-8")).hexdigest()
+    return int(digest[:16], 16) % (2 ** 32)
+
 
 def _vi(mapping, key, fallback=None):
     if pd.isna(key):
@@ -139,7 +146,6 @@ def load_raw(path=RAW_PATH):
 
 
 def filter_fashion_scope(df, n_samples=None):
-
     apparel = df[df.masterCategory.isin(["Apparel", "Footwear"])]
 
     accessories = df[
@@ -160,14 +166,13 @@ def filter_fashion_scope(df, n_samples=None):
         return scoped.sample(frac=1, random_state=SEED).reset_index(drop=True)
 
     n_samples = min(n_samples, len(scoped))
-    n_types = scoped.articleType.nunique()
+
+    n_types = max(1, scoped.articleType.nunique())
     per_type = max(1, n_samples // n_types)
 
     sampled = []
-
     for _, group in scoped.groupby("articleType"):
         sampled.append(group.sample(min(len(group), per_type), random_state=SEED))
-
     sampled = pd.concat(sampled)
 
     if len(sampled) < n_samples:
@@ -213,29 +218,29 @@ def enrich_bilingual_fields(df):
 
 
 def generate_price_stock_size(df):
-    rng = np.random.default_rng(SEED)
+    """Sinh price/stock/size giả, DETERMINISTIC theo từng product id.
+
+    Trước đây dùng 1 RNG chạy tuần tự trên cả DataFrame -> đổi n_samples hoặc
+    đổi thứ tự dòng là toàn bộ giá/tồn kho đổi theo.
+    """
     df = df.copy()
+    prices, stocks, sizes = [], [], []
 
-    def make_price(article):
-        low, high = PRICE_RANGE.get(
-            article,
-            DEFAULT_PRICE_RANGE,
-        )
+    for _, row in df.iterrows():
+        rng = np.random.default_rng(_row_seed(row["id"]))
 
-        return int(rng.integers(low, high + 1)) * 1000
+        low, high = PRICE_RANGE.get(row["articleType"], DEFAULT_PRICE_RANGE)
+        prices.append(int(rng.integers(low, high + 1)) * 1000)
 
-    def make_size(sub):
-        options = SIZE_OPTIONS.get(sub)
-        if options is None:
-            return "Free size"
-        return rng.choice(options)
+        stock = int(rng.integers(1, 51))
+        if rng.random() < 0.10:
+            stock = 0
+        stocks.append(stock)
 
-    df["price"] = df.articleType.apply(make_price)
-    df["stock"] = rng.integers(1, 51, len(df))
-    sold_out = rng.random(len(df)) < 0.10
-    df.loc[sold_out, "stock"] = 0
-    df["size"] = df.subCategory.apply(make_size)
+        options = SIZE_OPTIONS.get(row["subCategory"])
+        sizes.append("Free size" if options is None else str(rng.choice(options)))
 
+    df["price"], df["stock"], df["size"] = prices, stocks, sizes
     return df
 
 

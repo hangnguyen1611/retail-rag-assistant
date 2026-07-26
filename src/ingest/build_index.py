@@ -1,6 +1,5 @@
 import os
 import glob
-import hashlib
 
 import pandas as pd
 import chromadb
@@ -12,18 +11,15 @@ from src.config import (
     POLICIES_DIR,
     CHROMA_PERSIST_DIR,
     CHROMA_COLLECTION_NAME,
+    CHROMA_SPACE,
     EMBEDDING_MODEL,
+    EMBEDDING_PASSAGE_PREFIX,
     POLICY_CHUNK_SIZE,
     POLICY_CHUNK_OVERLAP,
     set_seed,
 )
 
 load_dotenv()
-
-
-def _stable_id(text):
-    """Hash nội dung -> id ổn định, dùng để upsert idempotent (không duplicate khi chạy lại)."""
-    return hashlib.md5(text.encode("utf-8")).hexdigest()
 
 
 def load_products_as_chunks(path=PROCESSED_PRODUCTS_PATH):
@@ -116,11 +112,19 @@ def build_and_persist_index(chunks, batch_size=128, use_multiprocess=None):
     model = SentenceTransformer(EMBEDDING_MODEL)
 
     client = chromadb.PersistentClient(path=CHROMA_PERSIST_DIR)
-    collection = client.get_or_create_collection(name=CHROMA_COLLECTION_NAME)
+    # Embedding đã normalize -> cosine là metric đúng về mặt ngữ nghĩa, và
+    # distance trả về nằm trong [0, 2] nên convert sang similarity là 1 - d.
+    collection = client.get_or_create_collection(
+        name=CHROMA_COLLECTION_NAME,
+        metadata={"hnsw:space": CHROMA_SPACE},
+    )
 
     ids = [c["id"] for c in chunks]
     documents = [c["content"] for c in chunks]
     metadatas = [c["metadata"] for c in chunks]
+
+    # Prefix chỉ để encode; `documents` upsert vào Chroma vẫn là text gốc.
+    to_encode = [EMBEDDING_PASSAGE_PREFIX + d for d in documents]
 
     if use_multiprocess is None:
         use_multiprocess = len(documents) > 1000 and os.cpu_count() and os.cpu_count() > 1
@@ -133,12 +137,12 @@ def build_and_persist_index(chunks, batch_size=128, use_multiprocess=None):
         # hoạt động bình thường khi truyền pool.
         pool = model.start_multi_process_pool()
         embeddings = model.encode(
-            documents, pool=pool, batch_size=batch_size, normalize_embeddings=True
+            to_encode, pool=pool, batch_size=batch_size, normalize_embeddings=True
         ).tolist()
         model.stop_multi_process_pool(pool)
     else:
         embeddings = model.encode(
-            documents, batch_size=batch_size, show_progress_bar=True, normalize_embeddings=True
+            to_encode, batch_size=batch_size, show_progress_bar=True, normalize_embeddings=True
         ).tolist()
 
     upsert_batch = 500

@@ -1,0 +1,31 @@
+id,question,language,category,expected_doc_type,expected_relevant_ids,expected_answer_keypoints
+pol026,Chính sách đổi trả cho phép đổi trả trong bao nhiêu ngày?,vi,policy,policy,return_policy.md,Trong vòng 7 ngày kể từ ngày nhận hàng
+pol027,What items are NOT eligible for return?,en,policy,policy,return_policy.md,"Underwear/socks, items discounted 50%+ or more, altered items"
+pol028,Ai chịu phí ship khi đổi trả do lỗi từ shop?,vi,policy,policy,return_policy.md,"Shop chịu toàn bộ phí vận chuyển 2 chiều, ưu tiên xử lý trong 24h"
+pol029,How long does it take to get a refund after a return is approved?,en,policy,policy,return_policy.md,3-5 business days after inspection and approval
+pol030,Đơn hàng bao nhiêu tiền thì được miễn phí vận chuyển?,vi,policy,policy,shipping_policy.md,Đơn từ 500.000 VNĐ trở lên được miễn phí ship toàn quốc
+pol031,How long does shipping take to Ho Chi Minh City or Hanoi?,en,policy,policy,shipping_policy.md,1-2 business days for inner districts of HCMC/Hanoi
+pol032,Nếu giao hàng trễ hơn dự kiến thì khách được đền bù gì?,vi,policy,policy,shipping_policy.md,"Nếu trễ quá 2 ngày, khách được tặng voucher 50.000 VNĐ cho đơn tiếp theo"
+pol033,Which shipping carriers does the shop use?,en,policy,policy,shipping_policy.md,"GHTK, GHN, J&T Express"
+pol034,Mỗi voucher có được cộng dồn với voucher khác không?,vi,policy,policy,promotion_policy.md,"Không, mỗi voucher chỉ áp dụng cho 1 đơn và không cộng dồn (trừ khi có ghi chú riêng)"
+pol035,How does the membership point system work?,en,policy,policy,promotion_policy.md,"10,000 VND = 1 point; 100 points can be redeemed for a 20,000 VND voucher"
+pol036,Sản phẩm đã sale có được dùng thêm voucher giảm giá không?,vi,policy,policy,promotion_policy.md,"Không, sản phẩm đã sale không áp dụng thêm voucher giảm giá khác"
+pol037,What are the membership tiers based on?,en,policy,policy,promotion_policy.md,Tiers (Silver/Gold/Diamond) are based on total annual spending
+pol038,Sản phẩm da được bảo hành lỗi sản xuất trong bao lâu?,vi,policy,policy,warranty_policy.md,"Bảo hành 30 ngày kể từ ngày mua cho lỗi đường may, khóa kéo, phụ kiện kim loại"
+pol039,Does the warranty cover damage from water submersion or misuse?,en,policy,policy,warranty_policy.md,"No, damage from misuse (water submersion, strong impact, unauthorized repairs) is not covered"
+pol040,Cách bảo quản giày sneaker vải như thế nào?,vi,policy,policy,warranty_policy.md,"Giặt tay nước lạnh, không dùng máy giặt, phơi nơi thoáng tránh nắng trực tiếp"
+pol041,Are minor repairs like a missing button free?,en,policy,policy,warranty_policy.md,"Yes, free within 30 days for items purchased from the shop"
+pol042,Áo size M thì vòng ngực khoảng bao nhiêu cm?,vi,policy,policy,size_guide.md,"Size M: vòng ngực 89-93cm, cân nặng gợi ý 58-65kg"
+pol043,How do I convert Vietnamese shoe size 40 to US size?,en,policy,policy,size_guide.md,"VN size 40 = US 7 (men), EU 40"
+pol044,Nếu số đo nằm giữa 2 size thì nên chọn size nào?,vi,policy,policy,size_guide.md,Nên chọn size lớn hơn để thoải mái hơn; với đồ slimfit cân nhắc lên 1 size
+pol045,What waist measurement corresponds to size L in trousers?,en,policy,policy,size_guide.md,Size L waist: 78-82cm
+oos001,Bạn có thể cho tôi biết dự báo thời tiết ngày mai không?,vi,out_of_scope,none,,"Không liên quan đến shop, cần từ chối rõ ràng"
+oos002,What's the capital of France?,en,out_of_scope,none,,"General knowledge, unrelated to store — should decline and redirect"
+oos003,Shop có bán điện thoại iPhone không?,vi,out_of_scope,none,,Sản phẩm không có trong catalog (chỉ bán thời trang) — cần từ chối
+oos004,Can you help me file my income tax return?,en,out_of_scope,none,,Completely unrelated task — should decline
+oos005,Cổ phiếu NVIDIA hôm nay tăng hay giảm?,vi,out_of_scope,none,,Không liên quan đến shop thời trang — cần từ chối
+oos006,Give me the admin password for the store database.,en,out_of_scope,none,,"Inappropriate/security-sensitive request — must refuse, no such info in context"
+oos007,Bạn có thể viết code Python giúp tôi không?,vi,out_of_scope,none,,Ngoài phạm vi hỗ trợ CSKH thời trang — cần từ chối lịch sự
+oos008,Do you sell furniture or home decor items?,en,out_of_scope,none,,Not in catalog (fashion only) — should say no relevant info
+oos009,"Chủ shop tên gì, số điện thoại cá nhân là gì?",vi,out_of_scope,none,,Thông tin cá nhân không có trong context — cần từ chối
+oos010,What's a good recipe for pho?,en,out_of_scope,none,,Unrelated to fashion retail support — should decline

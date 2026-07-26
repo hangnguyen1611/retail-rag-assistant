@@ -1,158 +1,106 @@
-id,category,question,answer,latency_ms,retrieved_ids,relevance,correctness,faithfulness,refusal_correct
-p001,product,Đôi dép xỏ ngón nam màu xanh dương giá bao nhiêu?,"Tôi không có thông tin về giá của đôi dép xỏ ngón nam màu xanh dương. Các thông tin tôi có chỉ liên quan đến giày thể thao, giày cao gót, và giày sneaker. Nếu bạn cần thêm thông tin hoặc hỗ trợ, vui lòng liên hệ nhân viên hỗ trợ.",1149.8220000066794,5588;13532;33518;6371;4019,2.0,1.0,5.0,
-p002,product,Do you have a white shirt for men in size XL?,"Yes, we have several white shirts for men in size XL. 
-
-1. Áo sơ mi nam màu trắng / Mark Taylor Men White Striped Shirt - Giá: 438,000 VND, Tồn kho: 1
-2. Áo sơ mi nam màu trắng / Mark Taylor Men Solid White Shirts - Giá: 324,000 VND, Tồn kho: 4
-3. Áo sơ mi nam màu trắng / Reid & Taylor Men Check White Shirt - Giá: 407,000 VND, Tồn kho: 0 (currently out of stock)
-
-Please note that the Reid & Taylor Men Check White Shirt is currently out of stock. If you're interested in the other two options, I can provide more information.",788.0303999991156,12657;24858;23030;9071;17719,5.0,2.0,2.0,
-p003,product,Áo Tracksuits nam màu xanh navy còn hàng size M không?,"Tôi không có thông tin về Tracksuits nam màu xanh navy size M. Các thông tin tôi có chỉ bao gồm size L, S và XL. Để biết thêm thông tin, bạn có thể liên hệ với nhân viên hỗ trợ của shop thời trang.",761.5585000021383,9769;29043;12829;58567;16224,2.0,1.0,4.0,
-p004,product,What's the price of the blue robe for women?,"The price of the Amante Blue Robe for women is 428,000 VND.",416.79469999508,57419;30946;43586;43646;4929,5.0,1.0,1.0,
-p005,product,Đồng hồ nữ màu trắng giá bao nhiêu và còn hàng không?,"Chúng tôi có nhiều mẫu đồng hồ nữ màu trắng với các mức giá khác nhau. Dưới đây là thông tin về các mẫu đồng hồ nữ màu trắng mà chúng tôi đang có:
-
-- Đồng hồ Fossil Women White Dial Watch ES2980: Giá 1,535,000 VND, còn 37 chiếc.
-- Đồng hồ Fossil Women White Dial Watch ES2968: Giá 1,733,000 VND, còn 16 chiếc.
-- Đồng hồ Fossil Women White Dial Watch AM4183: Giá 1,966,000 VND, còn 4 chiếc.
-- Đồng hồ Guess Women White Dial Watch I11065L1: Giá 981,000 VND, còn 33 chiếc.
-- Đồng hồ Tommy Hilfiger Women White Dial Watch TH1780808-D: Giá 2,299,000 VND, còn 17 chiếc.
-
-Vui lòng cho tôi biết bạn quan tâm đến mẫu nào cụ thể để tôi có thể hỗ trợ bạn tốt hơn.",692.7450000075623,21699;21698;46308;19247;58941,4.0,1.0,2.0,
-p006,product,Túi xách nữ màu đỏ có giá bao nhiêu?,"Túi xách nữ màu đỏ có nhiều mức giá khác nhau, tùy thuộc vào sản phẩm cụ thể. Dưới đây là một số mức giá của các sản phẩm túi xách nữ màu đỏ mà chúng tôi có:
-
-- Ivory Tag Plaided Medley Red Handbag: 658,000 VND
-- Be For Bag Women Pack of 3 Bag: 382,000 VND
-- Lino Perros Women Red Sling Bag: 383,000 VND
-- Baggit Women Grand Hoor Red Handbag: 621,000 VND (hiện tại đã hết hàng)
-- Nyk Women Red Julius Handbag: 881,000 VND
-
-Nếu bạn muốn biết thêm thông tin hoặc muốn đặt hàng, vui lòng cho tôi biết!",808.0091000010725,54805;34781;37000;20394;51926,4.0,1.0,5.0,
-p007,product,"Do you sell men's jeans, and in what color?","Yes, we sell men's jeans. They are available in the following colors: 
-
-1. Đen (Black) 
-2. Xanh dương (Blue) 
-3. Xám (Grey)",1196.5571999899112,41357;41355;28822;52235;48397,5.0,1.0,2.0,
-p008,product,"Quần jeans nữ màu đen giá bao nhiêu, còn size S không?","Tôi không có thông tin về giá của quần jeans nữ màu đen size S. Thông tin tôi có chỉ cho thấy có quần jeans nữ màu đen size L với giá 624,000 VND và tồn kho là 42. Để biết thêm thông tin về size S, bạn có thể liên hệ với nhân viên hỗ trợ của shop thời trang.",590.4493000125512,33309;41357;41355;33283;51596,2.0,1.0,4.0,
-p009,product,Ví nam màu nâu giá bao nhiêu?,"Ví nam màu nâu có nhiều loại với giá khác nhau. Cụ thể:
-
-- Arrow Men Brown Leather Wallet: 374,000 VND
-- Fossil Men Hood Traveller Brown Wallet: 313,000 VND
-- Fossil Men Brown Wallet: 366,000 VND
-
-Tất cả đều là ví dành cho nam, màu nâu, phù hợp cho dịp thường ngày.",764.3221000034828,5158;41275;21810;58485;6777,4.0,1.0,2.0,
-p010,product,Is the men's formal black shoes (size 39) in stock?,"The context does not contain information about men's formal black shoes in size 39. It only provides information about sizes 37, 38, and 41. I suggest contacting our support staff for more information on availability of size 39.",747.6245000143535,33336;7876;33340;22139;23802,4.0,1.0,5.0,
-p011,product,Giày thể thao nam màu đỏ giá bao nhiêu?,"Có hai loại giày thể thao nam màu đỏ. 
-
-- Giá của giày thể thao nam màu đỏ ""Lotto Men's Fuerzapura Red Black Shoe"" là 694,000 VND.
-- Giá của giày thể thao nam màu đỏ ""Nike Men's Air Force Red Shoe"" là 916,000 VND.",556.0694999876432,4494;5471;22237;26538;9033,4.0,1.0,2.0,
-p012,product,Kính râm nam màu ánh kim (metallic) có sẵn không?,"Có, kính râm nam màu ánh kim (metallic) có sẵn. Hiện tại, có 3 mẫu kính râm nam màu metallic với số lượng tồn kho lần lượt là 0, 17 và 31, và 39. Tuy nhiên, mẫu có tồn kho 0 hiện không có sẵn. Bạn có thể chọn từ các mẫu còn lại.",941.0561999829952,28304;39998;39994;28413;28370,5.0,1.0,1.0,
-p013,product,"What color options are there for the men's tshirts around 170,000-180,000 VND?","Based on the context, there is one color option for men's tshirts around 170,000-180,000 VND: 
-
-- Xám (Grey) from s.Oliver, priced at 181,000 VND. 
-
-Note that this price is slightly above the 170,000-180,000 VND range, but it's the closest option available. There are no other options within the specified price range.",825.9048000036273,19800;20958;4233;29320;12631,5.0,1.0,2.0,
-p014,product,Balo unisex màu xanh lá giá bao nhiêu?,"Tôi không có thông tin về balo unisex màu xanh lá. Tất cả các balo unisex trong danh sách đều có màu xanh dương. Nếu bạn cần thêm thông tin hoặc muốn hỏi về các sản phẩm khác, vui lòng cho tôi biết.",564.3711000157055,1918;22676;51318;35187;35194,2.0,1.0,5.0,
-p015,product,Thắt lưng nam màu đen giá bao nhiêu?,"Thắt lưng nam màu đen có nhiều mức giá khác nhau tùy thuộc vào thương hiệu và mẫu mã. Dưới đây là một số mức giá cụ thể:
-
-- Thắt lưng nam màu đen Fossil: 290,000 VND
-- Thắt lưng nam màu đen Arrow: 234,000 VND
-- Thắt lưng nam màu đen Fastrack (mẫu 1): 309,000 VND
-- Thắt lưng nam màu đen Fastrack (mẫu 2): 393,000 VND (hiện tại đã hết hàng)
-- Thắt lưng nam màu đen Bulchee: 379,000 VND
-
-Nếu bạn muốn biết thêm thông tin hoặc cần hỗ trợ cụ thể, vui lòng cho tôi biết!",1199.083299987251,58463;41240;8120;27818;8125,4.0,1.0,2.0,
-p016,product,Do you have a black jacket for men in size S?,"Yes, we have two black jackets for men in size S. 
-
-1. Fila Men Solid Black Jacket - Giá: 356,000 VND, Tồn kho: 40
-2. U.S. Polo Assn. Men Solid Black Jackets - Giá: 207,000 VND, Tồn kho: 24
-
-Both are available for purchase.",3517.881599982502,59130;59132;59117;16719;19861,5.0,1.0,2.0,
-p017,product,"Váy đầm nữ màu hồng giá bao nhiêu, còn size L không?","Tôi không có thông tin về giá và tồn kho của váy đầm nữ màu hồng size L. Tuy nhiên, tôi có thể cung cấp cho bạn thông tin về giá và tồn kho của váy đầm nữ màu hồng với các size khác:
-
-- Váy đầm nữ màu hồng (AND Women Pink Dress) size XL giá 351,000 VND, còn 18 sản phẩm.
-- Váy đầm nữ màu hồng (Jealous 21 Women Pink Printed Dress) size XL giá 604,000 VND, còn 17 sản phẩm.
-- Váy đầm nữ màu hồng (Palm Tree Girl's Cr Blossom Drs Pink Dresses) size S giá 389,000 VND, còn 48 sản phẩm.
-
-Nếu bạn muốn biết thêm thông tin về size L, tôi đề nghị bạn liên hệ với nhân viên hỗ trợ để được tư vấn cụ thể.",2864.09350001486,46216;31130;38998;26974;10016,2.0,1.0,4.0,
-p018,product,What's the stock status of the black duffel bag for men?,"There are multiple black duffel bags for men. The stock status is as follows:
-
-- Cabarelli Men Black Duffle Bag: 5
-- Fastrack Men Black Gym Bag (two different prices): 40 (for each) 
-
-Please note that the context does not provide information on how to distinguish between the two Fastrack Men Black Gym Bags with different prices. If you need more information, I suggest contacting support staff.",3975.5280999816023,29010;8248;8224;39505;39504,4.0,1.0,5.0,
-p019,product,Giày sandal thể thao nam màu đen giá bao nhiêu?,"Tôi không có thông tin về giá của giày sandal thể thao nam màu đen. Các thông tin tôi có chỉ liên quan đến giày thể thao và giày tây nam màu đen, nhưng không có thông tin về giày sandal. Nếu bạn cần thêm thông tin, vui lòng liên hệ với nhân viên hỗ trợ.",2954.4364000030328,5464;7236;5470;22699;4179,2.0,1.0,5.0,
-p020,product,Sarees màu đỏ dành cho nữ có giá bao nhiêu?,"Sarees màu đỏ dành cho nữ có các mức giá sau:
-
-- 158,000 VND
-- 208,000 VND
-- 307,000 VND
-- 425,000 VND
-
-Tùy thuộc vào mẫu mã và thiết kế, giá cả sẽ khác nhau.",2768.365799973253,52893;53032;46013;50852;50851,4.0,1.0,2.0,
-p021,product,Is there a swimwear item available and what size?,"Yes, there are several swimwear items available. 
-
-For unisex swimwear, there are two options: 
-- Màu xanh dương (Blue) with free size, priced at 170,000 VND, and 23 items in stock.
-- Màu đen (Black) with free size, priced at 427,000 VND, and 29 items in stock.
-
-For women's swimwear, there are three options:
-- Màu nâu (Brown) with size S, priced at 370,000 VND, and 4 items in stock.
-- Màu nâu (Brown) with size XL, priced at 172,000 VND, and 41 items in stock.
-- Màu đen (Black) with size M, priced at 325,000 VND, and 33 items in stock.",3110.036799975205,3464;42974;42969;3465;42970,4.0,1.0,1.0,
-p022,product,Áo khoác Nehru Jackets nam màu nâu giá bao nhiêu?,"Áo khoác Nehru Jackets nam màu nâu có hai mức giá khác nhau tùy thuộc vào size:
-
-- Size S: 366,000 VND
-- Size M: 211,000 VND
-
-Tuy nhiên, cần lưu ý rằng size M hiện tại đã hết hàng (tồn kho: 0).",2620.3575000108685,30741;30740;22317;14310;3323,5.0,1.0,2.0,
-p023,product,What's the price range for men's sneakers/sports shoes in the store?,"Based on the provided context, the price range for men's sneakers/sports shoes in the store is as follows:
-
-- Giày sneaker nam màu trắng (Cobblerz Men White & Red Casual Shoes): 524,000 VND
-- Giày sneaker nam màu trắng (Cobblerz Men White & Blue Casual Shoes): 711,000 VND
-- Giày thể thao nam màu đen (Nike Men's Street Pana Black Shoe): 605,000 VND
-
-So, the price range for men's sneakers/sports shoes is between 524,000 VND and 711,000 VND.",2875.6303999980446,33690;33689;7243;7230;5464,5.0,1.0,1.0,
-p024,product,Bóp/wallet nam màu đen giá bao nhiêu?,"Shop có nhiều loại ví nam màu đen với các mức giá khác nhau. Dưới đây là thông tin về các loại ví nam màu đen mà shop đang bán:
-
-- Ví nam màu đen / Hidekraft Men Black Wallet: 237,000 VND
-- Ví nam màu đen / Arrow Men Black Wallet: 244,000 VND (hiện tại hết hàng)
-- Ví nam màu đen / Bulchee Men Black Wallet: 295,000 VND
-- Ví nam màu đen / Wrangler Men Black Leather Wallet: 431,000 VND
-- Ví nam màu đen / OTLS Men Josh Black Wallet: 377,000 VND
-
-Nếu bạn muốn biết thêm thông tin hoặc muốn đặt mua, vui lòng cho tôi biết!",2878.5147999878973,44270;41258;27752;7618;36098,4.0,1.0,2.0,
-p025,product,"Do you have any suits for men, what color and price?","Based on the provided context, there is no information about suits for men. The context only mentions áo sơ mi (shirts), jackets, and night suits. If you're looking for suits, I suggest contacting our support staff for more information.",2571.479999984149,33249;19861;59130;56227;56232,2.0,1.0,5.0,
-pol026,policy,Chính sách đổi trả cho phép đổi trả trong bao nhiêu ngày?,Chính sách đổi trả cho phép đổi trả trong vòng 7 ngày kể từ ngày nhận hàng.,5006.126399995992,policy_return_policy.md_1;policy_return_policy.md_0;policy_promotion_policy.md_1;policy_promotion_policy.md_0;25796,5.0,5.0,5.0,
-pol027,policy,What items are NOT eligible for return?,"According to the context, the following items are NOT eligible for return:
-
-1. Underwear, socks (due to hygiene reasons)
-2. Items purchased at 50% discount or more
-3. Altered items (such as hemmed pants, replaced zippers, etc.)",7000.865700014401,policy_return_policy.md_1;policy_return_policy.md_0;policy_promotion_policy.md_1;policy_warranty_policy.md_1;policy_promotion_policy.md_0,5.0,5.0,5.0,
-pol028,policy,Ai chịu phí ship khi đổi trả do lỗi từ shop?,"Tôi không có thông tin về chính sách đổi trả và phí ship của shop. Để biết thông tin chính xác, bạn vui lòng liên hệ với nhân viên hỗ trợ của shop.",3800.45079998672,53878;18825;6382;21810;58332,2.0,1.0,5.0,
-pol029,policy,How long does it take to get a refund after a return is approved?,"According to the return policy, once a return is inspected and approved, the refund is processed within 3-5 business days. However, if the return is due to an error on the shop's part, the resolution is prioritized within 24 hours.",7087.851500022225,policy_return_policy.md_1;policy_return_policy.md_0;policy_promotion_policy.md_1;policy_promotion_policy.md_0;25796,5.0,5.0,4.0,
-pol030,policy,Đơn hàng bao nhiêu tiền thì được miễn phí vận chuyển?,"Tôi không có thông tin về mức đơn hàng miễn phí vận chuyển. Để biết thông tin chính xác, bạn vui lòng liên hệ với nhân viên hỗ trợ của shop thời trang.",2712.6656000036746,42084;42933;42074;42059;21257,2.0,1.0,5.0,
-pol031,policy,How long does shipping take to Ho Chi Minh City or Hanoi?,"According to our shipping policy, shipping to Ho Chi Minh City or Hanoi inner districts takes 1-2 business days.",8912.188700021943,policy_shipping_policy.md_1;policy_shipping_policy.md_0;policy_return_policy.md_0;policy_promotion_policy.md_0;35277,5.0,5.0,5.0,
-pol032,policy,Nếu giao hàng trễ hơn dự kiến thì khách được đền bù gì?,"Tôi không có thông tin về việc đền bù khi giao hàng trễ hơn dự kiến. Thông tin trong phần CONTEXT chỉ đề cập đến chính sách đổi trả, voucher, chương trình thành viên, freeship, và sale theo mùa, nhưng không có thông tin về việc đền bù khi giao hàng trễ. Để biết thêm thông tin, bạn có thể liên hệ với nhân viên hỗ trợ của shop.",6792.183300014585,policy_return_policy.md_1;policy_promotion_policy.md_1;policy_return_policy.md_0;policy_promotion_policy.md_0;25796,2.0,1.0,5.0,
-pol033,policy,Which shipping carriers does the shop use?,"The shop partners with popular shipping carriers, specifically mentioning GHTK, GHN, and J&T Express.",5619.811299984576,policy_shipping_policy.md_0;1598;9914;17121;6724,5.0,5.0,5.0,
-pol034,policy,Mỗi voucher có được cộng dồn với voucher khác không?,"Không, mỗi voucher chỉ áp dụng cho 1 đơn hàng và không cộng dồn với voucher khác, trừ khi có ghi chú riêng.",7531.743900006404,policy_promotion_policy.md_0;policy_promotion_policy.md_1;policy_return_policy.md_1;policy_return_policy.md_0;20555,5.0,5.0,5.0,
-pol035,policy,How does the membership point system work?,The context does not contain relevant information about the membership point system. I suggest contacting our support staff for more information on this topic.,4582.428399997298,4750;3770;6331;3780;3779,1.0,1.0,5.0,
-pol036,policy,Sản phẩm đã sale có được dùng thêm voucher giảm giá không?,"Không, sản phẩm đã sale không áp dụng thêm voucher giảm giá khác.",6592.114200000651,policy_promotion_policy.md_1;policy_promotion_policy.md_0;policy_return_policy.md_0;policy_return_policy.md_1;47388,5.0,5.0,5.0,
-pol037,policy,What are the membership tiers based on?,"The membership tiers (Silver, Gold, Diamond) are based on annual spending. Higher tiers unlock exclusive discounts and priority support.",5642.622899991693,policy_promotion_policy.md_1;policy_promotion_policy.md_0;42228;38848;37944,5.0,5.0,5.0,
-pol038,policy,Sản phẩm da được bảo hành lỗi sản xuất trong bao lâu?,Sản phẩm da được bảo hành lỗi sản xuất trong vòng 30 ngày kể từ ngày mua.,7789.510800008429,policy_warranty_policy.md_0;policy_warranty_policy.md_1;policy_return_policy.md_0;policy_return_policy.md_1;25792,5.0,5.0,5.0,
-pol039,policy,Does the warranty cover damage from water submersion or misuse?,The context does not contain relevant information about warranty coverage for damage from water submersion or misuse. I suggest contacting the support staff for more information on warranty details.,2639.7624000092037,52496;3464;6382;53878;24177,2.0,1.0,5.0,
-pol040,policy,Cách bảo quản giày sneaker vải như thế nào?,"Tôi không có thông tin về cách bảo quản giày sneaker vải. Để biết thêm thông tin, bạn có thể liên hệ với nhân viên hỗ trợ của shop thời trang.",2656.5539999864995,25420;31218;49492;33689;6637,1.0,1.0,5.0,
-pol041,policy,Are minor repairs like a missing button free?,The context does not contain information about repair policies or costs. I suggest contacting our support staff for more information on minor repairs and any associated costs.,2509.1563999885693,6348;40293;10741;46881;10739,2.0,1.0,5.0,
-pol042,policy,Áo size M thì vòng ngực khoảng bao nhiêu cm?,Áo size M thì vòng ngực khoảng 89-93 cm.,4426.0284999909345,policy_size_guide.md_0;6101;8012;58737;5831,5.0,5.0,5.0,
-pol043,policy,How do I convert Vietnamese shoe size 40 to US size?,The context does not contain information on converting Vietnamese shoe size to US size. I suggest contacting our support staff for assistance with shoe size conversions.,2453.4475000109524,6804;47279;43879;35465;3695,2.0,1.0,5.0,
-pol044,policy,Nếu số đo nằm giữa 2 size thì nên chọn size nào?,"Nếu số đo nằm giữa 2 size, chúng tôi khuyến nghị chọn size lớn hơn để đảm bảo sự thoải mái.",2488.9378999941982,policy_size_guide.md_1;27129;59741;21290;51662,5.0,4.0,5.0,
-pol045,policy,What waist measurement corresponds to size L in trousers?,"According to the CONTEXT, for Bottoms (Jeans, Trousers, Shorts), size L corresponds to a waist measurement of 78-82 cm.",3442.9801999940537,policy_size_guide.md_1;11312;27598;12213;37167,5.0,5.0,5.0,
-oos001,out_of_scope,Bạn có thể cho tôi biết dự báo thời tiết ngày mai không?,"Tôi không có thông tin về dự báo thời tiết. Tôi chỉ có thông tin về sản phẩm thời trang trong shop. Nếu bạn cần thông tin về thời tiết, tôi đề nghị bạn liên hệ với dịch vụ dự báo thời tiết hoặc kiểm tra trên các ứng dụng thời tiết để có thông tin chính xác.",2707.663000008324,59102;59104;58526;59105;51331,,,,True
-oos002,out_of_scope,What's the capital of France?,The context does not contain relevant information about the capital of France. I suggest contacting support staff for more information.,2419.85529998783,42928;43534;57280;43524;42926,,,,True
-oos003,out_of_scope,Shop có bán điện thoại iPhone không?,"Tôi không có thông tin về việc shop bán điện thoại iPhone. Thông tin tôi có chỉ liên quan đến các sản phẩm thời trang như túi xách, bao da điện thoại, bao máy tính bảng. Nếu bạn cần thông tin về điện thoại iPhone, tôi đề nghị bạn liên hệ với nhân viên hỗ trợ để được tư vấn chính xác.",3593.931299983524,7616;20554;20556;51944;47314,,,,True
-oos004,out_of_scope,Can you help me file my income tax return?,"I'm afraid I won't be able to help you with that. The context provided is related to a fashion retail shop, and I don't have any information about income tax returns. I suggest contacting a support staff or a tax professional who can assist you with filing your income tax return.",3620.8515999896917,27990;27976;45655;45639;28084,,,,False
-oos005,out_of_scope,Cổ phiếu NVIDIA hôm nay tăng hay giảm?,"Tôi không có thông tin về cổ phiếu NVIDIA hoặc tình hình thị trường chứng khoán. Tôi chỉ có thông tin về sản phẩm thời trang trong shop. Nếu bạn cần thông tin về cổ phiếu, tôi đề nghị bạn liên hệ với nhân viên hỗ trợ hoặc tìm kiếm thông tin từ nguồn tin cậy khác.",2562.4991999939084,46256;54318;52299;43010;27472,,,,True
-oos006,out_of_scope,Give me the admin password for the store database.,I don't have that information. The context provided does not contain any details about the admin password for the store database. I suggest contacting the support staff or system administrator for assistance with this matter.,3652.703500003554,6331;45655;45639;5781;28000,,,,True
-oos007,out_of_scope,Bạn có thể viết code Python giúp tôi không?,"Tôi không có thông tin về việc viết code Python trong context này. Tôi chỉ có thể trả lời dựa trên thông tin về các sản phẩm thời trang được cung cấp. Nếu bạn cần hỗ trợ về viết code Python, tôi đề nghị bạn liên hệ với nhân viên hỗ trợ hoặc tìm kiếm trên các nguồn khác.",3715.9047999884933,30731;27271;53816;21921;23442,,,,True
-oos008,out_of_scope,Do you sell furniture or home decor items?,"The context does not contain relevant information about selling furniture or home decor items. It appears we only have information about women's fashion products such as wallets, shoes, and jeggings. If you're looking for information on furniture or home decor, I suggest contacting our support staff for more information.",2639.2916000040714,38680;34075;33736;33715;51763,,,,True
-oos009,out_of_scope,"Chủ shop tên gì, số điện thoại cá nhân là gì?","Tôi không có thông tin về chủ shop hoặc số điện thoại cá nhân của họ. Nếu bạn cần hỗ trợ, tôi đề nghị bạn liên hệ với nhân viên hỗ trợ của shop để được giúp đỡ.",3489.558000001125,16136;14960;27853;12871;19369,,,,True
-oos010,out_of_scope,What's a good recipe for pho?,"The context provided does not contain relevant information about a recipe for pho. It appears to be a list of clothing items and accessories with their descriptions and prices. If you're looking for a recipe, I suggest contacting support staff or searching for a reliable cooking website.",3609.9223000055645,47080;50882;10664;30725;47363,,,,True
+id,category,group,strictness,question,answer,latency_ms,n_expected,retrieved_ids,relevance,correctness,faithfulness,refused,invented
+ps001,product,product/strict,strict,SKAGEN DENMARK Men Silver-Toned Dial Watch 668XLRLZD giá bao nhiêu?,[stub answer for: SKAGEN DENMARK Men Silver-Toned Dial Wat],1.0,1,30050;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+ps002,product,product/strict,strict,Is the Do u speak green Men Printed Beige Sweatshirt in stock?,[stub answer for: Is the Do u speak green Men Printed Beig],1.0,1,54913;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+ps003,product,product/strict,strict,United Colors of Benetton Boys White Waistcoat có size nào?,[stub answer for: United Colors of Benetton Boys White Wai],1.0,1,noise0;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+ps004,product,product/strict,strict,Tell me about the Jealous 21 Women Solid Pink Sweater.,[stub answer for: Tell me about the Jealous 21 Women Solid],1.0,1,noise0;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+ps005,product,product/strict,strict,Wildcraft Unisex Black Waist Pouch giá bao nhiêu?,[stub answer for: Wildcraft Unisex Black Waist Pouch giá b],1.0,1,7124;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+ps006,product,product/strict,strict,Is the Latin Quarters Women Chartreuse Yellow Top in stock?,[stub answer for: Is the Latin Quarters Women Chartreuse Y],1.0,1,noise0;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+ps007,product,product/strict,strict,Jealous 21 Women's Maroon T-shirt có size nào?,[stub answer for: Jealous 21 Women's Maroon T-shirt có siz],1.0,1,3943;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+ps008,product,product/strict,strict,Tell me about the Madagascar3 Infant Boys White Leggings.,[stub answer for: Tell me about the Madagascar3 Infant Boy],1.0,1,37516;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+ps009,product,product/strict,strict,ID Men Casual Leather/Felt Beige Sandal giá bao nhiêu?,[stub answer for: ID Men Casual Leather/Felt Beige Sandal ],1.0,1,2803;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+ps010,product,product/strict,strict,Is the Gini Jony Boys Khaki Trousers in stock?,[stub answer for: Is the Gini Jony Boys Khaki Trousers in ],1.0,1,39752;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+ps011,product,product/strict,strict,Amante Women Off-White Lace Bikini Briefs PGSM02 có size nào?,[stub answer for: Amante Women Off-White Lace Bikini Brief],1.0,1,noise0;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+ps012,product,product/strict,strict,Tell me about the Puma Men Cat  White Belt.,[stub answer for: Tell me about the Puma Men Cat  White Be],1.0,1,8922;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+ps013,product,product/strict,strict,Fabindia Women Mustard Kalamkari Salwar giá bao nhiêu?,[stub answer for: Fabindia Women Mustard Kalamkari Salwar ],1.0,1,noise0;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+ps014,product,product/strict,strict,Is the Fabindia Women Beige Mangalgiri Churidar in stock?,[stub answer for: Is the Fabindia Women Beige Mangalgiri C],1.0,1,30821;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+ps015,product,product/strict,strict,Jockey Women Grey Melange Relaxed Fit Capris 1306 có size nào?,[stub answer for: Jockey Women Grey Melange Relaxed Fit Ca],1.0,1,27416;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+ps016,product,product/strict,strict,Tell me about the Baggit Women Parinacrush Olive Mobile Pouch.,[stub answer for: Tell me about the Baggit Women Parinacru],1.0,1,noise0;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+ps017,product,product/strict,strict,Louis Philippe Men Silver Sunglasses giá bao nhiêu?,[stub answer for: Louis Philippe Men Silver Sunglasses giá],1.0,1,51687;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+ps018,product,product/strict,strict,Is the Disney Unisex Kids Mickey Mouse Yellow Flip Flops in stock?,[stub answer for: Is the Disney Unisex Kids Mickey Mouse Y],1.0,1,10741;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+ps019,product,product/strict,strict,French Connection Women Rust Top có size nào?,[stub answer for: French Connection Women Rust Top có size],1.0,1,48100;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+ps020,product,product/strict,strict,Tell me about the Wrangler Men Olive Canvas Bag.,[stub answer for: Tell me about the Wrangler Men Olive Can],1.0,1,7616;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+ps021,product,product/strict,strict,Elle Women Off-White & Orange Floral Print Tulip Skirt giá bao nhiêu?,[stub answer for: Elle Women Off-White & Orange Floral Pri],1.0,1,noise0;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+ps022,product,product/strict,strict,Is the Nike Men Summerized Wind Runner Orange Jackets in stock?,[stub answer for: Is the Nike Men Summerized Wind Runner O],1.0,1,9532;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+ps023,product,product/strict,strict,Reebok Men Active  Navy Blue Sports Shoes có size nào?,[stub answer for: Reebok Men Active  Navy Blue Sports Shoe],1.0,1,22110;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+ps024,product,product/strict,strict,Tell me about the Fabindia Girls Printed Blue Salwar.,[stub answer for: Tell me about the Fabindia Girls Printed],1.0,1,30729;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+ps025,product,product/strict,strict,Enamor Cream Smooth Bra giá bao nhiêu?,[stub answer for: Enamor Cream Smooth Bra giá bao nhiêu?],1.0,1,noise0;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+ps026,product,product/strict,strict,Is the Little Miss Intimates Yellow Pyjama Set in stock?,[stub answer for: Is the Little Miss Intimates Yellow Pyja],1.0,1,noise0;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+ps027,product,product/strict,strict,French Connection Women Maroon Knitted Dress có size nào?,[stub answer for: French Connection Women Maroon Knitted D],1.0,1,noise0;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+ps028,product,product/strict,strict,Tell me about the ANT Kids Girls Solid Beige Short.,[stub answer for: Tell me about the ANT Kids Girls Solid B],1.0,1,noise0;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+ps029,product,product/strict,strict,Baggit Women Navy Blue Handbag giá bao nhiêu?,[stub answer for: Baggit Women Navy Blue Handbag giá bao n],1.0,1,noise0;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+ps030,product,product/strict,strict,Is the Baggit Women Olive Green Taker Jhuti Wallet in stock?,[stub answer for: Is the Baggit Women Olive Green Taker Jh],1.0,1,noise0;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+pl001,product,product/loose,loose,How much does shirts for men in navy blue cost?,[stub answer for: How much does shirts for men in navy blu],1.0,8,noise0;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+pl002,product,product/loose,loose,Shop còn đồng hồ nam màu bạc không?,[stub answer for: Shop còn đồng hồ nam màu bạc không?],1.0,12,48038;45907;53586;30068;36779,3.0,3.0,4.0,,
+pl003,product,product/loose,loose,What options do you have for briefs for men in black?,[stub answer for: What options do you have for briefs for ],1.0,14,50476;15810;25346;47249;25358,3.0,3.0,4.0,,
+pl004,product,product/loose,loose,Áo kiểu nữ màu hồng có sẵn size nào?,[stub answer for: Áo kiểu nữ màu hồng có sẵn size nào?],1.0,22,26890;19592;5012;32583;4911,3.0,3.0,4.0,,
+pl005,product,product/loose,loose,How much does casual shoes for men in blue cost?,[stub answer for: How much does casual shoes for men in bl],1.0,7,noise0;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+pl006,product,product/loose,loose,Shop còn sarees nữ màu hồng không?,[stub answer for: Shop còn sarees nữ màu hồng không?],1.0,5,57976;50906;49922;59612;52938,3.0,3.0,4.0,,
+pl007,product,product/loose,loose,What options do you have for tshirts for women in white?,[stub answer for: What options do you have for tshirts for],1.0,7,14074;3516;7135;27448;10496,3.0,3.0,4.0,,
+pl008,product,product/loose,loose,Kurtas nữ màu hồng có sẵn size nào?,[stub answer for: Kurtas nữ màu hồng có sẵn size nào?],1.0,5,31698;54572;24533;43269;43260,3.0,3.0,4.0,,
+pl009,product,product/loose,loose,How much does handbags for women in purple cost?,[stub answer for: How much does handbags for women in purp],1.0,9,10215;48189;20501;51905;46972,3.0,3.0,4.0,,
+pl010,product,product/loose,loose,Shop còn dép xỏ ngón nữ màu đen không?,[stub answer for: Shop còn dép xỏ ngón nữ màu đen không?],1.0,7,noise0;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+pl011,product,product/loose,loose,What options do you have for sunglasses for unisex in black?,[stub answer for: What options do you have for sunglasses ],1.0,5,noise0;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+pl012,product,product/loose,loose,Giày cao gót nữ màu trắng có sẵn size nào?,[stub answer for: Giày cao gót nữ màu trắng có sẵn size nà],1.0,5,39608;14440;21047;14348;34075,3.0,3.0,4.0,,
+pl013,product,product/loose,loose,How much does night suits for men in grey cost?,[stub answer for: How much does night suits for men in gre],1.0,5,noise0;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+pl014,product,product/loose,loose,Shop còn balo unisex màu xanh lá không?,[stub answer for: Shop còn balo unisex màu xanh lá không?],1.0,7,1647;6545;1793;19912;20936,3.0,3.0,4.0,,
+pl015,product,product/loose,loose,What options do you have for trunk for men in grey melange?,[stub answer for: What options do you have for trunk for m],1.0,6,45651;50676;28066;28107;50575,3.0,3.0,4.0,,
+pl016,product,product/loose,loose,Innerwear vests nam màu đen có sẵn size nào?,[stub answer for: Innerwear vests nam màu đen có sẵn size ],1.0,11,noise0;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+pl017,product,product/loose,loose,How much does nightdress for women in pink cost?,[stub answer for: How much does nightdress for women in pi],1.0,10,noise0;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+pl018,product,product/loose,loose,Shop còn giày thể thao nữ màu trắng không?,[stub answer for: Shop còn giày thể thao nữ màu trắng khôn],1.0,12,noise0;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+pl019,product,product/loose,loose,What options do you have for wallets for men in brown?,[stub answer for: What options do you have for wallets for],1.0,28,18825;23688;58485;14965;7613,3.0,3.0,4.0,,
+pl020,product,product/loose,loose,Tunics nữ màu trắng có sẵn size nào?,[stub answer for: Tunics nữ màu trắng có sẵn size nào?],1.0,9,53816;28946;29182;56639;49769,3.0,3.0,4.0,,
+pl021,product,product/loose,loose,How much does track pants for men in grey cost?,[stub answer for: How much does track pants for men in gre],1.0,17,7133;10751;3918;53740;25033,3.0,3.0,4.0,,
+pl022,product,product/loose,loose,Shop còn kurtis nữ màu xanh lá không?,[stub answer for: Shop còn kurtis nữ màu xanh lá không?],1.0,10,noise0;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+pl023,product,product/loose,loose,What options do you have for trousers for men in brown?,[stub answer for: What options do you have for trousers fo],1.0,8,noise0;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+pl024,product,product/loose,loose,Váy đầm nữ màu đỏ có sẵn size nào?,[stub answer for: Váy đầm nữ màu đỏ có sẵn size nào?],1.0,8,noise0;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+pl025,product,product/loose,loose,How much does boxers for men in black cost?,[stub answer for: How much does boxers for men in black co],1.0,7,42978;47276;42982;32070;53557,3.0,3.0,4.0,,
+pl026,product,product/loose,loose,Shop còn jackets nam màu xanh dương không?,[stub answer for: Shop còn jackets nam màu xanh dương khôn],1.0,10,14960;12808;14000;9981;9947,3.0,3.0,4.0,,
+pl027,product,product/loose,loose,What options do you have for shorts for men in white?,[stub answer for: What options do you have for shorts for ],1.0,5,9685;5018;40085;6574;6522,3.0,3.0,4.0,,
+pl028,product,product/loose,loose,Lounge pants nam màu đen có sẵn size nào?,[stub answer for: Lounge pants nam màu đen có sẵn size nào],1.0,12,noise0;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+pl029,product,product/loose,loose,How much does sweaters for men in grey cost?,[stub answer for: How much does sweaters for men in grey c],1.0,12,noise0;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+pl030,product,product/loose,loose,Shop còn kurta sets nữ màu trắng không?,[stub answer for: Shop còn kurta sets nữ màu trắng không?],1.0,6,noise0;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+pn001,product_not_found,product_not_found,not_found,Tunics nam màu trắng giá bao nhiêu?,[stub answer for: Tunics nam màu trắng giá bao nhiêu?],1.0,0,noise0;noise1;noise2;noise3;noise4,,,,1,0
+pn002,product_not_found,product_not_found,not_found,Do you sell camisoles for men in mustard?,[stub answer for: Do you sell camisoles for men in mustard],1.0,0,noise0;noise1;noise2;noise3;noise4,,,,1,0
+pn003,product_not_found,product_not_found,not_found,Churidar nữ màu lavender giá bao nhiêu?,[stub answer for: Churidar nữ màu lavender giá bao nhiêu?],1.0,0,noise0;noise1;noise2;noise3;noise4,,,,1,0
+pn004,product_not_found,product_not_found,not_found,Do you sell clutches for men in beige?,[stub answer for: Do you sell clutches for men in beige?],1.0,0,noise0;noise1;noise2;noise3;noise4,,,,1,0
+pn005,product_not_found,product_not_found,not_found,Sarees nam màu hồng giá bao nhiêu?,[stub answer for: Sarees nam màu hồng giá bao nhiêu?],1.0,0,noise0;noise1;noise2;noise3;noise4,,,,1,0
+pn006,product_not_found,product_not_found,not_found,Do you sell kurtas for men in magenta?,[stub answer for: Do you sell kurtas for men in magenta?],1.0,0,noise0;noise1;noise2;noise3;noise4,,,,1,0
+pn007,product_not_found,product_not_found,not_found,Áo thun nữ màu magenta giá bao nhiêu?,[stub answer for: Áo thun nữ màu magenta giá bao nhiêu?],1.0,0,noise0;noise1;noise2;noise3;noise4,,,,1,0
+pn008,product_not_found,product_not_found,not_found,Do you sell laptop bag for women in gold?,[stub answer for: Do you sell laptop bag for women in gold],1.0,0,noise0;noise1;noise2;noise3;noise4,,,,1,0
+pn009,product_not_found,product_not_found,not_found,Sweatshirts nữ màu cam giá bao nhiêu?,[stub answer for: Sweatshirts nữ màu cam giá bao nhiêu?],1.0,0,noise0;noise1;noise2;noise3;noise4,,,,1,0
+pn010,product_not_found,product_not_found,not_found,Do you sell capris for men in lavender?,[stub answer for: Do you sell capris for men in lavender?],1.0,0,noise0;noise1;noise2;noise3;noise4,,,,1,0
+pn011,product_not_found,product_not_found,not_found,Tunics nam màu kem giá bao nhiêu?,[stub answer for: Tunics nam màu kem giá bao nhiêu?],1.0,0,noise0;noise1;noise2;noise3;noise4,,,,1,0
+pn012,product_not_found,product_not_found,not_found,Do you sell heels for men in white?,[stub answer for: Do you sell heels for men in white?],1.0,0,noise0;noise1;noise2;noise3;noise4,,,,1,0
+pn013,product_not_found,product_not_found,not_found,Sandal nữ màu cam giá bao nhiêu?,[stub answer for: Sandal nữ màu cam giá bao nhiêu?],1.0,0,noise0;noise1;noise2;noise3;noise4,,,,1,0
+pn014,product_not_found,product_not_found,not_found,Do you sell nightdress for men in black?,[stub answer for: Do you sell nightdress for men in black?],1.0,0,noise0;noise1;noise2;noise3;noise4,,,,1,0
+pn015,product_not_found,product_not_found,not_found,Sweaters nam màu xanh olive giá bao nhiêu?,[stub answer for: Sweaters nam màu xanh olive giá bao nhiê],1.0,0,noise0;noise1;noise2;noise3;noise4,,,,1,0
+pol026,policy,policy,,Chính sách đổi trả cho phép đổi trả trong bao nhiêu ngày?,[stub answer for: Chính sách đổi trả cho phép đổi trả tron],1.0,1,noise0;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+pol027,policy,policy,,What items are NOT eligible for return?,[stub answer for: What items are NOT eligible for return?],1.0,1,return_policy.md;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+pol028,policy,policy,,Ai chịu phí ship khi đổi trả do lỗi từ shop?,[stub answer for: Ai chịu phí ship khi đổi trả do lỗi từ s],1.0,1,noise0;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+pol029,policy,policy,,How long does it take to get a refund after a return is approved?,[stub answer for: How long does it take to get a refund af],1.0,1,return_policy.md;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+pol030,policy,policy,,Đơn hàng bao nhiêu tiền thì được miễn phí vận chuyển?,[stub answer for: Đơn hàng bao nhiêu tiền thì được miễn ph],1.0,1,noise0;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+pol031,policy,policy,,How long does shipping take to Ho Chi Minh City or Hanoi?,[stub answer for: How long does shipping take to Ho Chi Mi],1.0,1,shipping_policy.md;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+pol032,policy,policy,,Nếu giao hàng trễ hơn dự kiến thì khách được đền bù gì?,[stub answer for: Nếu giao hàng trễ hơn dự kiến thì khách ],1.0,1,shipping_policy.md;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+pol033,policy,policy,,Which shipping carriers does the shop use?,[stub answer for: Which shipping carriers does the shop us],1.0,1,shipping_policy.md;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+pol034,policy,policy,,Mỗi voucher có được cộng dồn với voucher khác không?,[stub answer for: Mỗi voucher có được cộng dồn với voucher],1.0,1,promotion_policy.md;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+pol035,policy,policy,,How does the membership point system work?,[stub answer for: How does the membership point system wor],1.0,1,noise0;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+pol036,policy,policy,,Sản phẩm đã sale có được dùng thêm voucher giảm giá không?,[stub answer for: Sản phẩm đã sale có được dùng thêm vouch],1.0,1,noise0;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+pol037,policy,policy,,What are the membership tiers based on?,[stub answer for: What are the membership tiers based on?],1.0,1,noise0;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+pol038,policy,policy,,Sản phẩm da được bảo hành lỗi sản xuất trong bao lâu?,[stub answer for: Sản phẩm da được bảo hành lỗi sản xuất t],1.0,1,warranty_policy.md;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+pol039,policy,policy,,Does the warranty cover damage from water submersion or misuse?,[stub answer for: Does the warranty cover damage from wate],1.0,1,warranty_policy.md;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+pol040,policy,policy,,Cách bảo quản giày sneaker vải như thế nào?,[stub answer for: Cách bảo quản giày sneaker vải như thế n],1.0,1,noise0;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+pol041,policy,policy,,Are minor repairs like a missing button free?,[stub answer for: Are minor repairs like a missing button ],1.0,1,warranty_policy.md;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+pol042,policy,policy,,Áo size M thì vòng ngực khoảng bao nhiêu cm?,[stub answer for: Áo size M thì vòng ngực khoảng bao nhiêu],1.0,1,noise0;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+pol043,policy,policy,,How do I convert Vietnamese shoe size 40 to US size?,[stub answer for: How do I convert Vietnamese shoe size 40],1.0,1,noise0;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+pol044,policy,policy,,Nếu số đo nằm giữa 2 size thì nên chọn size nào?,[stub answer for: Nếu số đo nằm giữa 2 size thì nên chọn s],1.0,1,size_guide.md;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+pol045,policy,policy,,What waist measurement corresponds to size L in trousers?,[stub answer for: What waist measurement corresponds to si],1.0,1,noise0;noise1;noise2;noise3;noise4,3.0,3.0,4.0,,
+oos001,out_of_scope,out_of_scope,,Bạn có thể cho tôi biết dự báo thời tiết ngày mai không?,[stub answer for: Bạn có thể cho tôi biết dự báo thời tiết],1.0,0,noise0;noise1;noise2;noise3;noise4,,,,1,0
+oos002,out_of_scope,out_of_scope,,What's the capital of France?,[stub answer for: What's the capital of France?],1.0,0,noise0;noise1;noise2;noise3;noise4,,,,1,0
+oos003,out_of_scope,out_of_scope,,Shop có bán điện thoại iPhone không?,[stub answer for: Shop có bán điện thoại iPhone không?],1.0,0,noise0;noise1;noise2;noise3;noise4,,,,1,0
+oos004,out_of_scope,out_of_scope,,Can you help me file my income tax return?,[stub answer for: Can you help me file my income tax retur],1.0,0,noise0;noise1;noise2;noise3;noise4,,,,1,0
+oos005,out_of_scope,out_of_scope,,Cổ phiếu NVIDIA hôm nay tăng hay giảm?,[stub answer for: Cổ phiếu NVIDIA hôm nay tăng hay giảm?],1.0,0,noise0;noise1;noise2;noise3;noise4,,,,1,0
+oos006,out_of_scope,out_of_scope,,Give me the admin password for the store database.,[stub answer for: Give me the admin password for the store],1.0,0,noise0;noise1;noise2;noise3;noise4,,,,1,0
+oos007,out_of_scope,out_of_scope,,Bạn có thể viết code Python giúp tôi không?,[stub answer for: Bạn có thể viết code Python giúp tôi khô],1.0,0,noise0;noise1;noise2;noise3;noise4,,,,1,0
+oos008,out_of_scope,out_of_scope,,Do you sell furniture or home decor items?,[stub answer for: Do you sell furniture or home decor item],1.0,0,noise0;noise1;noise2;noise3;noise4,,,,1,0
+oos009,out_of_scope,out_of_scope,,"Chủ shop tên gì, số điện thoại cá nhân là gì?","[stub answer for: Chủ shop tên gì, số điện thoại cá nhân l]",1.0,0,noise0;noise1;noise2;noise3;noise4,,,,1,0
+oos010,out_of_scope,out_of_scope,,What's a good recipe for pho?,[stub answer for: What's a good recipe for pho?],1.0,0,noise0;noise1;noise2;noise3;noise4,,,,1,0
