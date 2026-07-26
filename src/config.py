@@ -22,15 +22,19 @@ EMBEDDING_QUERY_PREFIX   = os.getenv("EMBEDDING_QUERY_PREFIX", "query: ")
 EMBEDDING_PASSAGE_PREFIX = os.getenv("EMBEDDING_PASSAGE_PREFIX", "passage: ")
 
 # --- Retrieval ---
-TOP_K                = 5
 # Policy chỉ có ~15 chunk trên tổng ~5015. Để chung một ranking thì câu hỏi
 # policy bị chunk sản phẩm nhấn chìm mỗi khi nó dùng từ ngữ miền sản phẩm
 # ("size L", "trousers", "sản phẩm da"). Giữ slot riêng cho từng doc_type.
-# Tổng = 3 + 2 = TOP_K nên kích thước context không đổi.
 SPLIT_BY_DOC_TYPE    = os.getenv("SPLIT_BY_DOC_TYPE", "1") == "1"
 RETRIEVE_K_PRODUCT   = int(os.getenv("RETRIEVE_K_PRODUCT", "3"))
 RETRIEVE_K_POLICY    = int(os.getenv("RETRIEVE_K_POLICY", "2"))
-POLICY_CHUNK_SIZE    = 150   # ~token, dùng khi chunk policy docs
+
+# Khi split bật, tổng slot MỚI là số chunk thực sự vào context -> TOP_K phải
+# suy ra từ đó, không khai báo rời. Trước đây TOP_K=5 và 3+2 là hai chỗ độc lập.
+TOP_K = (RETRIEVE_K_PRODUCT + RETRIEVE_K_POLICY) if SPLIT_BY_DOC_TYPE \
+    else int(os.getenv("TOP_K", "5"))
+
+POLICY_CHUNK_SIZE    = 150   # ~350 token với tiếng Việt, an toàn dưới 512
 POLICY_CHUNK_OVERLAP = 30
 
 # --- LLM (Groq) ---

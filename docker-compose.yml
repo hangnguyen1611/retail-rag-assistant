@@ -1,10 +1,15 @@
 services:
   backend:
-    build: .
+    build:
+      context: .
+      args:
+        EMBEDDING_MODEL: intfloat/multilingual-e5-small
     ports:
       - "8000:8000"
     env_file:
       - .env
+    environment:
+      - CORS_ALLOW_ORIGINS=http://localhost:8501,http://127.0.0.1:8501
     volumes:
       # Persist index qua các lần restart — build_index.py chỉ chạy lại
       # khi volume này rỗng (xem entrypoint.sh)

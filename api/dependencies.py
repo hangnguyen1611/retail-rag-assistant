@@ -5,7 +5,7 @@ Khởi tạo Retriever + Generator MỘT LẦN lúc startup, inject vào routes
 qua FastAPI Depends() -- tránh load lại model mỗi request (latency).
 """
 
-import os
+from src.config import CHROMA_PERSIST_DIR, EMBEDDING_MODEL, TOP_K
 
 _retriever = None
 _generator = None
@@ -17,8 +17,9 @@ def init_dependencies():
     from src.rag.generator import Generator
 
     _retriever = Retriever(
-        persist_dir=os.getenv("CHROMA_PERSIST_DIR", "./chroma_db"),
-        embedding_model=os.getenv("EMBEDDING_MODEL", "BAAI/bge-m3"),
+        persist_dir=CHROMA_PERSIST_DIR,
+        embedding_model=EMBEDDING_MODEL,
+        top_k=TOP_K,
     )
     _generator = Generator()
 

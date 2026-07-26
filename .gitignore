@@ -20,3 +20,7 @@ chroma_db/
 
 # Docker
 *.log
+
+# Eval artifacts của dry run / backup
+data/eval/results_dryrun.csv
+data/eval/*.bak
