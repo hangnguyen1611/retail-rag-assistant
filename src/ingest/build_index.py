@@ -1,21 +1,20 @@
-import os
 import glob
-
-import pandas as pd
+import os
 import chromadb
-from sentence_transformers import SentenceTransformer
+import pandas as pd
 from dotenv import load_dotenv
+from sentence_transformers import SentenceTransformer
 
-from src.config import (
-    PROCESSED_PRODUCTS_PATH,
-    POLICIES_DIR,
-    CHROMA_PERSIST_DIR,
+from config.backend import (
     CHROMA_COLLECTION_NAME,
+    CHROMA_PERSIST_DIR,
     CHROMA_SPACE,
     EMBEDDING_MODEL,
     EMBEDDING_PASSAGE_PREFIX,
-    POLICY_CHUNK_SIZE,
+    POLICIES_DIR,
     POLICY_CHUNK_OVERLAP,
+    POLICY_CHUNK_SIZE,
+    PROCESSED_PRODUCTS_PATH,
     set_seed,
 )
 
@@ -23,19 +22,25 @@ load_dotenv()
 
 
 def load_products_as_chunks(path=PROCESSED_PRODUCTS_PATH):
+    """
+    Đọc products.csv và biến mỗi sản phẩm thành 1 chunk để index vào ChromaDB.
+    Mỗi sản phẩm là 1 chunk riêng (không cắt nhỏ thêm, vì mô tả sản phẩm đủ ngắn để nằm gọn trong 1 embedding). 
+    Nội dung chunk gộp cả tiếng Việt lẫn tiếng Anh (song ngữ) để retrieval hoạt động tốt bất kể câu hỏi bằng 
+    ngôn ngữ nào. Metadata đi kèm để phục vụ filter/rerank sau khi retrieve (vd lọc theo article_type, còn hàng hay không).
+    """
     df = pd.read_csv(path)
     chunks = []
 
     for _, row in df.iterrows():
-        # Mỗi sản phẩm = 1 chunk, gộp đủ field quan trọng để retrieval bắt được
-        # cả câu hỏi tiếng Việt lẫn tiếng Anh (name/description song ngữ trong cùng 1 chunk)
         content = (
-            f"{row['name_vi']} / {row['name_en']}\n"
+            f"Mã sản phẩm: SP{row['id']}\n"
+            f"{row['name_vi']} | {row['name_en']}\n"
             f"Loại: {row['type_vi']} | Type: {row['articleType']}\n"
             f"Màu: {row['color_vi']} | Color: {row['baseColour']}\n"
             f"Giới tính: {row['gender_vi']} | Gender: {row['gender']}\n"
             f"Size: {row['size']}\n"
-            f"Giá: {row['price']:,} VND | Tồn kho: {row['stock']}\n"
+            f"Giá: {row['price']:,} VND | Price: {row['price']:,}\n"
+            f"Tồn kho: {row['stock']} | Stock: {row['stock']}\n"
             f"{row['description_vi']}\n{row['description_en']}"
         )
 
@@ -47,6 +52,15 @@ def load_products_as_chunks(path=PROCESSED_PRODUCTS_PATH):
                 "doc_id": str(row["id"]),
                 "price": int(row["price"]),
                 "stock": int(row["stock"]),
+                "article_type": str(row["articleType"]),
+                "base_colour": str(row["baseColour"]),
+                "gender": str(row["gender"]),
+                "sub_category": str(row["subCategory"]),
+                "size": str(row["size"]),
+                "article_type_lower": str(row["articleType"]).lower(),
+                "base_colour_lower": str(row["baseColour"]).lower(),
+                "gender_lower": str(row["gender"]).lower(),
+                "in_stock": bool(int(row["stock"]) > 0),
             },
         })
 
@@ -54,7 +68,11 @@ def load_products_as_chunks(path=PROCESSED_PRODUCTS_PATH):
 
 
 def _split_text(text, chunk_size, overlap):
-    """Chunk theo số từ (proxy đơn giản cho token), có overlap để không cắt đứt ngữ cảnh."""
+    """
+    Chunk văn bản dài thành các đoạn chồng lấp theo số từ.
+    Chunk theo số từ (proxy đơn giản cho token), có overlap để không cắt đứt ngữ cảnh.
+    Câu/ý ở ranh giới giữa 2 chunk vẫn xuất hiện đầy đủ trong ít nhất 1 chunk nhờ phần chồng lấp.
+    """
     words = text.split()
     if not words:
         return []
@@ -71,7 +89,13 @@ def _split_text(text, chunk_size, overlap):
     return chunks
 
 
-def load_policies_as_chunks(dir_path: str = POLICIES_DIR):
+def load_policies_as_chunks(dir_path=POLICIES_DIR):
+    """
+    Đọc tất cả file .md trong thư mục policy và chunk hoá chúng.
+    Mỗi file .md (vd chính sách đổi trả, vận chuyển) được đọc toàn bộ rồi cắt nhỏ bằng _split_text() 
+    theo cấu hình POLICY_CHUNK_SIZE/OVERLAP, vì các văn bản chính sách thường dài hơn nhiều so với 
+    1 embedding có thể biểu diễn tốt trong 1 lần.
+    """
     chunks = []
 
     for filepath in sorted(glob.glob(os.path.join(dir_path, "*.md"))):
@@ -98,12 +122,11 @@ def load_policies_as_chunks(dir_path: str = POLICIES_DIR):
 
 def build_and_persist_index(chunks, batch_size=128, use_multiprocess=None):
     """
-    batch_size: tăng lên (64-128+) giúp CPU/GPU encode hiệu quả hơn so với
-        mặc định 32 của sentence-transformers — ít overhead giữa các batch.
-    use_multiprocess: chia việc encode ra nhiều tiến trình CPU song song.
-        Mặc định None -> tự bật khi có >1000 chunk và máy có >1 core (lợi ích
-        rõ nhất ở dataset lớn như 5000 sản phẩm; với dataset nhỏ, overhead
-        khởi tạo pool còn tốn hơn cả lợi ích).
+    Encode danh sách chunks thành embedding và upsert vào ChromaDB.
+    Dùng SentenceTransformer để encode nội dung chunk (có thêm prefix dành cho passage nếu model yêu cầu, 
+    Vd BGE-style "passage: "), normalize embedding để cosine similarity là metric đúng về mặt toán học 
+    (distance ChromaDB trả về nằm trong [0, 2], convert sang similarity bằng công thức 1 - distance). 
+    Tự động bật multiprocess encoding nếu số lượng chunk đủ lớn và máy có nhiều CPU core.
     """
     if not chunks:
         print("Không có chunk nào để index.")
@@ -112,8 +135,6 @@ def build_and_persist_index(chunks, batch_size=128, use_multiprocess=None):
     model = SentenceTransformer(EMBEDDING_MODEL)
 
     client = chromadb.PersistentClient(path=CHROMA_PERSIST_DIR)
-    # Embedding đã normalize -> cosine là metric đúng về mặt ngữ nghĩa, và
-    # distance trả về nằm trong [0, 2] nên convert sang similarity là 1 - d.
     collection = client.get_or_create_collection(
         name=CHROMA_COLLECTION_NAME,
         metadata={"hnsw:space": CHROMA_SPACE},
@@ -123,7 +144,7 @@ def build_and_persist_index(chunks, batch_size=128, use_multiprocess=None):
     documents = [c["content"] for c in chunks]
     metadatas = [c["metadata"] for c in chunks]
 
-    # Prefix chỉ để encode; `documents` upsert vào Chroma vẫn là text gốc.
+    # Prefix chỉ để encode, documents upsert vào Chroma vẫn là text gốc.
     to_encode = [EMBEDDING_PASSAGE_PREFIX + d for d in documents]
 
     if use_multiprocess is None:
@@ -132,9 +153,6 @@ def build_and_persist_index(chunks, batch_size=128, use_multiprocess=None):
     print(f"Encoding {len(documents)} chunks (batch_size={batch_size}, multiprocess={use_multiprocess})...")
 
     if use_multiprocess:
-        # API mới: encode() nhận thẳng tham số pool thay vì gọi encode_multi_process
-        # riêng (encode_multi_process đã bị deprecate) — normalize_embeddings vẫn
-        # hoạt động bình thường khi truyền pool.
         pool = model.start_multi_process_pool()
         embeddings = model.encode(
             to_encode, pool=pool, batch_size=batch_size, normalize_embeddings=True
@@ -158,6 +176,14 @@ def build_and_persist_index(chunks, batch_size=128, use_multiprocess=None):
 
 
 def main():
+    """
+    Luồng xử lý:
+    - set_seed() - cố định seed (giữ để nhất quán với các script khác trong pipeline và phòng hờ nếu sau này thêm bước có random).
+    - Load chunks từ products.csv (load_products_as_chunks).
+    - Load chunks từ các file policy .md (load_policies_as_chunks).
+    - Gộp cả 2 nguồn, encode và upsert vào ChromaDB (build_and_persist_index).
+    - In tổng số chunk đã index.
+    """
     set_seed()
     chunks = []
     chunks += load_products_as_chunks()

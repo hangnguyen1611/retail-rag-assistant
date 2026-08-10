@@ -1,29 +1,13 @@
 """
-build_eval_set.py
-
 Build data/eval/eval_set.csv = (nửa product SINH TỪ DATA) + (nửa manual đã verify).
 
-Vì sao tồn tại: nửa product của eval set cũ được LLM sinh mà không có
-products.csv trong context -> bịa product_id, bịa giá, và không biết rằng một
-mô tả kiểu "giày tây đen nam" khớp tới 46 sản phẩm. Nửa policy/out_of_scope thì
-ngược lại: policy docs nhỏ, nằm trong context, nên chính xác 100% -> giữ nguyên
-trong data/eval/eval_set_manual.csv.
-
-Nguyên tắc: câu hỏi sinh TỪ sản phẩm thật, còn expected_relevant_ids và
-expected_answer_keypoints thì KHÔNG BAO GIỜ viết tay — luôn resolve bằng code
-từ products.csv qua cột product_filter.
-
 Ba loại câu product:
-  strict          — có brand/tên trong câu hỏi -> đúng 1 sản phẩm khớp.
-                    Dùng để đo recall@1 một cách sắc nét.
-  loose           — chỉ mô tả thuộc tính (loại/giới tính/màu) -> nhiều sản phẩm
-                    khớp, ground truth là CẢ TẬP. Giống cách khách thật hỏi.
-  product_not_found — tổ hợp thuộc tính không tồn tại trong catalog. Test
-                    hallucination trực tiếp: trợ lý phải nói không có.
-
-Chạy:
-    python -m src.ingest.clean_products
-    python -m src.eval.build_eval_set
+    strict: Có brand/tên trong câu hỏi -> đúng 1 sản phẩm khớp.
+            Dùng để đo recall@1 một cách sắc nét.
+    loose: Chỉ mô tả thuộc tính (loại/giới tính/màu) -> nhiều sản phẩm khớp. 
+            Giống cách khách thật hỏi.
+    product_not_found: Tổ hợp thuộc tính không tồn tại trong catalog. 
+            Test hallucination trực tiếp: trợ lý phải nói không có.
 """
 
 import csv
@@ -31,16 +15,14 @@ import os
 import sys
 from collections import Counter
 from itertools import cycle
-
 import numpy as np
 import pandas as pd
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 
-from src.config import EVAL_SET_PATH, PROCESSED_PRODUCTS_PATH, SEED
+from config.backend import EVAL_SET_PATH, PROCESSED_PRODUCTS_PATH, SEED
 
 MANUAL_SET_PATH = "data/eval/eval_set_manual.csv"
-
 N_STRICT = int(os.getenv("EVAL_N_STRICT", "30"))
 N_LOOSE = int(os.getenv("EVAL_N_LOOSE", "30"))
 N_NOT_FOUND = int(os.getenv("EVAL_N_NOT_FOUND", "15"))
@@ -57,7 +39,7 @@ FIELDNAMES = [
     "expected_answer_keypoints",
 ]
 
-# ---------------------------------------------------------------- templates
+# -------------------------- Templates -------------------------------------- 
 # Mỗi intent có bản vi + en. {d} = mô tả sản phẩm đã dựng theo ngôn ngữ.
 STRICT_TEMPLATES = {
     "price": {"vi": "{d} giá bao nhiêu?", "en": "What's the price of the {d}?"},
@@ -79,37 +61,51 @@ NOT_FOUND_TEMPLATES = {
 }
 
 
-def _sentence(text: str) -> str:
-    """Descriptor bị lowercase để ghép vào giữa câu -> viết hoa lại nếu nó
-    rơi vào đầu câu."""
+def _sentence(text):
+    """Descriptor bị lowercase để ghép vào giữa câu -> viết hoa lại nếu nó rơi vào đầu câu."""
     return text[:1].upper() + text[1:] if text else text
 
 
-def _fmt_money(value: int, language: str) -> str:
+def _fmt_money(value, language):
+    """Format số tiền theo ngôn ngữ: Dùng dấu . cho VI và , cho EN."""
     sep = "." if language == "vi" else ","
     return f"{int(value):,}".replace(",", sep) + " VND"
 
 
-def describe_strict(row, language: str) -> str:
-    """Mô tả có brand -> định danh duy nhất 1 sản phẩm."""
+def describe_strict(row, language):
+    """
+    Mô tả có brand -> định danh duy nhất 1 sản phẩm.
+    Dùng cho câu hỏi strict: trả thẳng tên đầy đủ của sản phẩm trong catalog, 
+    không phụ thuộc ngôn ngữ vì tên sản phẩm không dịch.
+    """
     return str(row["productDisplayName"]).strip()
 
 
-def describe_loose(row, language: str) -> str:
-    """Mô tả chỉ bằng thuộc tính -> cố tình khớp nhiều sản phẩm."""
+def describe_loose(row, language):
+    """
+    Mô tả chỉ bằng thuộc tính -> cố tình khớp nhiều sản phẩm.
+    Ghép 3 thuộc tính chung chung (loại - giới tính - màu), không nêu tên/brand cụ thể, 
+    để mô phỏng cách khách hàng thật thường hỏi (ambiguous, có thể khớp nhiều sản phẩm khác nhau trong catalog).
+    """
     if language == "vi":
         return f"{row['type_vi'].lower()} {str(row['gender_vi']).lower()} màu {str(row['color_vi']).lower()}"
     return f"{row['articleType'].lower()} for {row['gender'].lower()} in {row['baseColour'].lower()}"
 
 
-def describe_combo(gender, article, colour, gender_vi, type_vi, color_vi, language: str) -> str:
+def describe_combo(gender, article, colour, gender_vi, type_vi, color_vi, language):
+    """
+    Giống describe_loose nhưng nhận giá trị rời thay vì một row thật.
+    Dùng cho gen_not_found(), nơi tổ hợp (gender, articleType, baseColour) đang xét KHÔNG tồn tại trong catalog 
+    -> không có row thật nào để lấy nên phải truyền tay từng giá trị (đã tra cứu bản dịch từ nơi khác).
+    """
     if language == "vi":
         return f"{type_vi.lower()} {gender_vi.lower()} màu {color_vi.lower()}"
     return f"{article.lower()} for {gender.lower()} in {colour.lower()}"
 
 
-# ---------------------------------------------------------------- filters
-def parse_filter(spec: str) -> dict:
+# ---------------------------- Filters ------------------------------------ 
+def parse_filter(spec):
+    """Parse chuỗi filter dạng "key1=value1;key2=value2" thành dict."""
     out = {}
     for part in (spec or "").split(";"):
         part = part.strip()
@@ -120,7 +116,12 @@ def parse_filter(spec: str) -> dict:
     return out
 
 
-def apply_filter(df: pd.DataFrame, spec: str) -> pd.DataFrame:
+def apply_filter(df, spec):
+    """
+    Lọc DataFrame sản phẩm theo chuỗi filter spec.
+    Hỗ trợ lọc theo id (khớp tuyệt đối), gender/articleType/baseColour/size (khớp tuyệt đối dạng string)
+    và khoảng giá price_min/price_max.
+    """
     f = parse_filter(spec)
     m = df
     if "id" in f:
@@ -136,8 +137,9 @@ def apply_filter(df: pd.DataFrame, spec: str) -> pd.DataFrame:
     return m
 
 
-# ---------------------------------------------------------------- keypoints
-def keypoints_strict(match: pd.DataFrame, language: str) -> str:
+# ---------------------------- Keypoints ------------------------------------ 
+def keypoints_strict(match, language):
+    """Sinh ground truth keypoints cho câu hỏi strict (khớp đúng 1 sản phẩm)."""
     row = match.iloc[0]
     price = _fmt_money(row["price"], language)
     stock = int(row["stock"])
@@ -148,8 +150,11 @@ def keypoints_strict(match: pd.DataFrame, language: str) -> str:
     return (f"{row['productDisplayName']} — size {row['size']}, price {price}, {stock_text}")
 
 
-def keypoints_loose(match: pd.DataFrame, language: str) -> str:
-    """Ground truth cho câu ambiguous = mô tả CẢ TẬP, không phải 1 sản phẩm."""
+def keypoints_loose(match, language):
+    """
+    Sinh ground-truth keypoints cho câu hỏi loose (khớp nhiều sản phẩm).
+    Ground truth cho câu ambiguous = mô tả CẢ TẬP sản phẩm khớp, không phải 1 sản phẩm cụ thể.
+    """
     n = len(match)
     lo = _fmt_money(match["price"].min(), language)
     hi = _fmt_money(match["price"].max(), language)
@@ -166,7 +171,8 @@ def keypoints_loose(match: pd.DataFrame, language: str) -> str:
             f"Correct if it names at least one product from this set with accurate price/stock.")
 
 
-def keypoints_not_found(descriptor: str, language: str) -> str:
+def keypoints_not_found(descriptor, language):
+    """Sinh ground-truth keypoints cho câu hỏi product_not_found."""
     if language == "vi":
         return (f"Catalog KHÔNG có sản phẩm nào khớp '{descriptor}'. Trả lời đúng = nói rõ "
                 f"không có/không tìm thấy và đề nghị liên hệ nhân viên. Bịa ra một sản phẩm là SAI.")
@@ -174,16 +180,25 @@ def keypoints_not_found(descriptor: str, language: str) -> str:
             f"it is unavailable and suggest contacting support. Inventing a product is WRONG.")
 
 
-# ---------------------------------------------------------------- generation
-def _stratified_rows(df: pd.DataFrame, n: int, unique_only: bool, rng) -> list:
-    """Chọn n sản phẩm, rải đều theo articleType rồi tới gender, và cố tình
-    chèn cả sản phẩm hết hàng để eval không chỉ toàn case 'còn hàng'."""
+# ------------------------------- Generation --------------------------------- 
+def _stratified_rows(df, n, unique_only, rng):
+    """
+    Chọn n sản phẩm đại diện, rải đều theo articleType và có cả hết hàng.
+ 
+    Gồm 3 bước:
+    - Nhóm theo (gender, articleType, baseColour), lọc tổ hợp phù hợp (unique_only=True: đúng 1 sản phẩm/tổ hợp, dùng cho strict; 
+    unique_only=False: >=5 sản phẩm/tổ hợp, dùng cho loose).
+    - Round-robin interleave các tổ hợp theo articleType để tránh dồn hết vào 1-2 loại có nhiều tổ hợp nhất khi duyệt tuần tự.
+    - Duyệt 2 lượt: lượt 1 chỉ nhận tổ hợp có sản phẩm hết hàng (stock=0) cho tới khi đủ oos_quota, lượt 2 lấp phần còn lại không
+    phân biệt tồn kho. Cần 2 lượt vì nếu chỉ duyệt 1 lượt ngẫu nhiên, xác suất trúng sản phẩm hết hàng rất thấp (đặc biệt khi 
+    unique_only=True), khiến eval set mất hẳn case hết hàng.
+    """
     combo = df.groupby(["gender", "articleType", "baseColour"]).size()
     wanted = combo[combo == 1] if unique_only else combo[combo >= 5]
     keys = list(wanted.index)
     rng.shuffle(keys)
 
-    # rải theo articleType: mỗi type góp tối đa 1 lần trước khi lặp lại
+    # Rải theo articleType: mỗi type góp tối đa 1 lần trước khi lặp lại
     by_type = {}
     for g, a, c in keys:
         by_type.setdefault(a, []).append((g, a, c))
@@ -194,13 +209,16 @@ def _stratified_rows(df: pd.DataFrame, n: int, unique_only: bool, rng) -> list:
             if pool:
                 order.append(pool.pop())
 
-    # Hai lượt: lượt 1 chỉ nhặt tổ hợp CÓ sản phẩm hết hàng cho tới đủ quota,
-    # lượt 2 lấp phần còn lại. Nếu chỉ đi một lượt thì với tổ hợp duy nhất
-    # (strict) gần như không bao giờ gặp stock=0 -> eval mất hẳn case hết hàng.
+    # Hai lượt: lượt 1 chỉ nhặt tổ hợp CÓ sản phẩm hết hàng cho tới đủ quota, lượt 2 lấp phần còn lại. 
     oos_quota = max(2, n // 5)
     picked, seen_types, used = [], Counter(), set()
 
     def _take(key, prefer_oos):
+        """
+        Thử thêm 1 tổ hợp vào `picked`, tôn trọng các ràng buộc.
+        Bỏ qua nếu đã đủ n, articleType này đã xuất hiện >=2 lần, tổ hợp đã dùng, tổ hợp không có sản phẩm nào
+        hoặc (khi prefer_oos=True) tổ hợp không có sản phẩm hết hàng nào.
+        """
         g, a, c = key
         if len(picked) >= n or seen_types[a] >= 2 or key in used:
             return
@@ -228,6 +246,11 @@ def _stratified_rows(df: pd.DataFrame, n: int, unique_only: bool, rng) -> list:
 
 
 def gen_strict(df, rng, start=1):
+    """
+    Sinh danh sách câu hỏi strict (khớp đúng 1 sản phẩm).
+    Với mỗi sản phẩm đại diện từ _stratified_rows(unique_only=True), sinh 1 câu hỏi bằng cách luân phiên ngôn ngữ (vi/en) và 
+    intent (price/stock/size/full) theo cycle(), filter theo id sản phẩm.
+    """
     rows = []
     langs = cycle(["vi", "en"])
     intents = cycle(list(STRICT_TEMPLATES))
@@ -246,6 +269,11 @@ def gen_strict(df, rng, start=1):
 
 
 def gen_loose(df, rng, start=1):
+    """
+    Sinh danh sách câu hỏi loose (khớp nhiều sản phẩm cùng thuộc tính).
+    Với mỗi sản phẩm đại diện từ _stratified_rows(unique_only=False), sinh 1 câu hỏi mô tả chung chung (không nêu tên/brand),
+    filter theo 3 thuộc tính (gender, articleType, baseColour) thay vì id.
+    """
     rows = []
     langs = cycle(["en", "vi"])
     intents = cycle(list(LOOSE_TEMPLATES))
@@ -265,9 +293,13 @@ def gen_loose(df, rng, start=1):
 
 
 def gen_not_found(df, rng, start=1):
-    """Tổ hợp (gender, articleType, baseColour) có 0 sản phẩm, nhưng cả
-    articleType lẫn màu đều tồn tại trong catalog -> câu hỏi nghe rất hợp lý,
-    chỉ có điều không có hàng. Đây là bài test hallucination sắc nhất."""
+    """
+    Sinh danh sách câu hỏi product_not_found (test hallucination).
+    Tổ hợp (gender, articleType, baseColour) có 0 sản phẩm, nhưng cả articleType lẫn màu đều tồn tại trong catalog 
+    -> câu hỏi nghe rất hợp lý, chỉ có điều không có hàng. Đây là bài test hallucination sắc nhất.
+ 
+    Chỉ dùng articleType/baseColour phổ biến (>=20 sản phẩm mỗi loại) để đảm bảo từng thành phần riêng lẻ quen thuộc,
+    chỉ tổ hợp cụ thể là không tồn tại."""
     present = set(map(tuple, df[["gender", "articleType", "baseColour"]].drop_duplicates().values))
     vi_gender = dict(zip(df.gender, df.gender_vi))
     vi_type = dict(zip(df.articleType, df.type_vi))
@@ -307,9 +339,13 @@ def gen_not_found(df, rng, start=1):
     return rows
 
 
-# ---------------------------------------------------------------- resolve
+# ------------------------------- Resolve --------------------------------- 
 def resolve(rows, df):
-    """Điền expected_relevant_ids + keypoints từ data. Không tay người ở đây."""
+    """
+    Điền expected_relevant_ids + expected_answer_keypoints cho mỗi row. Điền keypoints từ data. 
+    Với mỗi row, chạy lại apply_filter để lấy danh sách id khớp, rồi gọi đúng hàm keypoints_*
+    tương ứng với category/strictness của row để sinh ground truth.
+    """
     for r in rows:
         match = apply_filter(df, r["product_filter"])
         ids = [str(x) for x in match["id"]]
@@ -326,6 +362,11 @@ def resolve(rows, df):
 
 
 def validate(rows, df):
+    """
+    Kiểm tra tính đúng đắn của các row đã resolve, đối chiếu với catalog.
+    Chạy lại apply_filter để đếm số sản phẩm khớp thực tế, so với kỳ vọng của từng loại câu hỏi 
+    (strict phải =1, loose phải >=2, not_found phải =0) và kiểm tra không có câu hỏi trùng lặp.
+    """
     errors = []
     seen_q = set()
     for r in rows:
@@ -343,6 +384,11 @@ def validate(rows, df):
 
 
 def report(rows, df):
+    """
+    In thống kê độ đa dạng của eval set ra console (chỉ để debug).
+    Thống kê phân bố theo category/language/strictness, cùng số lượng articleType/baseColour khác nhau xuất hiện, 
+    phân bố gender và số câu hỏi liên quan sản phẩm hết hàng.
+    """
     print("\n" + "=" * 62)
     print("EVAL SET DIVERSITY")
     print("=" * 62)
@@ -374,6 +420,15 @@ def report(rows, df):
 
 
 def main():
+    """
+    Luồng xử lý:
+    - Đọc catalog đã xử lý (PROCESSED_PRODUCTS_PATH).
+    - Sinh câu hỏi strict + loose + not_found, resolve ground truth.
+    - Validate, nếu có lỗi thì in ra và thoát chương trình (không ghi file sai ra ngoài).
+    - Đọc thêm bộ câu hỏi manual đã verify tay (eval_set_manual.csv).
+    - Gộp generated + manual, ghi ra EVAL_SET_PATH theo đúng FIELDNAMES.
+    - In log tổng kết và báo cáo độ đa dạng.
+    """
     df = pd.read_csv(PROCESSED_PRODUCTS_PATH)
     rng = np.random.default_rng(SEED)
 

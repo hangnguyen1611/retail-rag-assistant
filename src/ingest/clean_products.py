@@ -1,21 +1,18 @@
 import hashlib
 import os
 from pathlib import Path
-
 import numpy as np
 import pandas as pd
 
-from src.config import (
-    RAW_PRODUCTS_PATH,
+from config.backend import (
     PROCESSED_PRODUCTS_PATH,
+    CLEAN_DATA_PATH,
     SEED,
     set_seed,
 )
 
-RAW_PATH = Path(RAW_PRODUCTS_PATH)
+DATA_PATH = Path(CLEAN_DATA_PATH)
 OUT_PATH = Path(PROCESSED_PRODUCTS_PATH)
-
-# Khớp với số dòng của data/processed/products.csv đang commit.
 DEFAULT_N_SAMPLES = int(os.getenv("PRODUCTS_N_SAMPLES", "5000"))
 
 
@@ -85,29 +82,29 @@ USAGE_VI = {
 }
 
 PRICE_RANGE = {
-    "Tshirts": (100, 300),
-    "Shirts": (200, 500),
-    "Tops": (150, 400),
+    "Tshirts": (200, 500),
+    "Shirts": (300, 1000),
+    "Tops": (250, 600),
     "Jeans": (300, 650),
-    "Shorts": (150, 350),
-    "Trousers": (250, 550),
-    "Dresses": (300, 700),
-    "Casual Shoes": (500, 900),
-    "Sports Shoes": (600, 1200),
-    "Formal Shoes": (500, 1200),
+    "Shorts": (250, 450),
+    "Trousers": (250, 850),
+    "Dresses": (300, 2000),
+    "Casual Shoes": (500, 1000),
+    "Sports Shoes": (600, 2200),
+    "Formal Shoes": (500, 2200),
     "Flats": (300, 650),
     "Heels": (350, 800),
     "Flip Flops": (80, 200),
-    "Sandals": (150, 350),
-    "Handbags": (350, 1000),
+    "Sandals": (150, 550),
+    "Handbags": (350, 3000),
     "Backpacks": (300, 800),
-    "Wallets": (150, 450),
-    "Belts": (150, 400),
-    "Sunglasses": (200, 600),
-    "Watches": (400, 2500),
+    "Wallets": (250, 950),
+    "Belts": (250, 500),
+    "Sunglasses": (200, 700),
+    "Watches": (500, 5500),
 }
 
-DEFAULT_PRICE_RANGE = (150, 450)
+DEFAULT_PRICE_RANGE = (250, 550)
 
 SIZE_OPTIONS = {
     "Topwear": ["S", "M", "L", "XL"],
@@ -119,50 +116,47 @@ SIZE_OPTIONS = {
 }
 
 
-def _row_seed(product_id) -> int:
-    """Seed ổn định theo product id (md5, không dùng hash() vì bị salt mỗi process)."""
+def _row_seed(product_id):
+    """
+    Sinh seed số nguyên ổn định (deterministic) từ product id.
+    Dùng hash MD5 thay vì hash() built-in của Python, vì hash() bị salt ngẫu nhiên mỗi lần khởi động process (PYTHONHASHSEED) 
+    -> cùng 1 id sẽ ra seed khác nhau giữa các lần chạy, phá vỡ tính reproducible.
+    """
     digest = hashlib.md5(str(product_id).encode("utf-8")).hexdigest()
     return int(digest[:16], 16) % (2 ** 32)
 
 
 def _vi(mapping, key, fallback=None):
+    """Tra cứu bản dịch VI từ dict mapping, có xử lý NaN và fallback"""
     if pd.isna(key):
         return fallback if fallback is not None else "Không xác định"
     return mapping.get(key, fallback if fallback is not None else key)
 
 
-def load_raw(path=RAW_PATH):
-
+def load_data(path=DATA_PATH):
+    """Đọc file CSV sản phẩm đã tiền xử lý."""
     if not path.exists():
         raise FileNotFoundError(path)
-
-    df = pd.read_csv(path, on_bad_lines="skip")
-
-    df["usage"] = df["usage"].fillna("Casual")
-    df["gender"] = df["gender"].fillna("Unisex")
-    df["baseColour"] = df["baseColour"].fillna("Black")
-
-    return df
+    return pd.read_csv(path)
 
 
 def filter_fashion_scope(df, n_samples=None):
+    """
+    Lọc DataFrame về đúng phạm vi thời trang rồi lấy mẫu cân bằng theo loại.
+
+    Chỉ giữ 2 nhóm: Apparel/Footwear (toàn bộ), và Accessories nhưng chỉ các subCategory liên quan thời trang 
+    (Bags, Watches, Belts, Wallets, Eyewear) — loại bỏ các phụ kiện không phù hợp use case retail, vẫn đa dạng
+    và không bị mất cân bằng.
+
+    Nếu n_samples được chỉ định, lấy mẫu theo kiểu stratified: chia đều theo articleType (mỗi loại lấy tối đa 
+    n_samples/n_types sản phẩm) để tránh 1-2 loại phổ biến (Vd Tshirts) chiếm áp đảo toàn bộ catalog, sau đó 
+    lấp đầy phần thiếu (nếu do 1 số loại ít sản phẩm hơn quota) bằng cách lấy thêm ngẫu nhiên từ phần dư.
+    """
     apparel = df[df.masterCategory.isin(["Apparel", "Footwear"])]
-
-    accessories = df[
-        (df.masterCategory == "Accessories") & (df.subCategory.isin(["Bags", "Watches", "Belts", "Wallets", "Eyewear"]))
-    ]
-
+    accessories = df[(df.masterCategory == "Accessories") & (df.subCategory.isin(["Bags", "Watches", "Belts", "Wallets", "Eyewear"]))]
     scoped = pd.concat([apparel, accessories])
 
-    scoped = scoped.dropna(
-        subset=[
-            "productDisplayName",
-            "articleType",
-            "baseColour",
-        ]
-    )
-
-    if n_samples is None:
+    if n_samples is None: # Nếu không giới hạn số lượng mẫu (lấy toàn bộ)
         return scoped.sample(frac=1, random_state=SEED).reset_index(drop=True)
 
     n_samples = min(n_samples, len(scoped))
@@ -175,40 +169,37 @@ def filter_fashion_scope(df, n_samples=None):
         sampled.append(group.sample(min(len(group), per_type), random_state=SEED))
     sampled = pd.concat(sampled)
 
-    if len(sampled) < n_samples:
+    if len(sampled) < n_samples: # Nếu chưa đủ mẫu
         remaining = scoped.loc[~scoped.index.isin(sampled.index)]
-
         extra = remaining.sample(
             min(n_samples - len(sampled), len(remaining)),
             random_state=SEED,
         )
-
         sampled = pd.concat([sampled, extra])
 
     return sampled.sample(frac=1, random_state=SEED).reset_index(drop=True)
 
 
 def enrich_bilingual_fields(df):
+    """
+    Làm giàu DataFrame với các trường song ngữ VI/EN.
+    Thêm các cột dịch thuật (color_vi, type_vi, gender_vi, usage_vi) tra từ các dictionary tĩnh ở đầu file,
+    rồi ghép chúng lại thành tên (name_vi/name_en) và mô tả đầy đủ (description_vi/description_en) cho từng sản phẩm.
+    """
     df = df.copy()
 
     df["color_vi"] = df.baseColour.apply(lambda x: _vi(COLOR_VI, x))
     df["type_vi"] = df.articleType.apply(lambda x: _vi(ARTICLE_TYPE_VI, x))
     df["gender_vi"] = df.gender.apply(lambda x: _vi(GENDER_VI, x))
-    df["usage_vi"] = df.usage.apply(
-        lambda x: _vi(USAGE_VI, x, "thường ngày")
-    )
+    df["usage_vi"] = df.usage.apply(lambda x: _vi(USAGE_VI, x, "thường ngày"))
 
-    df["name_vi"] = (
-        df["type_vi"] + " " + df["gender_vi"].str.lower() + " màu " + df["color_vi"].str.lower()
-    )
-
+    df["name_vi"] = (df["type_vi"] + " " + df["gender_vi"].str.lower() + " màu " + df["color_vi"].str.lower())
     df["name_en"] = df.productDisplayName
 
     df["description_vi"] = (
         df["type_vi"] + " dành cho " + df["gender_vi"].str.lower() + ", màu "
         + df["color_vi"].str.lower() + ", phù hợp cho dịp " + df["usage_vi"] + "."
     )
-
     df["description_en"] = (
         df.articleType + " for " + df.gender + ", color " + df.baseColour
         + ", suitable for " + df.usage.str.lower() + "."
@@ -218,10 +209,14 @@ def enrich_bilingual_fields(df):
 
 
 def generate_price_stock_size(df):
-    """Sinh price/stock/size giả, DETERMINISTIC theo từng product id.
+    """
+    Sinh giá/tồn kho/size giả một cách deterministic cho từng sản phẩm.
 
-    Trước đây dùng 1 RNG chạy tuần tự trên cả DataFrame -> đổi n_samples hoặc
-    đổi thứ tự dòng là toàn bộ giá/tồn kho đổi theo.
+    Logic sinh:
+    - price: random uniform trong khoảng PRICE_RANGE[articleType] (nghìn VND), nhân 1000. Dùng DEFAULT_PRICE_RANGE nếu loại
+    không có trong bảng.
+    - stock: random uniform [1, 50], nhưng có 10% xác suất ép về 0 (hết hàng) — đảm bảo luôn có case out-of-stock trong catalog.
+    - size: random chọn 1 trong SIZE_OPTIONS[subCategory]. Nếu subCategory không có trong bảng, gán "Free size".
     """
     df = df.copy()
     prices, stocks, sizes = [], [], []
@@ -245,8 +240,17 @@ def generate_price_stock_size(df):
 
 
 def main():
+    """
+    Luồng xử lý:
+    - set_seed(SEED) - cố định seed toàn cục (ảnh hưởng các bước sampling dùng random_state=SEED trong filter_fashion_scope).
+    - Đọc data (load_data).
+    - Lọc phạm vi thời trang + lấy mẫu cân bằng (filter_fashion_scope).
+    - Làm giàu song ngữ VI/EN (enrich_bilingual_fields).
+    - Sinh giá/tồn kho/size deterministic theo id (generate_price_stock_size).
+    - Ghi ra PROCESSED_PRODUCTS_PATH, tạo thư mục cha nếu chưa có.
+    """
     set_seed(SEED)
-    df = load_raw()
+    df = load_data()
     df = filter_fashion_scope(df, DEFAULT_N_SAMPLES)
     df = enrich_bilingual_fields(df)
     df = generate_price_stock_size(df)
