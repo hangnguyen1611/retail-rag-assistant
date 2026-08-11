@@ -1,12 +1,11 @@
 import os
-
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from api.routers import chat
 from api.dependencies import init_dependencies
+from api.routers import chat
 
 ALLOWED_ORIGINS = [
     o.strip() for o in os.getenv(
