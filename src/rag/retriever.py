@@ -1,23 +1,7 @@
-"""
-retriever.py
-
-Vector search runtime: nhận query -> trả top-k chunk liên quan từ ChromaDB.
-
-1. Load lại persisted ChromaDB collection (CHROMA_PERSIST_DIR)
-2. Embed query bằng cùng EMBEDDING_MODEL đã dùng lúc index (build_index.py)
-3. Query top-k, trả về list[{id, content, metadata, score}]
-4. Score: convert distance -> cosine similarity ("cao hơn = liên quan hơn").
-   Công thức phụ thuộc metric của collection, nên đọc metric từ chính collection
-   thay vì hardcode:
-     - "cosine" / "ip": Chroma trả về 1 - cos_sim  =>  cos_sim = 1 - distance
-     - "l2":            Chroma trả về SQUARED L2 (không phải L2 thường!). Với
-                        vector đơn vị: ||a-b||^2 = 2 - 2*cos  =>  cos = 1 - d/2
-"""
-
-from sentence_transformers import SentenceTransformer
 import chromadb
+from sentence_transformers import SentenceTransformer
 
-from src.config import (
+from config.backend import (
     CHROMA_COLLECTION_NAME,
     CHROMA_SPACE,
     EMBEDDING_QUERY_PREFIX,
@@ -26,17 +10,43 @@ from src.config import (
     SPLIT_BY_DOC_TYPE,
 )
 
-def _distance_to_cosine_sim(distance: float, space: str = "cosine") -> float:
-    """Convert Chroma distance -> cosine similarity, theo metric của collection."""
+
+def _distance_to_cosine_sim(distance, space="cosine"):
+    """
+    Convert khoảng cách ChromaDB trả về thành điểm cosine similarity.
+
+    ChromaDB trả về "distance" (càng nhỏ càng giống nhau) nhưng để dễ hiểu/so sánh/threshold ta cần "similarity".
+    Công thức chuyển đổi phụ thuộc vào metric (hnsw:space) mà collection dùng khi index:
+    - "l2": distance là squared L2 trên vector đã normalize (unit vector), nên có quan hệ toán học: d^2 = 2 - 2*cos(θ)
+    => cos(θ) = 1 - d^2/2 = 1 - distance/2. Vì ChromaDB trả "distance" ở đây thực chất đã là squared L2.
+    - "cosine" hoặc "ip" (inner product trên vector đã normalize): ChromaDB định nghĩa cosine distance = 1 - cosine_similarity
+    => chỉ cần đảo ngược lại: sim = 1 - distance.
+    """
     if space == "l2":
-        sim = 1 - distance / 2      # distance là squared L2 trên vector đã normalize
-    else:                            # "cosine" hoặc "ip"
+        sim = 1 - distance / 2      
+    else:                           # "cosine" hoặc "ip"
         sim = 1 - distance
     return max(-1.0, min(1.0, sim))
 
 
+def _combine_where(*wheres):
+    """
+    Gộp nhiều điều kiện `where` (filter metadata) của ChromaDB thành 1.
+    ChromaDB yêu cầu combine nhiều điều kiện filter bằng toán tử "$and" khi truyền query. 
+    Hàm này lọc bỏ các điều kiện rỗng/None, rồi tự quyết định trả về None (không filter gì), 1 điều kiện duy nhất
+    (không cần bọc $and) hay dict {"$and": [...]} khi có từ 2 điều kiện trở lên.
+    """
+    parts = [w for w in wheres if w]
+    if not parts:
+        return None
+    if len(parts) == 1:
+        return parts[0]
+    return {"$and": parts}
+
+
 class Retriever:
-    def __init__(self, persist_dir: str, embedding_model: str, top_k: int = 5):
+    def __init__(self, persist_dir, embedding_model, top_k=5):
+        """Khởi tạo Retriever: load embedding model và kết nối tới ChromaDB collection"""
         self.persist_dir = persist_dir
         self.embedding_model_name = embedding_model
         self.top_k = top_k
@@ -47,35 +57,42 @@ class Retriever:
             name=CHROMA_COLLECTION_NAME,
             metadata={"hnsw:space": CHROMA_SPACE},
         )
-        # Collection có sẵn từ trước có thể đang dùng metric khác -> tôn trọng nó.
         self._space = (self._collection.metadata or {}).get("hnsw:space", CHROMA_SPACE)
 
-    def search(self, query: str, top_k: int | None = None):
-        """Trả về list[dict] đã rank theo độ liên quan giảm dần:
-        {"id": str, "content": str, "metadata": dict, "score": float}
+    def search(self, query, top_k=None, product_filter=None):
         """
-        return self.search_many([query], top_k=top_k)[0]
+        Tìm kiếm các chunk liên quan nhất tới 1 câu query duy nhất.
+        Wrapper tiện lợi quanh search_many() cho trường hợp chỉ có 1 query 
+        (tránh người gọi phải tự bọc query vào list rồi lấy phần tử [0] ra).
+        """
+        return self.search_many([query], top_k=top_k, product_filter=product_filter)[0]
 
-    def search_many(self, queries: list[str], top_k: int | None = None, batch_size: int = 64):
-        """Batch nhiều query trong MỘT lần encode.
+    def search_many(self, queries,top_k=None, batch_size=64, product_filter=None):
+        """
+        Tìm kiếm các chunk liên quan nhất cho nhiều câu query cùng lúc (batch).
 
-        Nếu SPLIT_BY_DOC_TYPE: chạy hai truy vấn có `where` lọc doc_type và giữ
-        slot riêng cho product/policy. Không có bước này thì 15 chunk policy
-        phải cạnh tranh cùng ranking với 5.000 chunk sản phẩm và gần như luôn
-        thua ở những câu dùng từ vựng miền sản phẩm.
+        Encode tất cả query 1 lần (hiệu quả hơn encode từng cái), rồi query ChromaDB theo 1 trong 2 chiến lược tùy SPLIT_BY_DOC_TYPE:
+        - SPLIT_BY_DOC_TYPE=False: query 1 lần trên toàn collection (có thể lọc theo product_filter nếu có), trả về top_k kết quả bất kể
+        doc_type là product hay policy — nghĩa là 2 loại tài liệu cạnh tranh trực tiếp nhau theo điểm similarity.
+        - SPLIT_BY_DOC_TYPE=True: query RIÊNG cho từng doc_type (product và policy), mỗi loại lấy k riêng theo RETRIEVE_K_PRODUCT/
+        RETRIEVE_K_POLICY, rồi GỘP kết quả lại và sort theo score. Đảm bảo luôn có đại diện của cả 2 loại tài liệu trong kết quả cuối (tránh
+        trường hợp product áp đảo hết vì catalog rất lớn so với vài file policy, khiến policy không bao giờ lọt vào top_k nếu query chung)
         """
         k = top_k or self.top_k
         embeddings = self._encode(queries, batch_size)
 
         if not SPLIT_BY_DOC_TYPE:
-            return self._query(embeddings, k, None, len(queries))
+            where = _combine_where({"doc_type": "product"} if product_filter else None, product_filter)
+            return self._query(embeddings, k, where, len(queries))
 
         merged = [[] for _ in queries]
-        for doc_type, k_type in (("product", RETRIEVE_K_PRODUCT),
-                                 ("policy", RETRIEVE_K_POLICY)):
+        for doc_type, k_type in (("product", RETRIEVE_K_PRODUCT), ("policy", RETRIEVE_K_POLICY)):
             if k_type <= 0:
                 continue
-            part = self._query(embeddings, k_type, {"doc_type": doc_type}, len(queries))
+            doc_where = {"doc_type": doc_type}
+            if doc_type == "product":
+                doc_where = _combine_where(doc_where, product_filter)
+            part = self._query(embeddings, k_type, doc_where, len(queries))
             for i, hits in enumerate(part):
                 merged[i].extend(hits)
 
@@ -84,6 +101,12 @@ class Retriever:
         return merged
 
     def _encode(self, queries, batch_size):
+        """
+        Encode danh sách query thành embedding vector đã normalize.
+        Thêm prefix dành cho query (EMBEDDING_QUERY_PREFIX) trước khi encode, khác với prefix dùng khi index passage
+        (EMBEDDING_PASSAGE_PREFIX ở bước build index) — vì các embedding model kiểu instruction-tuned (vd BGE) cần 
+        prefix riêng biệt cho query vs passage để tối ưu không gian vector cho tác vụ retrieval.
+        """
         return self._model.encode(
             [EMBEDDING_QUERY_PREFIX + q for q in queries],
             normalize_embeddings=True,
@@ -91,6 +114,7 @@ class Retriever:
         ).tolist()
 
     def _query(self, embeddings, n_results, where, n_queries):
+        """Gọi ChromaDB collection.query() và format lại kết quả thô thành dict dễ dùng"""
         kwargs = {
             "query_embeddings": embeddings,
             "n_results": n_results,
