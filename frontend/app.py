@@ -1,70 +1,131 @@
-import os
-import streamlit as st
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+    
 import requests
+import streamlit as st
 
-BACKEND_URL = os.getenv("BACKEND_URL", "http://backend:8000")
-API_URL = f"{BACKEND_URL}/chat"
+from config.frontend import (
+    ASSISTANT_AVATAR,
+    LAYOUT,
+    PAGE_ICON,
+    PAGE_TITLE,
+    USER_AVATAR,
+    WELCOME_MESSAGE,
+)
 
-st.title("Retail Assistant - Thời trang")
+from frontend.styles import load_css
 
-with st.sidebar:
-    language = st.selectbox("Ngôn ngữ / Language", ["auto", "vi", "en"], index=0)
-    st.caption("Backend: " + API_URL)
+from frontend.api import ChatAPI, ask, ask_stream
+
+from frontend.components import (
+    render_header,
+    render_history,
+    render_sidebar,
+    render_sources,
+)
+
+st.set_page_config(
+    page_title=PAGE_TITLE,
+    page_icon=PAGE_ICON,
+    layout=LAYOUT,
+)
+
+load_css()
+
+def _build_history_payload(messages, exclude_last_user=True):
+    """Chuyển session_state.messages thành list history gửi lên backend.
+
+    Chỉ lấy role + content (bỏ sources/latency_ms không cần thiết cho history), loại bỏ tin nhắn user cuối cùng
+    (chính là câu hỏi vừa gửi, tránh gửi trùng vì nó đã có trong "query" riêng).
+    """
+    msgs = messages[:-1] if exclude_last_user else messages
+    return [{"role": m["role"], "content": m["content"]} for m in msgs]
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-for msg in st.session_state.messages:
-    with st.chat_message(msg["role"]):
-        st.write(msg["content"])
-        if msg["role"] == "assistant" and msg.get("sources"):
-            with st.expander(f"Nguồn tham khảo ({msg['latency_ms']:.0f} ms)"):
-                for s in msg["sources"]:
-                    st.write(f"- `{s['doc_type']}` **{s['doc_id']}** (score: {s['score']:.3f})")
+if "pending" not in st.session_state:
+    st.session_state.pending = None
 
-query = st.chat_input("Hỏi về sản phẩm, đổi trả, vận chuyển...")
+if "feedback" not in st.session_state:
+    st.session_state.feedback = {}
+
+language, streaming, debug = render_sidebar()
+
+render_header()
+
+if len(st.session_state.messages) == 0:
+    st.info(WELCOME_MESSAGE)
+
+render_history()
+
+query = st.chat_input("Hỏi về sản phẩm...")
+
+if st.session_state.pending:
+    query = st.session_state.pending
+    st.session_state.pending = None
+
 if query:
     st.session_state.messages.append({"role": "user", "content": query})
-    with st.chat_message("user"):
-        st.write(query)
+    history_payload = _build_history_payload(st.session_state.messages)
 
-    with st.chat_message("assistant"):
-        with st.spinner("Đang tìm câu trả lời..."):
-            try:
-                resp = requests.post(
-                    API_URL,
-                    json={"query": query, "language": language},
-                    timeout=30,
-                )
-                resp.raise_for_status()
-                data = resp.json()
+    with st.chat_message("user", avatar=USER_AVATAR):
+        st.markdown(query)
 
-                answer = data["answer"]
-                sources = data.get("sources", [])
-                latency_ms = data.get("latency_ms", 0)
+    with st.chat_message("assistant", avatar=ASSISTANT_AVATAR):
+        holder = {
+            "sources": [],
+            "latency_ms": None,
+            "error": None,
+        }
 
-                st.write(answer)
-                if sources:
-                    with st.expander(f"Nguồn tham khảo ({latency_ms:.0f} ms)"):
-                        for s in sources:
-                            st.write(f"- `{s['doc_type']}` **{s['doc_id']}** (score: {s['score']:.3f})")
+        answer = ""
 
-                st.session_state.messages.append({
+        try:
+            if streaming:
+                with st.spinner("Đang tìm và tổng hợp câu trả lời..."):
+                    response = ask_stream(query, language, history=history_payload)
+
+                answer = st.write_stream(ChatAPI.token_generator(response, holder))
+            else:
+                with st.spinner("Đang tìm và tổng hợp câu trả lời..."):
+                    result = ask(query, language, history=history_payload)
+
+                answer = result["answer"]
+                holder["sources"] = result["sources"]
+                holder["latency_ms"] = result["latency_ms"]
+
+                st.markdown(answer)
+
+        except requests.ConnectionError:
+            st.error("Không thể kết nối tới backend!")
+
+        except requests.Timeout:
+            st.error("Backend phản hồi quá lâu!")
+
+        except requests.HTTPError as e:
+            st.error(str(e))
+
+        except Exception as e:
+            st.error(str(e))
+
+        if holder["error"]:
+            st.error(holder["error"])
+
+        if answer:
+            render_sources(holder["sources"], holder["latency_ms"], debug)
+
+            st.session_state.messages.append(
+                {
                     "role": "assistant",
                     "content": answer,
-                    "sources": sources,
-                    "latency_ms": latency_ms,
-                })
+                    "sources": holder["sources"],
+                    "latency_ms": holder["latency_ms"],
+                }
+            )
 
-            except requests.exceptions.ConnectionError:
-                error_msg = "Không kết nối được tới backend. Kiểm tra `uvicorn api.main:app --reload` đang chạy chưa."
-                st.error(error_msg)
-                st.session_state.messages.append({"role": "assistant", "content": error_msg})
-            except requests.exceptions.Timeout:
-                error_msg = "Backend phản hồi quá lâu (timeout 30s). Thử lại sau."
-                st.error(error_msg)
-                st.session_state.messages.append({"role": "assistant", "content": error_msg})
-            except requests.exceptions.HTTPError as e:
-                error_msg = f"Backend trả lỗi: {e}"
-                st.error(error_msg)
-                st.session_state.messages.append({"role": "assistant", "content": error_msg})
+            st.rerun()
