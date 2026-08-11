@@ -1,24 +1,3 @@
-"""
-run_eval.py
-
-Chạy eval trên data/eval/eval_set.csv (build bởi src/eval/build_eval_set.py).
-
-Thay đổi so với bản cũ:
-1. JUDGE_MODEL không còn im lặng fallback về GROQ_MODEL -> model không tự chấm
-   chính nó nữa (self-preference bias làm điểm bị đội lên).
-2. Judge prompt strictness-aware: câu `strict` chấm theo đúng 1 sản phẩm, câu
-   `loose` chấm "có nêu được ít nhất một sản phẩm trong tập khớp".
-3. Category mới `product_not_found`: đo hallucination trực tiếp (bịa ra sản
-   phẩm không tồn tại), chấm bằng judge chứ không bằng regex.
-4. Recall báo cáo TÁCH theo nhóm (strict / loose / policy) — gộp lại thì con số
-   vô nghĩa vì strict và loose có độ khó khác nhau hẳn.
-5. Kèm khoảng tin cậy 95% (Wilson) cho mọi tỷ lệ, vì n mỗi nhóm chỉ 15-30.
-
-Chạy:
-    python -m src.eval.run_eval
-    EVAL_DRY_RUN=1 python -m src.eval.run_eval    # smoke test, không gọi Groq
-"""
-
 import asyncio
 import csv
 import json
@@ -29,11 +8,11 @@ import sys
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 
-from src.config import (
-    EVAL_SET_PATH,
-    EVAL_RESULTS_PATH,
+from config.backend import (
     CHROMA_PERSIST_DIR,
     EMBEDDING_MODEL,
+    EVAL_RESULTS_PATH,
+    EVAL_SET_PATH,
     GROQ_MODEL,
     TOP_K,
     set_seed,
@@ -51,11 +30,10 @@ elif RECALL_ONLY:
 else:
     RESULTS_PATH = EVAL_RESULTS_PATH
 
-# Số câu xử lý song song. Gần như toàn bộ thời gian là chờ network, nên chạy
-# tuần tự là lãng phí. Gặp nhiều lỗi 503 thì giảm xuống.
+# Số câu xử lý song song
 EVAL_CONCURRENCY = int(os.getenv("EVAL_CONCURRENCY", "1"))
 
-# --- Judge model: phải khai báo tường minh và phải KHÁC model sinh câu trả lời.
+# --- Judge model: phải khai báo tường minh và phải KHÁC model sinh câu trả lời ---
 JUDGE_MODEL = os.getenv("GROQ_JUDGE_MODEL", "")
 if not (DRY_RUN or RECALL_ONLY):   # hai chế độ này không gọi judge
     if not JUDGE_MODEL:
@@ -72,7 +50,7 @@ if not (DRY_RUN or RECALL_ONLY):   # hai chế độ này không gọi judge
             "Model không được tự chấm chính nó — chọn judge khác."
         )
 
-# Regex chỉ còn dùng làm fallback khi judge parse lỗi.
+# Regex chỉ còn dùng làm fallback khi judge parse lỗi
 REFUSAL_PATTERNS = [
     "không có thông tin", "không tìm thấy", "không có sản phẩm", "không có mẫu",
     "hiện không có", "chưa có", "liên hệ nhân viên", "không thể trả lời", "không nằm trong",
@@ -82,16 +60,23 @@ REFUSAL_PATTERNS = [
 ]
 
 
-def is_refusal(answer: str) -> bool:
+def is_refusal(answer):
+    """
+    Kiểm tra câu trả lời có phải là một lời từ chối hay không, dựa trên danh sách pattern regex/từ khoá cố định (REFUSAL_PATTERNS).
+    Chỉ dùng làm fallback khi judge (LLM) parse JSON lỗi — không phải cách chấm chính, vì cách match keyword rất dễ bỏ sót các câu 
+    từ chối diễn đạt khác đi.
+    """
     if not answer:
         return False
     text = answer.lower()
     return any(p in text for p in REFUSAL_PATTERNS)
 
 
-def wilson_ci(successes: int, n: int, z: float = 1.96):
-    """Khoảng tin cậy 95% cho tỷ lệ. Với n = 15-30 thì khoảng này rất rộng —
-    in ra để không ai đọc '90%' như một con số chắc chắn."""
+def wilson_ci(successes, n, z=1.96):
+    """
+    Tính khoảng tin cậy 95% (mặc định z=1.96) cho một tỷ lệ, dùng công thức Wilson score interval — chính xác hơn khoảng tin cậy chuẩn 
+    (normal approximation) khi n nhỏ hoặc p gần 0/1, vốn là tình huống thường gặp với eval set nhỏ.
+    """
     if n == 0:
         return (0.0, 0.0)
     p = successes / n
@@ -101,18 +86,26 @@ def wilson_ci(successes: int, n: int, z: float = 1.96):
     return (max(0.0, centre - margin), min(1.0, centre + margin))
 
 
-def load_eval_set(path: str = EVAL_SET_PATH):
+def load_eval_set(path=EVAL_SET_PATH):
+    """Đọc file eval set (CSV) thành list các dict, mỗi dict là một câu hỏi kèm metadata (category, expected_relevant_ids, ...)"""
     with open(path, "r", encoding="utf-8") as f:
         return list(csv.DictReader(f))
 
 
-def _parse_relevant_ids(raw: str):
+def _parse_relevant_ids(raw):
+    """Parse chuỗi id phân tách bằng dấu ';' (từ cột expected_relevant_ids) thành một set các id, bỏ khoảng trắng thừa và phần tử rỗng"""
     if not raw:
         return set()
     return {x.strip() for x in raw.split(";") if x.strip()}
 
 
-def _is_hit(hit: dict, doc_type: str, expected_ids: set) -> bool:
+def _is_hit(hit, doc_type, expected_ids):
+    """
+    Kiểm tra một kết quả retrieve (hit) có khớp với đáp án mong đợi (expected_ids) hay không, tuỳ theo loại tài liệu.
+    - product: so khớp theo metadata['doc_id']
+    - policy: so khớp theo metadata['source_file']
+    (Hai loại dùng field định danh khác nhau nên phải tách logic.)
+    """
     metadata = hit.get("metadata", {})
     if doc_type == "product":
         return metadata.get("doc_type") == "product" and metadata.get("doc_id") in expected_ids
@@ -121,16 +114,23 @@ def _is_hit(hit: dict, doc_type: str, expected_ids: set) -> bool:
     return False
 
 
-def _group_of(row: dict) -> str:
-    """Nhóm để báo cáo riêng — strict và loose khó khác nhau hẳn nên không gộp."""
+def _group_of(row):
+    """
+    Xác định nhãn nhóm (group) để báo cáo riêng cho một row eval set.
+    Với category "product", tách thêm theo strictness (strict/loose) vì hai loại câu hỏi này có độ khó và cách chấm khác hẳn nhau, 
+    gộp chung sẽ làm mờ số liệu.
+    """
     if row["category"] == "product":
         return f"product/{row.get('strictness') or 'loose'}"
     return row["category"]
 
 
 def retrieve_all(retriever, eval_set, top_k):
-    """Retrieve MỘT lần cho toàn bộ eval set, dùng chung cho cả recall lẫn
-    generation. Bản trước search 2 lần (80 + 105 = 185 lần encode)."""
+    """
+    Chạy retrieval một lần cho toàn bộ câu hỏi trong eval set, dùng chung kết quả cho cả bước tính hit lẫn bước generation 
+    (tránh gọi retriever 2 lần cho cùng 1 câu).
+    Ưu tiên gọi batch (retriever.search_many) nếu retriever hỗ trợ, để nhanh hơn nếu không thì fallback gọi search() từng câu một.
+    """
     questions = [r["question"] for r in eval_set]
     if hasattr(retriever, "search_many"):
         all_hits = retriever.search_many(questions, top_k=top_k)
@@ -139,8 +139,11 @@ def retrieve_all(retriever, eval_set, top_k):
     return {r["id"]: h for r, h in zip(eval_set, all_hits)}
 
 
-def compute_recall_at_k(hits_by_id, eval_set, k_values=(1, 3)):
-    """Recall@k theo từng nhóm, tính trên hits đã retrieve sẵn."""
+def compute_hit_at_k(hits_by_id, eval_set, k_values=(1, 3)):
+    """
+    Tính Hit@k (recall) cho từng nhóm câu hỏi, dựa trên kết quả retrieve đã có sẵn (không gọi lại retriever).
+    Chỉ tính cho category "product" và "policy" — các category khác không có "đáp án đúng" để retrieve nên bỏ qua.
+    """
     groups = {}
     for row in eval_set:
         if row["category"] not in ("product", "policy"):
@@ -158,7 +161,7 @@ def compute_recall_at_k(hits_by_id, eval_set, k_values=(1, 3)):
     return groups
 
 
-# ------------------------------------------------------------------ judges
+# ------------------------------- Judges ----------------------------------- 
 JUDGE_STRICT = """You are grading a customer-support RAG assistant for a fashion retail shop.
 
 Question: {question}
@@ -214,28 +217,33 @@ Respond with ONLY a JSON object:
 
 
 def _extract_json(raw):
+    """
+    Trích xuất và parse object JSON đầu tiên từ output thô của judge model, xử lý các trường hợp lệch chuẩn thường gặp: 
+    - Có thẻ <think>...</think> (reasoning model)
+    - Có markdown code fence ```json
+    - Có text thừa quanh JSON
+    """
     if not raw or not raw.strip():
         raise ValueError("judge trả về content RỖNG (model reasoning? thử reasoning_effort='none')")
     text = raw.strip()
-    text = re.sub(r"<think>.*?</think>", "", text, flags=re.S | re.I)
-    text = re.sub(r"^<think>.*", "", text, flags=re.S | re.I)
+    text = re.sub(r"<think>.*?</think>", "", text, flags=re.DOTALL | re.IGNORECASE)
+    text = re.sub(r"^<think>.*", "", text, flags=re.DOTALL | re.IGNORECASE)
     text = re.sub(r"```(?:json)?|```", "", text).strip()
-    m = re.search(r"\{[^{}]*\}", text, flags=re.S)
+    m = re.search(r"\{[^{}]*\}", text, flags=re.DOTALL)
     if not m:
         raise ValueError(f"không tìm thấy JSON trong: {text[:200]!r}")
     return json.loads(m.group(0))
 
 
-MAX_RETRIES = 6
+MAX_RETRIES = 5
 
 
 class DailyQuotaExhausted(RuntimeError):
     """Hết quota NGÀY (TPD/RPD) — retry vô nghĩa, phải dừng cả run."""
 
 
-def _parse_retry_after(msg: str):
-    """Groq nói thẳng cần chờ bao lâu. '1m23.376s' -> m trước chữ số là phút;
-    '690ms' -> m trước 's' là milli."""
+def _parse_retry_after(msg):
+    """Parse thời gian cần chờ (tính bằng s) từ thông báo lỗi rate-limit của Groq, dạng "...try again in 1m2.5s" hoặc "...try again in 500ms"""
     m = re.search(r"try again in\s+(?:(\d+)m(?=[\d.]))?\s*([\d.]+)\s*(ms|s)\b", msg)
     if not m:
         return None
@@ -245,9 +253,14 @@ def _parse_retry_after(msg: str):
     return int(m.group(1) or 0) * 60 + val
 
 
-async def _with_retry(coro_factory, label: str):
-    """Retry cho giới hạn TẠM THỜI (TPM/RPM/503), tôn trọng đúng thời gian Groq
-    yêu cầu. Gặp giới hạn NGÀY thì raise ngay — chờ cũng không hết."""
+async def _with_retry(coro_factory, label):
+    """
+    Wrapper retry cho các lệnh gọi API (generation hoặc judge), phân biệt 2 loại lỗi:
+    - Rate limit NGÀY (TPD/RPD): không có ý nghĩa để retry trong cùng lần chạy -> raise DailyQuotaExhausted ngay để dừng cả run.
+    - Rate limit TẠM THỜI (TPM/RPM/503/over capacity): retry tối đa MAX_RETRIES lần, chờ đúng thời gian Groq yêu cầu (qua
+    _parse_retry_after) nếu có, không thì dùng backoff số mũ 2^attempt, chặn trần 90s.
+    - Lỗi khác: raise ngay, không retry.
+    """
     last = None
     for attempt in range(MAX_RETRIES):
         try:
@@ -275,14 +288,17 @@ async def _with_retry(coro_factory, label: str):
 
 
 async def _call_judge(client, prompt):
+    """
+    Gọi judge model qua Groq API với 1 prompt, cấu hình temperature=0 và ép response dạng JSON object. 
+    Với model qwen3 (mặc định bật reasoning ngầm, tốn quota ngày dù content trả về rỗng), tắt reasoning bằng reasoning_effort="none
+    """
     kwargs = {
         "model": JUDGE_MODEL,
         "temperature": 0,
         "messages": [{"role": "user", "content": prompt}],
         "response_format": {"type": "json_object"},
     }
-    # qwen3 mặc định BẬT reasoning -> token suy luận vẫn bị tính vào quota NGÀY
-    # dù `content` trả về rỗng. Đây là thứ đã đốt hết 200k TPD lần trước.
+
     if "qwen3" in JUDGE_MODEL.lower():
         kwargs["reasoning_effort"] = "none"
 
@@ -294,6 +310,10 @@ async def _call_judge(client, prompt):
 
 
 async def judge_quality(client, row, answer):
+    """
+    Chấm 3 tiêu chí relevance/correctness/faithfulness (thang 1-5) cho một câu trả lời, dùng prompt JUDGE_STRICT (câu hỏi có 1 đáp án đúng
+    duy nhất) hoặc JUDGE_LOOSE (câu hỏi có nhiều sản phẩm cùng thoả mãn) tuỳ theo row["strictness"].
+    """
     template = JUDGE_STRICT if row.get("strictness") == "strict" else JUDGE_LOOSE
     prompt = template.format(
         question=row["question"],
@@ -314,8 +334,11 @@ async def judge_quality(client, row, answer):
 
 
 async def judge_refusal(client, row, answer):
-    """Không dùng regex ở đây: trợ lý có thể từ chối đúng bằng câu 'shop chưa có
-    sandal màu xanh lá' — không khớp pattern nào nhưng hoàn toàn đúng."""
+    """
+    Chấm xem chatbot có từ chối đúng cách hay không, cho các câu thuộc category out_of_scope / product_not_found. Không dùng regex trực tiếp
+    (is_refusal) làm cách chấm chính, vì trợ lý có thể từ chối bằng câu văn không khớp pattern nào nhưng vẫn đúng — chỉ dùng regex làm 
+    fallback khi judge lỗi.
+    """
     prompt = JUDGE_REFUSAL.format(
         question=row["question"],
         expected=row["expected_answer_keypoints"] or "The question is outside the shop's domain.",
@@ -334,16 +357,21 @@ async def judge_refusal(client, row, answer):
         return {"refused": int(is_refusal(answer)), "invented": None}
 
 
-# ------------------------------------------------------------------ run
+# ------------------------------- Run ----------------------------------- 
 async def _process_row(row, hits, generator, judge_client, sem, counters):
+    """
+    Xử lý đầy đủ một câu hỏi: build context từ hits đã retrieve sẵn, gọi generator sinh câu trả lời, rồi gọi judge phù hợp 
+    (judge_refusal hoặc judge_quality tuỳ category), cuối cùng gói kết quả thành 1 row output. 
+    Dùng semaphore (sem) để giới hạn số câu chạy song song
+    """
     async with sem:
         qid, category = row["id"], row["category"]
         context = "\n\n---\n\n".join(h["content"] for h in hits)
 
+        gen_failed = False
         try:
             gen = await _with_retry(
-                lambda: generator.generate(row["question"], context,
-                                           language=row.get("language") or "auto"),
+                lambda: generator.generate(row["question"], context, language=row.get("language") or "auto"),
                 "gen",
             )
             answer, latency_ms = gen["answer"], gen["latency_ms"]
@@ -352,6 +380,7 @@ async def _process_row(row, hits, generator, judge_client, sem, counters):
         except Exception as e:
             print(f"  [generation error] {qid}: {e}")
             answer, latency_ms = "", None
+            gen_failed = True
 
         out = {
             "id": qid,
@@ -365,56 +394,73 @@ async def _process_row(row, hits, generator, judge_client, sem, counters):
             "retrieved_ids": ";".join(h["metadata"].get("doc_id", h["id"]) for h in hits),
             "relevance": None, "correctness": None, "faithfulness": None,
             "refused": None, "invented": None,
+            "gen_failed": gen_failed,
         }
 
-        if category in ("out_of_scope", "product_not_found"):
-            out.update(await judge_refusal(judge_client, row, answer))
-        else:
-            out.update(await judge_quality(judge_client, row, answer))
+        # Không chấm judge cho câu generation đã lỗi
+        if not gen_failed:
+            if category in ("out_of_scope", "product_not_found"):
+                out.update(await judge_refusal(judge_client, row, answer))
+            else:
+                out.update(await judge_quality(judge_client, row, answer))
 
-        if out["relevance"] is None and out["invented"] is None:
+        if not gen_failed and out["relevance"] is None and out["invented"] is None:
             counters["fail"] += 1
         else:
             counters["fail"] = 0
         counters["done"] += 1
-        print(f"  done {counters['done']}/{counters['total']} {qid} ({out['group']})")
+        tag = " [GEN FAILED]" if gen_failed else ""
+        print(f"  done {counters['done']}/{counters['total']} {qid} ({out['group']}){tag}")
         return out
 
 
 async def run_generation_and_judge(eval_set, hits_by_id, generator, judge_client):
-    """Chạy song song EVAL_CONCURRENCY câu. Thời gian gần như toàn bộ là chờ
-    network, nên đây là chỗ tiết kiệm lớn nhất."""
+    """
+    Chạy generation + judge song song cho toàn bộ eval_set với concurrency giới hạn bởi EVAL_CONCURRENCY. 
+    Dùng asyncio.gather(..., return_exceptions=True) thay vì để lỗi raise thẳng, để KHÔNG mất các câu đã chấm xong thành công
+    khi một câu bất kỳ gặp DailyQuotaExhausted giữa chừng — nếu không, một lần hết quota giữa chừng sẽ làm mất toàn bộ kết quả 
+    của batch, phải chạy lại từ đầu và tốn quota lại.
+    """
     sem = asyncio.Semaphore(EVAL_CONCURRENCY)
     counters = {"done": 0, "total": len(eval_set), "fail": 0}
 
     tasks = [_process_row(row, hits_by_id[row["id"]], generator, judge_client, sem, counters)
              for row in eval_set]
-    try:
-        rows_out = await asyncio.gather(*tasks)
-    except DailyQuotaExhausted as e:
-        for t in tasks:
-            t.cancel() if hasattr(t, "cancel") else None
-        sys.exit(
-            f"\nHết quota NGÀY của Groq (TPD). Dừng để không chạy tiếp vô ích.\n"
-            f"  {str(e)[:200]}\n"
-            "  Chờ quota reset, hoặc dùng eval set nhỏ hơn:\n"
-            '    $env:EVAL_N_STRICT="5"; $env:EVAL_N_LOOSE="5"; $env:EVAL_N_NOT_FOUND="3"'
-        )
+    results = await asyncio.gather(*tasks, return_exceptions=True)
+
+    rows_out = []
+    quota_msg = None
+    other_errors = 0
+    for r in results:
+        if isinstance(r, DailyQuotaExhausted):
+            quota_msg = quota_msg or str(r)
+        elif isinstance(r, Exception):
+            other_errors += 1
+            print(f"  [unexpected error] {r!r}")
+        else:
+            rows_out.append(r)
 
     if counters["fail"] >= 5:
         print(f"\n[warn] {counters['fail']} lời gọi judge cuối cùng đều thất bại với "
               f"{JUDGE_MODEL} — xem dòng `raw:` ở trên.")
-    return list(rows_out)
+    if other_errors:
+        print(f"[warn] {other_errors} câu lỗi không xác định, bị bỏ qua (không tính vào kết quả).")
+
+    return rows_out, quota_msg
 
 
 FIELDNAMES = [
     "id", "category", "group", "strictness", "question", "answer", "latency_ms",
     "n_expected", "retrieved_ids", "relevance", "correctness", "faithfulness",
-    "refused", "invented",
+    "refused", "invented", "gen_failed",
 ]
 
 
 def save_results(rows, path=None):
+    """
+    Ghi danh sách kết quả ra file CSV theo đúng FIELDNAMES, tạo thư mục cha nếu chưa tồn tại. 
+    Ghi đè toàn bộ file (không append).
+    """
     path = path or RESULTS_PATH
     os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, "w", newline="", encoding="utf-8") as f:
@@ -422,7 +468,36 @@ def save_results(rows, path=None):
         writer.writeheader()
         writer.writerows(rows)
 
+
+_NUMERIC_FIELDS = ("latency_ms", "relevance", "correctness", "faithfulness", "refused", "invented")
+
+
+def load_existing_results(path=None):
+    """
+    Đọc kết quả đã chấm từ lần chạy trước (nếu file tồn tại), phục vụ cơ chế resume.
+    Chỉ chạy tiếp các câu chưa có kết quả thay vì chạy lại từ đầu và tốn lại token/quota cho các câu đã xong.
+    Chỉ giữ lại các row có giá trị 'answer' (tức đã thực sự gọi Groq thành công), bỏ qua row rỗng (vd từ recall-only run). 
+    Convert các field số về float/None.
+    """
+    path = path or RESULTS_PATH
+    if not os.path.exists(path):
+        return {}
+    out = {}
+    with open(path, "r", newline="", encoding="utf-8") as f:
+        for row in csv.DictReader(f):
+            if not row.get("answer"):
+                continue
+            for k in _NUMERIC_FIELDS:
+                v = row.get(k)
+                row[k] = float(v) if v not in (None, "") else None
+            out[row["id"]] = row
+    return out
+
 def print_summary(recall_groups, gen_rows):
+    """
+    In báo cáo tổng kết ra console: recall theo nhóm (Hit@1, Hit@3 kèm Wilson CI), chất lượng câu trả lời trung bình theo nhóm 
+    (relevance/correctness/faithfulness), tỷ lệ refuse/invented cho nhóm refusal (kèm Wilson CI), và latency p50/p95.
+    """
     def avg(key, rows):
         vals = [r[key] for r in rows if r.get(key) is not None]
         return (f"{sum(vals) / len(vals):.2f}", len(vals)) if vals else ("n/a", 0)
@@ -441,6 +516,13 @@ def print_summary(recall_groups, gen_rows):
     print(f"  judge     : {JUDGE_MODEL or '(dry run)'}")
     print("=" * 68)
 
+    n_failed = sum(1 for r in gen_rows if r.get("gen_failed"))
+    if n_failed:
+        print(f"\n[!] {n_failed}/{len(gen_rows)} câu generation lỗi (rate limit/timeout) "
+              "-- bị loại khỏi thống kê chất lượng bên dưới, không tính là judge chấm thấp.")
+
+    scoreable = [r for r in gen_rows if not r.get("gen_failed")]
+
     print("\nRETRIEVAL (recall — hit nếu bắt được BẤT KỲ doc liên quan)")
     for group in sorted(recall_groups):
         s = recall_groups[group]
@@ -452,8 +534,8 @@ def print_summary(recall_groups, gen_rows):
         print(f"  {group:22} {'  '.join(parts)}  n={total}")
 
     print("\nANSWER QUALITY (1-5, judge)")
-    for group in sorted({r["group"] for r in gen_rows if r["relevance"] is not None}):
-        rows = [r for r in gen_rows if r["group"] == group]
+    for group in sorted({r["group"] for r in scoreable if r["relevance"] is not None}):
+        rows = [r for r in scoreable if r["group"] == group]
         rel, n_rel = avg("relevance", rows)
         cor, _ = avg("correctness", rows)
         fai, _ = avg("faithfulness", rows)
@@ -462,13 +544,13 @@ def print_summary(recall_groups, gen_rows):
 
     print("\nREFUSAL / HALLUCINATION")
     for group in ("product_not_found", "out_of_scope"):
-        rows = [r for r in gen_rows if r["group"] == group]
+        rows = [r for r in scoreable if r["group"] == group]
         if not rows:
             continue
         print(f"  {group:22} refused  {rate('refused', rows)}")
         print(f"  {group:22} invented {rate('invented', rows)}")
 
-    lat = [r["latency_ms"] for r in gen_rows if r["latency_ms"] is not None]
+    lat = [r["latency_ms"] for r in scoreable if r["latency_ms"] is not None]
     if lat:
         lat_sorted = sorted(lat)
         p50 = lat_sorted[len(lat_sorted) // 2]
@@ -479,15 +561,19 @@ def print_summary(recall_groups, gen_rows):
     print(f"Chi tiết: {RESULTS_PATH}")
 
 
-# ------------------------------------------------------------------ dry run
+# -------------------------------- Dry run ----------------------------------
 class _StubRetriever:
-    """Chỉ để smoke-test harness: trả về đúng doc liên quan cho câu chẵn, doc
-    rác cho câu lẻ. Không phản ánh chất lượng retrieval thật."""
+    """
+    Retriever giả lập chỉ để smoke-test harness (không phản ánh chất lượng retrieval thật). 
+    Với câu hỏi có tổng mã ký tự chẵn, trả về đúng doc mong đợi; câu lẻ thì trả về toàn doc rác — mục đích để kiểm tra
+    logic tính Hit@k có chạy đúng hay không, không phải để đánh giá model.
+    """
 
     def __init__(self, eval_set):
         self._by_q = {r["question"]: r for r in eval_set}
 
     def search(self, query, top_k=5):
+        """Trả về top_k hit giả cho một câu hỏi"""
         row = self._by_q.get(query, {})
         ids = [x for x in (row.get("expected_relevant_ids") or "").split(";") if x]
         good = sum(ord(c) for c in query) % 2 == 0
@@ -503,11 +589,16 @@ class _StubRetriever:
 
 
 class _StubGenerator:
+    """Sinh câu trả lời giả (echo lại 40 ký tự đầu của câu hỏi), dùng khi DRY_RUN=1 để test luồng chạy mà không gọi Groq thật."""
     async def generate(self, query, context, language="vi"):
         return {"answer": f"[stub answer for: {query[:40]}]", "latency_ms": 1.0}
 
 
 class _StubJudge:
+    """
+    Judge giả: nếu prompt có chữ 'declined' (JUDGE_REFUSAL) trả về JSON refused/invented cố định.
+    Ngược lại trả JSON relevance/correctness/faithfulness cố định. Chỉ dùng cho DRY_RUN.
+    """
     class chat:
         class completions:
             @staticmethod
@@ -522,6 +613,17 @@ class _StubJudge:
 
 
 async def main_async():
+    """
+    Luồng xử lý:
+    - Load eval set.
+    - Khởi tạo retriever/generator/judge_client — dùng stub nếu DRY_RUN=1, dùng object thật (Retriever/Generator/AsyncGroq) 
+    nếu không, bỏ qua generator/judge nếu RECALL_ONLY=1.
+    - Retrieve toàn bộ câu hỏi một lần (retrieve_all), tính Hit@k (compute_hit_at_k).
+    - Nếu RECALL_ONLY: lưu kết quả rỗng phần generation, in summary, dừng (không gọi Groq generation/judge).
+    - Nếu không: load kết quả cũ (nếu EVAL_RESUME=1, mặc định bật) để chỉ chạy tiếp các câu chưa có kết quả, chạy generation+judge
+    (run_generation_and_judge), gộp với kết quả cũ, sắp lại theo thứ tự eval set gốc, lưu file, in summary.
+    - Nếu gặp DailyQuotaExhausted giữa chừng: vẫn lưu kết quả đã có, rồi sys.exit với thông báo hướng dẫn chạy lại (script sẽ tự resume).
+    """
     set_seed()
     eval_set = load_eval_set()
     print(f"Loaded {len(eval_set)} eval questions from {EVAL_SET_PATH}")
@@ -534,11 +636,10 @@ async def main_async():
     else:
         from src.rag.retriever import Retriever
 
-        retriever = Retriever(persist_dir=CHROMA_PERSIST_DIR,
-                              embedding_model=EMBEDDING_MODEL, top_k=TOP_K)
+        retriever = Retriever(persist_dir=CHROMA_PERSIST_DIR, embedding_model=EMBEDDING_MODEL, top_k=TOP_K)
 
         if RECALL_ONLY:
-            # Không cần Groq client, không cần cả GROQ_API_KEY.
+            # Không cần Groq client, không cần cả GROQ_API_KEY
             generator = judge_client = None
         else:
             from groq import AsyncGroq
@@ -550,8 +651,8 @@ async def main_async():
     print(f"Retrieving (batched, top_k={TOP_K}) ...")
     hits_by_id = retrieve_all(retriever, eval_set, top_k=TOP_K)
 
-    print("Computing retrieval recall per group ...")
-    recall_groups = compute_recall_at_k(hits_by_id, eval_set, k_values=(1, 3))
+    print("Computing retrieval hit per group ...")
+    recall_groups = compute_hit_at_k(hits_by_id, eval_set, k_values=(1, 3))
     if RECALL_ONLY:
         print("[recall only] bỏ qua generation + judge — không gọi Groq")
         rows = [{
@@ -562,21 +663,47 @@ async def main_async():
             "strictness": r.get("strictness", ""),
             "question": r["question"],
             "n_expected": len(_parse_relevant_ids(r["expected_relevant_ids"])),
-            "retrieved_ids": ";".join(
-                h["metadata"].get("doc_id", h["id"]) for h in hits_by_id[r["id"]]),
+            "retrieved_ids": ";".join(h["metadata"].get("doc_id", h["id"]) for h in hits_by_id[r["id"]]),
         } for r in eval_set]
         save_results(rows)
         print_summary(recall_groups, [])
         return
     
+    resume = os.getenv("EVAL_RESUME", "1") == "1"
+    existing = load_existing_results() if resume else {}
+    remaining = [r for r in eval_set if r["id"] not in existing]
+
+    if existing:
+        print(f"[resume] {len(existing)}/{len(eval_set)} câu đã có kết quả từ lần chạy trước "
+              f"({RESULTS_PATH}) -- bỏ qua, chỉ chạy {len(remaining)} câu còn lại.\n"
+              "         (EVAL_RESUME=0 nếu muốn chạy lại từ đầu, tốn quota lại toàn bộ.)")
+
     print(f"Running generation + judge (concurrency={EVAL_CONCURRENCY}) ...")
-    gen_rows = await run_generation_and_judge(eval_set, hits_by_id, generator, judge_client)
+    new_rows, quota_msg = await run_generation_and_judge(remaining, hits_by_id, generator, judge_client)
+
+    # Luôn lưu -- kể cả khi hết quota giữa chừng -- để lần chạy sau (resume)
+    # không phải trả lại tiền/token cho các câu đã chấm xong.
+    order = {r["id"]: i for i, r in enumerate(eval_set)}
+    gen_rows = list(existing.values()) + new_rows
+    gen_rows.sort(key=lambda r: order.get(r["id"], 1 << 30))
 
     save_results(gen_rows)
     print_summary(recall_groups, gen_rows)
 
+    if quota_msg:
+        left = len(eval_set) - len(gen_rows)
+        sys.exit(
+            f"\nHết quota NGÀY của Groq (TPD). Đã lưu {len(gen_rows)}/{len(eval_set)} câu vào "
+            f"{RESULTS_PATH} (bao gồm {len(new_rows)} câu vừa chạy).\n"
+            f"  {quota_msg[:200]}\n"
+            f"  Còn {left} câu chưa chấm. Chờ quota reset rồi CHẠY LẠI ĐÚNG LỆNH CŨ --\n"
+            "  script sẽ tự bỏ qua các câu đã xong (EVAL_RESUME=1 mặc định) và chỉ\n"
+            f"  chấm nốt {left} câu còn lại."
+        )
+
 
 def main():
+    """Entry point đồng bộ, chỉ gọi asyncio.run(main_async())."""
     asyncio.run(main_async())
 
 
