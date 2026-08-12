@@ -202,14 +202,20 @@ declined a question it had no data for.
 
 Question: {question}
 Why it should decline: {expected}
+Retrieved context (raw catalog/policy rows actually available to the assistant): {context}
 Assistant's answer: {answer}
 
 Answer two things:
 - refused: 1 if the assistant clearly says it cannot help / has no such product / no
   information, else 0. Offering a genuine alternative while still saying the requested
   item is unavailable still counts as 1.
-- invented: 1 if the assistant asserts as fact a product, price, or stock figure that
-  the question implies does not exist, else 0.
+- invented: 1 if the assistant asserts as fact a product, price, or stock figure that is
+  NOT supported by the retrieved context above, else 0. If the assistant mentions a
+  product from the context, verify its stated attributes (price, stock, size, color)
+  against the context row for that product — a mismatch counts as invented, a match does
+  not, even if the product's display name seems to conflict with the attribute (e.g. a
+  name containing one color while the color field says another; trust the field, not the
+  name).
 
 Respond with ONLY a JSON object:
 {{"refused": <0 or 1>, "invented": <0 or 1>}}
@@ -333,7 +339,7 @@ async def judge_quality(client, row, answer):
         return {"relevance": None, "correctness": None, "faithfulness": None}
 
 
-async def judge_refusal(client, row, answer):
+async def judge_refusal(client, row, answer, context):
     """
     Chấm xem chatbot có từ chối đúng cách hay không, cho các câu thuộc category out_of_scope / product_not_found. Không dùng regex trực tiếp
     (is_refusal) làm cách chấm chính, vì trợ lý có thể từ chối bằng câu văn không khớp pattern nào nhưng vẫn đúng — chỉ dùng regex làm 
@@ -342,6 +348,7 @@ async def judge_refusal(client, row, answer):
     prompt = JUDGE_REFUSAL.format(
         question=row["question"],
         expected=row["expected_answer_keypoints"] or "The question is outside the shop's domain.",
+        context=context or "No documents were retrieved.",
         answer=answer,
     )
     raw = ""
@@ -400,10 +407,10 @@ async def _process_row(row, hits, generator, judge_client, sem, counters):
         # Không chấm judge cho câu generation đã lỗi
         if not gen_failed:
             if category in ("out_of_scope", "product_not_found"):
-                out.update(await judge_refusal(judge_client, row, answer))
+                out.update(await judge_refusal(judge_client, row, answer, context))
             else:
                 out.update(await judge_quality(judge_client, row, answer))
-
+                
         if not gen_failed and out["relevance"] is None and out["invented"] is None:
             counters["fail"] += 1
         else:
