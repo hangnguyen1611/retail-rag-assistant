@@ -26,6 +26,8 @@ Không được thêm câu tổng kết cuối cùng gộp thuộc tính (size, 
 câu chung (ví dụ sau khi liệt kê 3 sản phẩm mỗi cái 1 size khác nhau, không được viết thêm "hiện có sẵn size X, Y,
 Z" — vì câu này ngụ ý một sản phẩm có cả 3 size). Mỗi thuộc tính chỉ được nêu gắn liền với đúng SKU của nó.
 Không được gộp thuộc tính (giá, size, màu...) của hai SKU khác nhau thành một câu trả lời duy nhất.
+Khi tóm tắt nhiều sản phẩm bằng 1 câu chung (VD 'cả 2 đều...'), chỉ được dùng thuộc tính mà TẤT CẢ sản phẩm
+trong câu đó cùng có — nếu không chắc, mô tả riêng từng sản phẩm thay vì gộp chung.
 4. Trước khi trả lời câu hỏi về một sản phẩm/loại sản phẩm cụ thể, kiểm tra: loại sản phẩm (category/type)
 trong CONTEXT có khớp CHÍNH XÁC với loại khách hỏi không — không chỉ "cùng công dụng" hay "nghe gần giống". 
 (Ví dụ: khách hỏi "váy ngủ" mà CONTEXT chỉ có "bộ đồ ngủ/pyjama" => KHÁC loại, không tính là khớp.)
