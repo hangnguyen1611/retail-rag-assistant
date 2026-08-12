@@ -246,5 +246,4 @@ Hai hạng mục "Structured Retrieval" (metadata filtering) và "Multi-turn Con
 * **Giảm độ trễ**: p50 hiện ~15s, phần lớn do 2 lượt gọi LLM tuần tự (condense rồi generate) — có thể chạy condense sớm hơn/song song, cache câu hỏi lặp, hoặc bỏ condense khi câu hỏi rõ ràng không phụ thuộc ngữ cảnh.
 * **Mở rộng query_filter**: từ điển màu/giới tính hiện chỉ phủ tiếng Việt phổ biến nhất mỗi màu và cú pháp giá kiểu Việt ("dưới 500k") — bổ sung cú pháp tiếng Anh, khoảng giá (từ...đến), và nhiều biến thể diễn đạt hơn.
 * **Feedback Learning**: nút 👍/👎 trong UI hiện chỉ lưu trong session, chưa được ghi lại và phân tích lâu dài để cải thiện prompt/retrieval theo thời gian.
-* **Kiểm tra riêng nhóm `product/loose`**: correctness/faithfulness thấp hơn hẳn hai nhóm còn lại dù recall đã tốt — cần xem lại cách prompt yêu cầu liệt kê nhiều SKU.
-* **Mở rộng dữ liệu**: bổ sung dữ liệu sản phẩm thực tế (giá, tồn kho, hình ảnh, đánh giá) và xác thực câu trả lời "invented" còn sót ở nhóm `product_not_found`.
+* **Mở rộng dữ liệu**: bổ sung dữ liệu sản phẩm thực tế (giá, tồn kho, hình ảnh, đánh giá).
