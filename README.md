@@ -145,7 +145,7 @@ Giao diện chat dựng trên Streamlit, theo hướng **hiện đại và nhi�
 - **Bong bóng chat có avatar** riêng cho người dùng và trợ lý.
 - **Toolbar dưới mỗi câu trả lời**: sao chép nhanh nội dung, đánh giá 👍/👎 ngay trong phiên và "Trả lời lại" cho câu hỏi gần nhất.
 - **Streaming câu trả lời** qua `/chat/stream` (SSE), có thể tắt ở sidebar để so sánh độ trễ, kèm spinner khi đang chờ backend.
-- **Thẻ "Nguồn tham khảo"** dạng expander có thể đóng/mở, tên file chính sách hiển thị thân thiện qua `POLICY_LABELS`; chi tiết kỹ thuật (score) chỉ hiện khi bật "Debug".
+- **Thẻ "Nguồn tham khảo"** dạng expander có thể đóng/mở, tên file chính sách hiển thị qua `POLICY_LABELS`; chi tiết kỹ thuật (score) chỉ hiện khi bật "Debug".
 - **Ghi nhớ lịch sử hội thoại**: mỗi lượt hỏi gửi kèm toàn bộ history của phiên (trừ câu hỏi vừa gõ) lên backend để hỗ trợ hỏi nối tiếp.
 - Đếm số câu hỏi đã hỏi trong phiên, hiển thị ở cuối sidebar.
 
@@ -202,24 +202,23 @@ Số liệu dưới đây tính trực tiếp từ `data/eval/results.csv` (105/
 
 | Nhóm | Relevance | Correctness | Faithfulness | n |
 |------|----------:|------------:|-------------:|--:|
-| policy | **5.00** | **5.00** | **4.90** | 20 |
-| product/strict | **5.00** | **4.97** | **4.53** | 30 |
-| product/loose | **5.00** | **4.10** | **3.93** | 30 |
+| policy | **5.00** | **4.90** | **4.90** | 20 |
+| product/strict | **5.00** | **4.97** | **4.67** | 30 |
+| product/loose | **5.00** | **4.47** | **4.33** | 30 |
 
 - **Relevance**: mức độ trả lời đúng ý định người dùng.
 - **Correctness**: mức độ chính xác của thông tin so với dữ liệu thật.
 - **Faithfulness**: mức độ bám sát CONTEXT, không suy diễn ngoài dữ liệu.
 
-`product/loose` vẫn là nhóm điểm thấp nhất — retrieval đã đúng nhưng khi CONTEXT có nhiều SKU khớp cùng lúc, model đôi khi diễn đạt thiếu đầy đủ thuộc tính từng SKU.
 
 ### Refusal / Hallucination
 
 | Nhóm | Refused | Invented | n |
 |------|---------:|----------:|--:|
-| product_not_found | **100%** | **7%** | 15 |
+| product_not_found | **100%** | **0%** | 15 |
 | out_of_scope | **100%** | **0%** | 10 |
 
-Hệ thống từ chối đúng trong toàn bộ câu hỏi ngoài phạm vi và câu hỏi về tổ hợp sản phẩm không tồn tại; 1/15 câu `product_not_found` vẫn bị đánh giá là "invented" bởi judge, cần xem lại thủ công.
+Hệ thống từ chối đúng trong toàn bộ câu hỏi ngoài phạm vi và câu hỏi về tổ hợp sản phẩm không tồn tại.
 
 ### Latency
 
@@ -236,9 +235,9 @@ Phần lớn thời gian nằm ở bước sinh câu trả lời bằng Groq; re
 
 - Retrieval Recall@3 đạt **100%** trên cả ba nhóm được đo.
 - Retrieval Recall@1 đạt **90–100%**, `product/loose` là nhóm duy nhất chưa tuyệt đối do có nhiều SKU cùng khớp.
-- Hallucination gần như bằng 0 (1/25 câu ở nhóm cần từ chối).
-- Faithfulness đạt **3.9–4.9/5**, cho thấy câu trả lời nhìn chung bám sát tài liệu truy xuất, thấp nhất ở `product/loose`.
-- Correctness của nhóm `product/loose` (4.10/5) vẫn thấp hơn hai nhóm còn lại, cùng nguyên nhân với faithfulness: nhiều SKU khớp cùng lúc, model đôi khi trình bày chưa đầy đủ thuộc tính từng SKU.
+- Hallucination bằng 0% trên cả hai nhóm cần từ chối (`product_not_found`, `out_of_scope`).
+- Faithfulness đạt **4.33–4.9/5**, cho thấy câu trả lời nhìn chung bám sát tài liệu truy xuất, thấp nhất ở `product/loose`.
+- Correctness của nhóm `product/loose` (4.47/5) vẫn thấp hơn hai nhóm còn lại, cùng nguyên nhân với faithfulness: nhiều SKU khớp cùng lúc, model đôi khi trình bày chưa đầy đủ thuộc tính từng SKU.
 
 ## Hướng phát triển
 
