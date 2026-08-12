@@ -1,6 +1,6 @@
 services:
   backend:
-    build:
+    build: &build
       context: .
       args:
         EMBEDDING_MODEL: intfloat/multilingual-e5-small
@@ -14,22 +14,22 @@ services:
       # Persist index qua các lần restart — build_index.py chỉ chạy lại
       # khi volume này rỗng (xem entrypoint.sh)
       - chroma_data:/app/chroma_db
+    shm_size: "2gb"
     healthcheck:
       test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
       interval: 10s
       timeout: 5s
       retries: 10
-      start_period: 300s
+      start_period: 60s
 
   frontend:
-    build: .
+    build: *build
     entrypoint: ["streamlit"]
     command: ["run", "frontend/app.py", "--server.address=0.0.0.0", "--server.port=8501"]
     ports:
       - "8501:8501"
     environment:
       - BACKEND_URL=http://backend:8000
-      - API_URL=http://backend:8000/chat
     depends_on:
       backend:
         condition: service_healthy
