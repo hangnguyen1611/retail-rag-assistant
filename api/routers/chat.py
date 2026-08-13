@@ -53,6 +53,18 @@ def _messages_from_history(history):
     return [{"role": h.role, "content": h.content} for h in recent]
 
 
+def _has_product_hit(results):
+    """
+    Kiểm tra results có ít nhất 1 hit thuộc doc_type=product hay không.
+
+    Khi SPLIT_BY_DOC_TYPE=True, retriever.search() luôn trả về gộp cả product-slot lẫn policy-slot, 
+    policy-slot không bị áp product_filter nên luôn có hit (miễn corpus policy không rỗng). Vì vậy check 
+    "not results" (toàn bộ merged list) gần như không bao giờ đúng dù product_filter sai/quá chặt làm phần 
+    product ra 0 kết quả -- cần check riêng phần product để quyết định có cần fallback bỏ filter hay không.
+    """
+    return any(r.get("metadata", {}).get("doc_type") == "product" for r in results)
+
+
 async def _retrieve(retriever, condenser, query, history, language):
     """
     Condense query (nếu có history) rồi retrieval có filter, fallback nếu rỗng.
@@ -68,7 +80,7 @@ async def _retrieve(retriever, condenser, query, history, language):
     product_filter = extract_product_filter(search_query)
 
     results = await run_in_threadpool(retriever.search, search_query, None, product_filter)
-    if product_filter and not results:
+    if product_filter and not _has_product_hit(results):
         results = await run_in_threadpool(retriever.search, search_query)
 
     context = "\n\n---\n\n".join(r["content"] for r in results)
