@@ -1,0 +1,44 @@
+name: Unit tests
+
+# Chạy khi push hoặc mở PR nhắm vào main. Chỉ trigger khi có thay đổi liên quan
+# tới code (không chạy lại khi chỉ sửa README/data) để tiết kiệm CI minutes.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/**"
+      - "tests/**"
+      - "conftest.py"
+      - "requirements.txt"
+      - ".github/workflows/test.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "src/**"
+      - "tests/**"
+      - "conftest.py"
+      - "requirements.txt"
+      - ".github/workflows/test.yml"
+
+jobs:
+  unit-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # Cài riêng pytest thay vì `pip install -r requirements.txt`: các unit test hiện tại (tests/test_query_filter.py) chỉ test logic thuần Python
+      # (regex/parse), không import sentence-transformers/chromadb/groq (nặng, kéo theo torch, chậm và tốn CI minutes không cần thiết).
+      # Nếu sau này thêm test cần import những module đó (vd test Retriever với 1 ChromaDB tạm/in-memory), đổi dòng dưới thành:
+      #   pip install -r requirements.txt pytest
+      - name: Install pytest
+        run: pip install pytest
+
+      - name: Run unit tests
+        run: pytest tests/ -v
