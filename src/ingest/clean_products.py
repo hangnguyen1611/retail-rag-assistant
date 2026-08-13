@@ -1,10 +1,12 @@
 import hashlib
+import json
 import os
 from pathlib import Path
 import numpy as np
 import pandas as pd
 
 from config.backend import (
+    DATA_DIR,
     PROCESSED_PRODUCTS_PATH,
     CLEAN_DATA_PATH,
     SEED,
@@ -14,6 +16,23 @@ from config.backend import (
 DATA_PATH = Path(CLEAN_DATA_PATH)
 OUT_PATH = Path(PROCESSED_PRODUCTS_PATH)
 DEFAULT_N_SAMPLES = int(os.getenv("PRODUCTS_N_SAMPLES", "5000"))
+
+_AUTO_TRANSLATION_PATH = Path(DATA_DIR) / "processed" / "article_type_vi_auto.json"
+
+
+def _load_auto_article_type_vi():
+    """
+    Đọc bản dịch articleType tự động (sinh 1 lần bằng src/ingest/translate_article_types.py,
+    gọi Groq). Trả về {} nếu file chưa tồn tại (vd chưa chạy script đó) -- không lỗi, chỉ
+    fallback về giữ nguyên tiếng Anh cho các loại chưa dịch, như hành vi cũ.
+    """
+    if not _AUTO_TRANSLATION_PATH.exists():
+        return {}
+    with open(_AUTO_TRANSLATION_PATH, encoding="utf-8") as f:
+        return json.load(f)
+
+
+ARTICLE_TYPE_VI_AUTO = _load_auto_article_type_vi()
 
 
 # ---- Dictionaries ----
@@ -189,7 +208,12 @@ def enrich_bilingual_fields(df):
     df = df.copy()
 
     df["color_vi"] = df.baseColour.apply(lambda x: _vi(COLOR_VI, x))
-    df["type_vi"] = df.articleType.apply(lambda x: _vi(ARTICLE_TYPE_VI, x))
+    # Ưu tiên dict tay (ARTICLE_TYPE_VI, chất lượng cao, curate thủ công) trước
+    # Nếu articleType không nằm trong dict tay, thử bản dịch tự động (ARTICLE_TYPE_VI_AUTO, sinh bằng Groq qua translate_article_types.py)
+    # Nếu cả 2 đều không có (vd chưa chạy script dịch), _vi() tự fallback về giữ nguyên tiếng Anh như hành vi cũ
+    df["type_vi"] = df.articleType.apply(
+        lambda x: _vi(ARTICLE_TYPE_VI, x, ARTICLE_TYPE_VI_AUTO.get(x))
+    )
     df["gender_vi"] = df.gender.apply(lambda x: _vi(GENDER_VI, x))
     df["usage_vi"] = df.usage.apply(lambda x: _vi(USAGE_VI, x, "thường ngày"))
 
