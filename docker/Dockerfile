@@ -11,9 +11,9 @@ RUN python -c "from sentence_transformers import SentenceTransformer; SentenceTr
 
 COPY . .
 
-RUN chmod +x entrypoint.sh
+RUN chmod +x docker/entrypoint.sh
 
 EXPOSE 8000
 
-ENTRYPOINT ["./entrypoint.sh"]
+ENTRYPOINT ["./docker/entrypoint.sh"]
 CMD ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "8000"]

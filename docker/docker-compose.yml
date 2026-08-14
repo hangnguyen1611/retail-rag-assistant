@@ -1,13 +1,14 @@
 services:
   backend:
     build: &build
-      context: .
+      context: ..
+      dockerfile: docker/Dockerfile
       args:
         EMBEDDING_MODEL: intfloat/multilingual-e5-small
     ports:
       - "8000:8000"
     env_file:
-      - .env
+      - ../.env
     environment:
       - CORS_ALLOW_ORIGINS=http://localhost:8501,http://127.0.0.1:8501
     volumes:
@@ -20,7 +21,7 @@ services:
       interval: 10s
       timeout: 5s
       retries: 10
-      start_period: 60s
+      start_period: 600s
 
   frontend:
     build: *build

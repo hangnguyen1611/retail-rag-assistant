@@ -1,6 +1,6 @@
 # Retail RAG Assistant
 
-Trợ lý CSKH song ngữ Việt/Anh cho shop thời trang, xây trên kiến trúc RAG (Retrieval-Augmented Generation). Trả lời câu hỏi về **sản phẩm** (giá, tồn kho, size, màu) và về **chính sách** (đổi trả, vận chuyển, bảo hành, khuyến mãi, bảng size) — chỉ dựa trên dữ liệu thật của shop, hỗ trợ hội thoại nhiều lượt và từ chối rõ ràng khi không có thông tin phù hợp.
+Chatbot RAG song ngữ Việt/Anh cho shop thời trang: trả lời câu hỏi **sản phẩm** (giá, tồn kho, size, màu) và **chính sách** (đổi trả, vận chuyển, bảo hành, size) dựa trên dữ liệu thật của shop, hỗ trợ hội thoại nhiều lượt. Backend FastAPI + ChromaDB + Groq, frontend Streamlit, có eval pipeline đo recall/hallucination/latency — chi tiết ở phần [Kết quả](#kết-quả).
 
 ![Python](https://img.shields.io/badge/Python-3.11-3776AB?style=flat-square&logo=python&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-Backend-009688?style=flat-square&logo=fastapi&logoColor=white)
@@ -68,9 +68,11 @@ retail-rag-assistant/
 │       └── retriever.py          # Embedding, truy vấn Chroma, slot riêng theo doc_type, convert distance -> similarity
 │
 ├── .streamlit/config.toml       # Theme màu cho các widget gốc của Streamlit
-├── docker-compose.yml           # Chạy backend + frontend bằng một lệnh, healthcheck + volume persist index
-├── Dockerfile                    # Image dùng chung cho cả hai service, pre-download embedding model lúc build
-├── entrypoint.sh                 # Tự build lại vector index nếu volume chưa có sẵn ChromaDB
+├── docker/
+│   ├── docker-compose.yml       # Chạy backend + frontend bằng một lệnh, healthcheck + volume persist index
+│   ├── Dockerfile               # Image dùng chung cho cả hai service, pre-download embedding model lúc build
+│   ├── Dockerfile.dockerignore  # .dockerignore riêng cho Dockerfile này
+│   └── entrypoint.sh            # Tự build lại vector index nếu volume chưa có sẵn ChromaDB
 ├── README.md
 └── requirements.txt
 ```
@@ -134,24 +136,15 @@ uvicorn api.main:app --reload
 streamlit run frontend/app.py
 ```
 
-Hoặc dùng Docker cho cả hai service cùng lúc: `docker compose up --build` (backend cổng `:8000`, frontend cổng `:8501`). `entrypoint.sh` tự động build lại vector index nếu volume `chroma_data` chưa có sẵn `chroma.sqlite3`, và `docker-compose.yml` khai báo healthcheck để frontend chỉ khởi động sau khi backend sẵn sàng.
+Hoặc dùng Docker cho cả hai service cùng lúc: `docker compose -f docker/docker-compose.yml up --build` (backend cổng `:8000`, frontend cổng `:8501`). `entrypoint.sh` tự động build lại vector index nếu volume `chroma_data` chưa có sẵn `chroma.sqlite3` và `docker-compose.yml` khai báo healthcheck để frontend chỉ khởi động sau khi backend sẵn sàng.
 
 ## Giao diện
 
-Giao diện chat dựng trên Streamlit, theo hướng **hiện đại và nhiều màu sắc**, gần với trải nghiệm của các chatbot AI phổ biến hiện nay:
-
-- **Bảng màu gradient tím → hồng** làm chủ đạo.
-- **Gợi ý nhanh dạng chip** ở sidebar, nhóm theo chủ đề kèm icon.
-- **Bong bóng chat có avatar** riêng cho người dùng và trợ lý.
-- **Toolbar dưới mỗi câu trả lời**: sao chép nhanh nội dung, đánh giá 👍/👎 ngay trong phiên và "Trả lời lại" cho câu hỏi gần nhất.
-- **Streaming câu trả lời** qua `/chat/stream` (SSE), có thể tắt ở sidebar để so sánh độ trễ, kèm spinner khi đang chờ backend.
-- **Thẻ "Nguồn tham khảo"** dạng expander có thể đóng/mở, tên file chính sách hiển thị qua `POLICY_LABELS`; chi tiết kỹ thuật (score) chỉ hiện khi bật "Debug".
-- **Ghi nhớ lịch sử hội thoại**: mỗi lượt hỏi gửi kèm toàn bộ history của phiên (trừ câu hỏi vừa gõ) lên backend để hỗ trợ hỏi nối tiếp.
-- Đếm số câu hỏi đã hỏi trong phiên, hiển thị ở cuối sidebar.
+Chat UI dựng trên Streamlit, theme gradient tím → hồng, có gợi ý nhanh dạng chip ở sidebar, streaming câu trả lời qua `/chat/stream` (SSE, tắt được để so sánh độ trễ), thẻ "Nguồn tham khảo" dạng expander, và toolbar sao chép/đánh giá 👍👎 dưới mỗi câu trả lời. Mỗi lượt hỏi gửi kèm history của phiên lên backend để hỗ trợ hỏi nối tiếp.
 
 ## Phương pháp đánh giá
 
-Nguyên tắc: **câu hỏi sinh từ sản phẩm thật, còn ground truth không bao giờ viết tay** — luôn resolve bằng code từ `products.csv` qua cột `product_filter`.
+Nguyên tắc: câu hỏi sinh từ sản phẩm thật, **ground truth không viết tay** — luôn resolve bằng code từ `products.csv` qua cột `product_filter`.
 
 `eval_set.csv` là build artifact, không sửa tay. Nguồn của nó gồm hai phần:
 
@@ -233,11 +226,9 @@ Phần lớn thời gian nằm ở bước sinh câu trả lời bằng Groq; re
 
 ### Kết luận
 
-- Retrieval Recall@3 đạt **100%** trên cả ba nhóm được đo.
-- Retrieval Recall@1 đạt **90–100%**, `product/loose` là nhóm duy nhất chưa tuyệt đối do có nhiều SKU cùng khớp.
-- Hallucination bằng 0% trên cả hai nhóm cần từ chối (`product_not_found`, `out_of_scope`).
-- Faithfulness đạt **4.33–4.9/5**, cho thấy câu trả lời nhìn chung bám sát tài liệu truy xuất, thấp nhất ở `product/loose`.
-- Correctness của nhóm `product/loose` (4.47/5) vẫn thấp hơn hai nhóm còn lại, cùng nguyên nhân với faithfulness: nhiều SKU khớp cùng lúc, model đôi khi trình bày chưa đầy đủ thuộc tính từng SKU.
+- Recall@3 **100%** trên cả ba nhóm; Recall@1 **90–100%**, thấp nhất ở `product/loose` do nhiều SKU cùng khớp filter.
+- Hallucination **0%** trên cả hai nhóm cần từ chối (`product_not_found`, `out_of_scope`).
+- Faithfulness **4.33–4.9/5**, Correctness thấp nhất cũng ở `product/loose` (4.47/5) — cùng nguyên nhân: nhiều SKU khớp cùng lúc, model đôi khi trình bày chưa đầy đủ thuộc tính từng SKU.
 
 ## Hướng phát triển
 

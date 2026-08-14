@@ -188,7 +188,7 @@ def main():
     chunks = []
     chunks += load_products_as_chunks()
     chunks += load_policies_as_chunks()
-    build_and_persist_index(chunks)
+    build_and_persist_index(chunks, use_multiprocess=False)
     print(f"Indexed {len(chunks)} chunks into {CHROMA_PERSIST_DIR}")
 
 

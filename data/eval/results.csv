@@ -1,60 +1,53 @@
 id,category,group,strictness,question,answer,latency_ms,n_expected,retrieved_ids,relevance,correctness,faithfulness,refused,invented,gen_failed
-ps001,product,product/strict,strict,DUSG Women Rishikesh Organic Wheat Capri giá bao nhiêu?,"Chào bạn! Dưới đây là thông tin về **DUSG Women Rishikesh Organic Wheat Capri** mà bạn quan tâm:
+ps001,product,product/strict,strict,DUSG Women Rishikesh Organic Wheat Capri giá bao nhiêu?,"Chào bạn! Dưới đây là thông tin chi tiết về sản phẩm **DUSG Women Rishikesh Organic Wheat Capri** mà bạn quan tâm:
 
-- **Mã sản phẩm:** SP2953  
-- **Loại:** Capris  
-- **Màu:** Vàng  
-- **Size:** L  
-- **Giá:** 416,000 VND  
-- **Tồn kho:** Hết hàng.  
+**Tên sản phẩm:** DUSG Women Rishikesh Organic Wheat Capri  
+- Loại: Quần capri  
+- Màu: Vàng  
+- Size: L  
+- Giá: **416,000 VND**  
+- Tồn kho: **Hết hàng.** (Stock = 0)
 
-Hiện sản phẩm đang không có sẵn trong kho. Nếu bạn muốn, mình có thể gợi ý một số mẫu capris khác có sẵn. Bạn có muốn xem không?",1660.7883998658508,1,2953;2956;51361;policy_promotion_policy.md_1;policy_shipping_policy.md_0,5.0,5.0,4.0,,,False
+Nếu bạn muốn biết thêm về các mẫu quần capri khác hoặc các sản phẩm thay thế, mình sẵn sàng hỗ trợ nhé!",1098.6713000020245,1,2953;2956;51361;policy_promotion_policy.md_1;policy_shipping_policy.md_0,5.0,4.0,4.0,,,False
 ps002,product,product/strict,strict,Is the Warner Bros Kids Girls TW Big Facelog Blue Sandals in stock?,"**Product:** Warner Bros Kids Girls TW Big Facelog Blue Sandals (SKU SP15887)  
-**Stock:** Out of stock (0 units).",1424.9512001406401,1,15887;15854;15888;policy_size_guide.md_2;policy_shipping_policy.md_2,5.0,5.0,5.0,,,False
-ps003,product,product/strict,strict,ADIDAS Women 3S Pink Track Pants có size nào?,"Chào bạn! Mình đã kiểm tra trong danh sách sản phẩm và thấy **ADIDAS Women 3S Pink Track Pants** chỉ có một size duy nhất:
+**Stock:** Out of stock (0 units).",911.1513999960152,1,15887;15854;15888;policy_size_guide.md_2;policy_shipping_policy.md_2,5.0,5.0,5.0,,,False
+ps003,product,product/strict,strict,ADIDAS Women 3S Pink Track Pants có size nào?,"Chào bạn! Mình đã kiểm tra trong danh sách sản phẩm và thấy **ADIDAS Women 3S Pink Track Pants** chỉ có một size hiện có:
 
-**Tên sản phẩm:** ADIDAS Women 3S Pink Track Pants  
-- Loại: Track Pants  
+**ADIDAS Women 3S Pink Track Pants**  
+- Loại: Quần thể thao  
 - Màu: Hồng  
 - Size: **S**  
 - Giá: 403,000 VND  
-- Tồn kho: 0 (Hết hàng)
+- Tồn kho: Hết hàng.  
 
-Nếu bạn cần thông tin về các mẫu Track Pants khác hoặc muốn biết thêm về các size có sẵn, mình sẵn sàng hỗ trợ nhé!",37861.437500221655,1,4774;53750;53748;policy_size_guide.md_0;policy_size_guide.md_1,5.0,5.0,5.0,,,False
-ps004,product,product/strict,strict,Tell me about the Wildcraft Unisex Black Poncho Rain Jacket.,"**Product:** Wildcraft Unisex Black Poncho Rain Jacket  
-**SKU:** SP51319  
-**Category:** Rain Jacket  
-**Brand:** Wildcraft  
-**Colour:** Black  
-**Gender:** Unisex  
-**Size:** S  
-**Price:** 385,000 VND  
-**Stock:** Out of stock.  
+Hiện tại không có size khác cho mẫu này. Nếu bạn cần gợi ý các mẫu quần thể thao khác, mình sẵn sàng hỗ trợ nhé!",27342.170200005057,1,4774;53748;53750;policy_size_guide.md_0;policy_size_guide.md_1,5.0,5.0,5.0,,,False
+ps004,product,product/strict,strict,Tell me about the Wildcraft Unisex Black Poncho Rain Jacket.,"**Product:** Wildcraft Unisex Black Poncho Rain Jacket (SKU: SP51319)  
+- **Category:** Rain Jacket  
+- **Gender:** Unisex  
+- **Size:** S  
+- **Color:** Black  
+- **Price:** 385,000 VND  
+- **Stock:** Out of stock.  
 
-This rain jacket is designed for casual everyday wear.",2995.961899869144,1,51319;51331;59102;policy_warranty_policy.md_2;policy_promotion_policy.md_1,5.0,5.0,4.0,,,False
-ps005,product,product/strict,strict,Genesis Men Solid Maroon Sweater giá bao nhiêu?,"Chào bạn! Mình đã tìm thấy thông tin sản phẩm bạn quan tâm:
+This rain jacket is designed for casual everyday use.",2957.5429999968037,1,51319;59102;51331;policy_warranty_policy.md_2;policy_promotion_policy.md_1,5.0,5.0,4.0,,,False
+ps005,product,product/strict,strict,Genesis Men Solid Maroon Sweater giá bao nhiêu?,"Chào bạn! Mình đã tìm thấy sản phẩm bạn quan tâm trong hệ thống:
 
 **Genesis Men Solid Maroon Sweater**  
-- Loại: Sweaters  
+- Loại: Áo len  
 - Màu: Đỏ mận  
 - Size: L  
 - Giá: 321,000 VND  
 - Tồn kho: Hết hàng.  
 
-Nếu bạn cần thêm thông tin hoặc muốn xem các sản phẩm khác, cứ cho mình biết nhé!",22008.39430000633,1,20788;19324;12244;policy_promotion_policy.md_1;policy_shipping_policy.md_0,5.0,5.0,5.0,,,False
-ps006,product,product/strict,strict,Is the Bwitch Golden Brown Xtra Slim Shapewear in stock?,The **Bwitch Golden Brown Xtra Slim Shapewear** (SKU SP45103) is **Out of stock**.,12824.082400184125,1,45103;45102;51844;policy_return_policy.md_2;policy_promotion_policy.md_2,5.0,5.0,5.0,,,False
-ps007,product,product/strict,strict,Fossil Unisex Gold-Toned Dial Chronograph Watch FS4724 có size nào?,"Chào bạn! Mình đã kiểm tra thông tin trong hệ thống và thấy:
+Nếu cần hỗ trợ thêm hoặc muốn xem các sản phẩm khác, cứ cho mình biết nhé!",1373.546199989505,1,20788;19324;12244;policy_promotion_policy.md_1;policy_shipping_policy.md_0,5.0,5.0,5.0,,,False
+ps006,product,product/strict,strict,Is the Bwitch Golden Brown Xtra Slim Shapewear in stock?,The **Bwitch Golden Brown Xtra Slim Shapewear** (SKU SP45103) is **Out of stock** (Stock: 0).,13728.307900004438,1,45103;45102;51844;policy_return_policy.md_2;policy_promotion_policy.md_2,5.0,5.0,4.0,,,False
+ps007,product,product/strict,strict,Fossil Unisex Gold-Toned Dial Chronograph Watch FS4724 có size nào?,"Chào bạn! Mình đã kiểm tra thông tin sản phẩm **Fossil Unisex Gold‑Toned Dial Chronograph Watch FS4724** (Mã SP51638) và thấy:
 
-**Fossil Unisex Gold‑Toned Dial Chronograph Watch FS4724**  
-- Loại: Đồng hồ  
-- Màu: Vàng gold  
-- Giới tính: Unisex  
 - **Size:** Free size  
-- Giá: 2,599,000 VND  
-- Tồn kho: Còn 49 sản phẩm trong kho.  
 
-Đây là đồng hồ unisex, không có size cố định nên bạn có thể đeo thoải mái. Nếu cần thêm thông tin gì khác, cứ cho mình biết nhé!",857.2108000516891,1,51638;51644;46314;policy_size_guide.md_0;policy_return_policy.md_1,5.0,5.0,5.0,,,False
+Nếu bạn cần thêm thông tin khác như giá, tồn kho hay các mẫu đồng hồ khác, cứ cho mình biết nhé!",30673.983599990606,1,51638;51644;46314;policy_size_guide.md_0;policy_return_policy.md_1,5.0,5.0,5.0,,,False
 ps008,product,product/strict,strict,Tell me about the Latin Quarters Women Cream Printed Top.,"**Latin Quarters Women Cream Printed Top** (SKU: SP50705)  
+
 - **Category:** Áo kiểu (Tops)  
 - **Gender:** Women  
 - **Color:** Cream  
@@ -62,17 +55,16 @@ ps008,product,product/strict,strict,Tell me about the Latin Quarters Women Cream
 - **Price:** 268,000 VND  
 - **Stock:** In stock (48 units)  
 
-This cream‑colored top is designed for casual wear.",14055.812299950048,1,50705;58015;38848;policy_size_guide.md_1;policy_size_guide.md_2,5.0,5.0,4.0,,,False
+This cream‑colored top is designed for casual wear.",14875.81909999426,1,50705;58015;38848;policy_size_guide.md_1;policy_size_guide.md_2,5.0,5.0,4.0,,,False
 ps009,product,product/strict,strict,BIBA OUTLET Women Lavender Leggings giá bao nhiêu?,"Chào bạn! 🌸
 
 **BIBA OUTLET Women Lavender Leggings**  
-- **Mã sản phẩm:** SP28878  
 - **Giá:** 420,000 VND  
-- **Tồn kho:** Còn 2 sản phẩm trong kho  
+- **Tồn kho:** Còn 2 sản phẩm
 
-Nếu cần thêm thông tin hoặc muốn đặt mua, mình sẵn sàng hỗ trợ nhé!",20913.346100132912,1,28878;28944;28879;policy_size_guide.md_0;policy_return_policy.md_0,5.0,4.0,4.0,,,False
-ps010,product,product/strict,strict,Is the Fabindia Men White Pyjamas in stock?,The Fabindia Men White Pyjamas (SKU SP30792) is **In stock (5 units)**.,13908.81280018948,1,30792;56235;56249;policy_return_policy.md_2;policy_warranty_policy.md_2,5.0,5.0,5.0,,,False
-ps011,product,product/strict,strict,Enroute Teens Girls Red Ballet Flats có size nào?,"Chào bạn! Mình đã kiểm tra trong danh sách sản phẩm và thấy **Enroute Teens Girls Red Ballet Flats** chỉ có một size hiện có:
+Nếu cần thêm thông tin hoặc muốn đặt mua, cứ thoải mái cho mình biết nhé!",21116.72809999436,1,28878;28944;28879;policy_size_guide.md_0;policy_return_policy.md_0,5.0,5.0,5.0,,,False
+ps010,product,product/strict,strict,Is the Fabindia Men White Pyjamas in stock?,The Fabindia Men White Pyjamas (SKU SP30792) is **In stock (5 units)**.,13214.907000001404,1,30792;56235;56249;policy_return_policy.md_2;policy_warranty_policy.md_2,5.0,5.0,5.0,,,False
+ps011,product,product/strict,strict,Enroute Teens Girls Red Ballet Flats có size nào?,"Chào bạn! Mình đã kiểm tra trong danh sách sản phẩm và thấy **Enroute Teens Girls Red Ballet Flats** chỉ có một SKU duy nhất:
 
 **Enroute Teens Girls Red Ballet Flats**  
 - Loại: Giày sneaker (Casual Shoes)  
@@ -81,66 +73,67 @@ ps011,product,product/strict,strict,Enroute Teens Girls Red Ballet Flats có siz
 - Giá: 608,000 VND  
 - Tồn kho: Còn 7 sản phẩm trong kho  
 
-Nếu bạn cần thêm thông tin hoặc muốn xem các sản phẩm khác, cứ cho mình biết nhé!",22067.935300059617,1,35531;14478;35784;policy_size_guide.md_1;policy_size_guide.md_0,5.0,5.0,5.0,,,False
-ps012,product,product/strict,strict,Tell me about the Fabindia Women Beige Mangalgiri Churidar.,"**Fabindia Women Beige Mangalgiri Churidar**  
-- **SKU:** SP30821  
-- **Category:** Churidar  
+Hiện tại chỉ có size 37 cho mẫu này. Nếu bạn cần thêm thông tin hoặc muốn xem các mẫu giày khác, cứ cho mình biết nhé!",37424.833600001875,1,35531;14478;35784;policy_size_guide.md_1;policy_size_guide.md_0,5.0,5.0,5.0,,,False
+ps012,product,product/strict,strict,Tell me about the Fabindia Women Beige Mangalgiri Churidar.,"**Fabindia Women Beige Mangalgiri Churidar** (SKU: SP30821)  
+
+- **Category:** Quần churidar (Churidar)  
 - **Gender:** Women  
 - **Color:** Beige  
 - **Size:** L  
 - **Price:** 477,000 VND  
 - **Stock:** In stock (25 units)  
 
-This churidar is designed for women, comes in a classic beige shade, and is suitable for traditional occasions.",14978.565099881962,1,30821;30831;30824;policy_warranty_policy.md_1;policy_warranty_policy.md_2,5.0,5.0,4.0,,,False
-ps013,product,product/strict,strict,French Connection Men Black Bag giá bao nhiêu?,"Chào bạn! Mình đã kiểm tra trong hệ thống và thấy:
+This churidar is designed for women and is suitable for traditional occasions.",14190.749400004279,1,30821;30824;30831;policy_warranty_policy.md_1;policy_warranty_policy.md_2,5.0,5.0,4.0,,,False
+ps013,product,product/strict,strict,French Connection Men Black Bag giá bao nhiêu?,"Chào bạn! Mình đã kiểm tra thông tin trong hệ thống và thấy:
 
 **French Connection Men Black Bag**  
-- Mã sản phẩm: SP42937  
+- Loại: Túi đeo chéo (Messenger Bag)  
+- Màu: Đen  
+- Size: Free size  
 - Giá: **296,000 VND**  
-- Tồn kho: Còn 21 sản phẩm  
+- Tồn kho: Còn 21 sản phẩm trong kho  
 
-Nếu bạn muốn đặt mua hoặc cần thêm thông tin gì khác, cứ cho mình biết nhé!",21012.873800005764,1,42937;42838;43482;policy_promotion_policy.md_1;policy_shipping_policy.md_0,5.0,5.0,4.0,,,False
-ps014,product,product/strict,strict,Is the SDL by Sweet Dreams Women Green & White Printed Night Suit S11-3134 in stock?,The **SDL by Sweet Dreams Women Green & White Printed Night Suit S11‑3134** (SKU SP55806) is **In stock (24 units)**.,746.3924998883158,1,55806;55802;55818;policy_shipping_policy.md_2;policy_shipping_policy.md_1,5.0,5.0,5.0,,,False
+Nếu bạn cần thêm thông tin hoặc muốn đặt mua, cứ cho mình biết nhé!",21163.603400011198,1,42937;42838;43482;policy_promotion_policy.md_1;policy_shipping_policy.md_0,5.0,5.0,4.0,,,False
+ps014,product,product/strict,strict,Is the SDL by Sweet Dreams Women Green & White Printed Night Suit S11-3134 in stock?,The **SDL by Sweet Dreams Women Green & White Printed Night Suit S11‑3134** (SKU SP55806) is **In stock (24 units).**,13885.688599999412,1,55806;55802;55818;policy_shipping_policy.md_2;policy_shipping_policy.md_1,5.0,5.0,5.0,,,False
 ps015,product,product/strict,strict,ADIDAS Unisex Adi Pixel Silver Flip Flop có size nào?,"Chào bạn! Dưới đây là thông tin về mẫu **ADIDAS Unisex Adi Pixel Silver Flip Flop** mà bạn quan tâm:
 
 **ADIDAS Unisex Adi Pixel Silver Flip Flop**  
-- Loại: Dép xỏ ngón (Flip Flops)  
-- Màu: Bạc (Silver)  
+- Loại: Dép xỏ ngón  
+- Màu: Bạc  
 - Size: **42**  
 - Giá: 116,000 VND  
 - Tồn kho: Còn 7 sản phẩm trong kho.  
 
-Nếu bạn cần thêm thông tin hoặc muốn mua hàng, mình sẵn sàng hỗ trợ nhé!",14289.675100008026,1,5646;19882;21188;policy_size_guide.md_0;policy_size_guide.md_1,5.0,5.0,5.0,,,False
+Nếu cần thêm thông tin hoặc muốn xem các mẫu khác, mình sẵn sàng hỗ trợ nhé!",1471.469199997955,1,5646;19882;21188;policy_size_guide.md_0;policy_size_guide.md_1,5.0,5.0,5.0,,,False
 ps016,product,product/strict,strict,Tell me about the Myntra Men Khaki Shorts.,"**Product:** Myntra Men Khaki Shorts (SKU SP51377)  
 - **Category:** Shorts  
-- **Gender:** Men  
 - **Colour:** Khaki  
 - **Size:** L  
-- **Price:** 308,000 VND  
+- **Price:** 308,000 VND  
 - **Stock:** In stock (10 units)  
 
-These shorts are suitable for casual, everyday wear.",14240.130299935117,1,51377;51394;54225;policy_size_guide.md_2;policy_return_policy.md_1,5.0,5.0,4.0,,,False
+This short is designed for men and is suitable for casual everyday wear.",13891.591399995377,1,51377;51394;54225;policy_size_guide.md_2;policy_return_policy.md_1,5.0,5.0,4.0,,,False
 ps017,product,product/strict,strict,Fiorelli Women Coffee Brown Wallet giá bao nhiêu?,"Chào bạn! Mình đã kiểm tra thông tin trong hệ thống và thấy:
 
 **Fiorelli Women Coffee Brown Wallet**  
 - Loại: Ví  
 - Màu: Coffee Brown  
 - Size: Free size  
-- **Giá:** 356,000 VND  
+- Giá: **356,000 VND**  
 - Tồn kho: Còn 17 sản phẩm trong kho  
 
-Nếu bạn cần thêm thông tin hoặc muốn đặt mua, cứ cho mình biết nhé!",16018.11319985427,1,52777;52776;52773;policy_shipping_policy.md_0;policy_return_policy.md_1,5.0,5.0,5.0,,,False
-ps018,product,product/strict,strict,Is the Lino Perros Women Weaved  Navy Blue Belt in stock?,The **Lino Perros Women Weaved Navy Blue Belt** (SKU SP17064) is **In stock (29 units).**,14628.378000110388,1,17064;18019;49066;policy_size_guide.md_2;policy_warranty_policy.md_2,5.0,5.0,5.0,,,False
-ps019,product,product/strict,strict,Rocia Women Gold Handbag có size nào?,"Chào bạn! 
+Nếu bạn cần thêm thông tin hoặc muốn đặt mua, cứ cho mình biết nhé!",21999.24980000651,1,52777;52776;52773;policy_shipping_policy.md_0;policy_return_policy.md_1,5.0,5.0,5.0,,,False
+ps018,product,product/strict,strict,Is the Lino Perros Women Weaved  Navy Blue Belt in stock?,The **Lino Perros Women Weaved Navy Blue Belt** (SKU SP17064) is **In stock (29 units)**.,13873.825500006205,1,17064;18019;49066;policy_size_guide.md_2;policy_warranty_policy.md_2,5.0,5.0,5.0,,,False
+ps019,product,product/strict,strict,Rocia Women Gold Handbag có size nào?,"Chào bạn!  
 
 **Rocia Women Gold Handbag**  
 - Loại: Túi xách  
 - Màu: Vàng gold  
-- **Size:** Free size  
+- Size: **Free size**  
 - Giá: 1,598,000 VND  
 - Tồn kho: Còn 29 sản phẩm trong kho.  
 
-Nếu cần thêm thông tin hoặc muốn xem các mẫu khác, mình sẵn sàng hỗ trợ nhé!",16147.445899900049,1,49545;49555;49546;policy_size_guide.md_0;policy_size_guide.md_1,5.0,5.0,5.0,,,False
+Hiện tại mẫu này chỉ có size Free size. Nếu bạn cần thêm thông tin hoặc muốn xem các mẫu khác, cứ cho mình biết nhé!",22115.674899992882,1,49545;49555;49546;policy_size_guide.md_0;policy_size_guide.md_1,5.0,5.0,5.0,,,False
 ps020,product,product/strict,strict,Tell me about the American Tourister Unisex Green Camera Bag.,"**Product:** American Tourister Unisex Green Camera Bag (Mobile Pouch)  
 - **SKU:** SP42062  
 - **Category:** Mobile Pouch  
@@ -148,105 +141,102 @@ ps020,product,product/strict,strict,Tell me about the American Tourister Unisex 
 - **Gender:** Unisex  
 - **Size:** Free size  
 - **Price:** 446,000 VND  
-- **Stock:** In stock (34 units)  ",14123.162100091577,1,42062;42059;42061;policy_return_policy.md_2;policy_warranty_policy.md_1,5.0,5.0,4.0,,,False
-ps021,product,product/strict,strict,Gini and Jony Boys Surfs Up Grey T-shirt giá bao nhiêu?,"Chào bạn! Mình đã tìm thấy thông tin về áo thun bé trai **Gini and Jony Boys Surfs Up Grey T‑shirt** trong hệ thống:
+- **Stock:** In stock (34 units)  
 
-**Tên sản phẩm:** Gini and Jony Boys Surfs Up Grey T‑shirt  
+This green mobile pouch is suitable for everyday casual use.",14210.627599997679,1,42062;42059;42060;policy_return_policy.md_2;policy_warranty_policy.md_1,5.0,5.0,4.0,,,False
+ps021,product,product/strict,strict,Gini and Jony Boys Surfs Up Grey T-shirt giá bao nhiêu?,"Chào bạn! Mình đã tìm thấy thông tin sản phẩm bạn quan tâm:
+
+**Gini and Jony Boys Surfs Up Grey T-shirt**  
 - Loại: Áo thun  
 - Màu: Xám  
 - Size: XL  
 - Giá: **452,000 VND**  
-- Tồn kho: Còn **50** sản phẩm trong kho  
+- Tồn kho: Còn 50 sản phẩm trong kho.  
 
-Nếu bạn cần thêm thông tin hoặc muốn đặt mua, cứ cho mình biết nhé!",22257.715800078586,1,41958;38493;40154;policy_shipping_policy.md_1;policy_shipping_policy.md_0,5.0,5.0,5.0,,,False
-ps022,product,product/strict,strict,Is the Doodle Boys Check Multi Coloured Shirt in stock?,The **Doodle Boys Check Multi Coloured Shirt** (SKU SP34098) is **In stock (46 units)**.,12920.553599949926,1,34098;33493;33487;policy_return_policy.md_2;policy_shipping_policy.md_2,5.0,5.0,5.0,,,False
-ps023,product,product/strict,strict,Femella Women Brown Dress có size nào?,"Chào bạn! Mình kiểm tra trong danh sách sản phẩm và thấy **Femella Women Brown Dress** chỉ có một SKU:
+Nếu cần thêm thông tin hoặc muốn mua, cứ cho mình biết nhé!",23472.32260000601,1,41958;38493;40154;policy_shipping_policy.md_1;policy_shipping_policy.md_0,5.0,5.0,5.0,,,False
+ps022,product,product/strict,strict,Is the Doodle Boys Check Multi Coloured Shirt in stock?,The **Doodle Boys Check Multi Coloured Shirt** (SKU SP34098) is **In stock (46 units).**,729.2236999928718,1,34098;33493;33487;policy_return_policy.md_2;policy_shipping_policy.md_2,5.0,5.0,5.0,,,False
+ps023,product,product/strict,strict,Femella Women Brown Dress có size nào?,"Chào bạn! Mình đã kiểm tra trong danh sách sản phẩm và thấy **Femella Women Brown Dress** chỉ có một SKU:
 
 **Femella Women Brown Dress**  
 - Loại: Váy đầm  
 - Màu: Nâu  
 - Size: **S**  
 - Giá: 931,000 VND  
-- Tồn kho: 17  
+- Tồn kho: 17 (Còn 17 sản phẩm trong kho)
 
-Hiện tại chỉ có size **S** cho mẫu này. Nếu bạn cần size khác, có thể xem các mẫu váy đầm khác trong shop. 😊",949.4725000113249,1,25966;54974;33969;policy_size_guide.md_0;policy_size_guide.md_1,5.0,5.0,5.0,,,False
+Hiện tại chỉ có size **S** cho mẫu váy này. Nếu bạn cần thông tin thêm hoặc muốn xem các mẫu khác, cứ cho mình biết nhé!",21462.51549999579,1,25966;54974;33969;policy_size_guide.md_0;policy_size_guide.md_1,5.0,5.0,5.0,,,False
 ps024,product,product/strict,strict,Tell me about the Police Men Casual Blue Sunglasses.,"**Product:** Police Men Casual Blue Sunglasses  
 **SKU:** SP16898  
-**Category:** Kính râm (Sunglasses)  
+**Category:** Sunglasses  
 **Color:** Blue  
 **Gender:** Men  
 **Size:** Free size  
 **Price:** 650,000 VND  
-**Stock:** In stock (47 units)  
-
-These sunglasses are designed for men, feature a blue frame, and are suitable for everyday casual wear.",12949.740199837834,1,16898;16888;16879;policy_warranty_policy.md_2;policy_size_guide.md_2,5.0,5.0,4.0,,,False
-ps025,product,product/strict,strict,Scullers For Her Beige Trouser giá bao nhiêu?,"Chào bạn! 😊
+**Stock:** In stock (47 units)",12917.104899999686,1,16898;16888;16879;policy_warranty_policy.md_2;policy_size_guide.md_2,5.0,5.0,4.0,,,False
+ps025,product,product/strict,strict,Scullers For Her Beige Trouser giá bao nhiêu?,"Chào bạn!  
 
 **Scullers For Her Beige Trouser**  
+- **Mã sản phẩm:** SP27928  
 - **Giá:** 392,000 VND  
-- **Tồn kho:** Còn 5 sản phẩm trong kho  
 
-Nếu cần thêm thông tin hoặc muốn đặt mua, mình sẵn sàng hỗ trợ nhé!",22979.774700012058,1,27928;40281;27614;policy_size_guide.md_1;policy_return_policy.md_0,5.0,5.0,5.0,,,False
-ps026,product,product/strict,strict,Is the Elle Women Yellow Skirt in stock?,The **Elle Women Yellow Skirt** (SKU SP57087) is **In stock (12 units)**.,12848.261799896136,1,57087;57089;57054;policy_return_policy.md_2;policy_size_guide.md_2,5.0,5.0,5.0,,,False
-ps027,product,product/strict,strict,United Colors of Benetton Women Brown Jumpsuit có size nào?,"Chào bạn! Mình đã kiểm tra trong danh sách sản phẩm và thấy **United Colors of Benetton Women Brown Jumpsuit** chỉ có một size hiện có:
+Nếu cần thêm thông tin về size, màu hay tồn kho, mình sẵn sàng hỗ trợ nhé!",21770.974299986847,1,27928;40281;27614;policy_size_guide.md_1;policy_return_policy.md_0,5.0,4.0,3.0,,,False
+ps026,product,product/strict,strict,Is the Elle Women Yellow Skirt in stock?,The **Elle Women Yellow Skirt** (SKU SP57087) is **In stock (12 units)**.,564.0447999903699,1,57087;57083;57054;policy_return_policy.md_2;policy_size_guide.md_2,5.0,5.0,5.0,,,False
+ps027,product,product/strict,strict,United Colors of Benetton Women Brown Jumpsuit có size nào?,"Chào bạn! Mình đã kiểm tra trong danh mục sản phẩm và thấy **United Colors of Benetton Women Brown Jumpsuit** chỉ có một size hiện có:
 
 **United Colors of Benetton Women Brown Jumpsuit**  
-- Loại: Jumpsuit  
+- Loại: Đồ liền thân (Jumpsuit)  
 - Màu: Nâu  
 - Size: **L**  
 - Giá: 346,000 VND  
 - Tồn kho: Còn 15 sản phẩm trong kho  
 
-Hiện tại không có các size khác cho mẫu này. Nếu bạn cần size khác, mình có thể gợi ý một vài jumpsuit màu khác có size S hoặc M. Bạn muốn xem không?",22366.873499937356,1,57812;43317;37204;policy_size_guide.md_0;policy_size_guide.md_1,5.0,5.0,5.0,,,False
+Nếu bạn cần thêm thông tin hoặc muốn xem các mẫu jumpsuit khác, cứ cho mình biết nhé!",22085.654700000305,1,57812;43317;37204;policy_size_guide.md_0;policy_size_guide.md_1,5.0,5.0,5.0,,,False
 ps028,product,product/strict,strict,Tell me about the Fabindia Women Beige Salwar.,"**Fabindia Women Beige Salwar**  
 - **SKU:** SP30896  
 - **Category:** Salwar  
 - **Colour:** Beige  
-- **Gender:** Women  
 - **Size:** M  
 - **Price:** 421,000 VND  
 - **Stock:** In stock (45 units)  
 
-This salwar is designed for women, in a classic beige shade, and is suitable for traditional occasions.",759.4992001540959,1,30896;30728;30707;policy_warranty_policy.md_2;policy_promotion_policy.md_2,5.0,5.0,4.0,,,False
-ps029,product,product/strict,strict,Fabindia Men Khadi Green Kurta giá bao nhiêu?,"Chào bạn! Mình đã tìm thấy sản phẩm **Fabindia Men Khadi Green Kurta** trong danh sách.
+This salwar is designed for women and is suitable for traditional occasions.",14043.130699996254,1,30896;30900;30898;policy_warranty_policy.md_2;policy_promotion_policy.md_2,5.0,5.0,4.0,,,False
+ps029,product,product/strict,strict,Fabindia Men Khadi Green Kurta giá bao nhiêu?,"Chào bạn! 🌿
 
-**Tên sản phẩm:** Fabindia Men Khadi Green Kurta  
-- Loại: Kurtas  
-- Màu: Xanh lá  
-- Size: L  
-- Giá: **366,000 VND**  
-- Tồn kho: Còn 22 sản phẩm trong kho  
+**Fabindia Men Khadi Green Kurta**  
+- **Mã sản phẩm:** SP30778  
+- **Giá:** 366,000 VND  
+- **Tồn kho:** Còn 22 sản phẩm trong kho  
 
-Nếu bạn cần thêm thông tin hoặc muốn mua, cứ cho mình biết nhé!",21073.639299953356,1,30778;30937;32234;policy_size_guide.md_0;policy_return_policy.md_0,5.0,5.0,5.0,,,False
-ps030,product,product/strict,strict,Is the Chromozome Men Orange Briefs in stock?,The Chromozome Men Orange Briefs (SKU: SP50478) are **In stock (40 units)**.,13966.300500091165,1,50478;50524;50593;policy_size_guide.md_2;policy_promotion_policy.md_2,5.0,5.0,5.0,,,False
-pl001,product,product/loose,loose,How much does tshirts for men in blue cost?,"Here are some **Tshirts for Men** in **Blue** that I found:
+Nếu cần thêm thông tin hoặc muốn đặt mua, cứ thoải mái cho mình biết nhé!",15810.576000003493,1,30778;30937;30942;policy_size_guide.md_0;policy_return_policy.md_0,5.0,5.0,4.0,,,False
+ps030,product,product/strict,strict,Is the Chromozome Men Orange Briefs in stock?,The **Chromozome Men Orange Briefs** (SKU: SP50478) are **In stock (40 units)**.,13957.384499997715,1,50478;50593;50524;policy_size_guide.md_2;policy_promotion_policy.md_2,5.0,5.0,4.0,,,False
+pl001,product,product/loose,loose,How much does tshirts for men in blue cost?,"Here are some **Tshirts for Men** in **Blue** that match your request:
 
-- **Indian Terrain Men Blue T‑shirt** – Price: **349,000 VND**, Stock: **33 units** (Size: XL)  
-- **Wrangler Men Tee Blue T‑shirt** – Price: **434,000 VND**, Stock: **25 units** (Size: S)  
-- **United Colors of Benetton Men Printed Blue TShirt** – Price: **428,000 VND**, Stock: **15 units** (Size: M)  ",10024.971599923447,41,44338;20255;19570;policy_warranty_policy.md_2;policy_size_guide.md_2,5.0,5.0,5.0,,,False
-pl002,product,product/loose,loose,Shop còn áo kiểu nữ màu xanh dương không?,"Chào bạn! Mình kiểm tra lại trong danh sách sản phẩm hiện có và thấy có **hai mẫu áo kiểu nữ màu xanh dương**:
+- **Indian Terrain Men Blue T‑shirt** – Price: **349,000 VND**, Stock: **In stock (33 units)**, Size: XL  
+- **Wrangler Men Tee Blue T‑shirt** – Price: **434,000 VND**, Stock: **In stock (25 units)**, Size: S  
+- **United Colors of Benetton Men Printed Blue TShirt** – Price: **428,000 VND**, Stock: **In stock (15 units)**, Size: M",7098.138999994262,41,44338;20255;19570;policy_warranty_policy.md_2;policy_size_guide.md_2,5.0,5.0,5.0,,,False
+pl002,product,product/loose,loose,Shop còn áo kiểu nữ màu xanh dương không?,"Chào bạn! Mình đã kiểm tra trong danh sách sản phẩm và hiện có **áo kiểu nữ màu xanh dương** như sau:
 
-**Áo kiểu nữ màu xanh dương | ONLY Women Blue Top**  
+**ONLY Women Blue Top**  
 - Loại: Áo kiểu  
 - Màu: Xanh dương  
 - Size: S  
 - Giá: 451,000 VND  
 - Tồn kho: Hết hàng.  
 
-**Áo kiểu nữ màu xanh dương | UCB Women's Graphic Print Sequins Blue Top**  
+**UCB Women's Graphic Print Sequins Blue Top**  
 - Loại: Áo kiểu  
 - Màu: Xanh dương  
 - Size: XL  
 - Giá: 507,000 VND  
 - Tồn kho: Còn 30 sản phẩm trong kho.  
 
-Nếu bạn muốn mua ngay, mẫu **UCB Women's Graphic Print Sequins Blue Top (size XL)** hiện còn sẵn. Mẫu **ONLY Women Blue Top (size S)** hiện đã hết hàng. Nếu cần hỗ trợ thêm hoặc muốn xem các mẫu khác, cứ cho mình biết nhé!",16408.189199864864,10,43647;39727;7362;policy_return_policy.md_0;policy_size_guide.md_0,5.0,5.0,5.0,,,False
-pl003,product,product/loose,loose,What options do you have for sunglasses for unisex in brown?,"Here are some **unisex brown sunglasses** options:
+Nếu bạn muốn mua, áo XL còn sẵn có và có thể đặt ngay. Nếu cần thêm thông tin hoặc muốn xem các size khác, cứ cho mình biết nhé!",36544.617699997616,10,43647;39727;7362;policy_return_policy.md_0;policy_size_guide.md_0,5.0,5.0,5.0,,,False
+pl003,product,product/loose,loose,What options do you have for sunglasses for unisex in brown?,"Here are some **unisex sunglasses in brown** options:
 
 - **Allen Solly Unisex Sunglasses** – Price: **327,000 VND**, Stock: **In stock (12 units)**, Size: Free size, Colour: Brown. SKU: **SP51718**  
 - **Idee Unisex Funky Eyewear Brown Sunglasses** – Price: **647,000 VND**, Stock: **In stock (31 units)**, Size: Free size, Colour: Brown. SKU: **SP16859**  
-- **Polaroid Unisex Sunglasses** – Price: **216,000 VND**, Stock: **In stock (29 units)**, Size: Free size, Colour: Brown. SKU: **SP38235**",14289.69100001268,5,51718;16859;38235;policy_warranty_policy.md_2;policy_size_guide.md_2,5.0,5.0,5.0,,,False
-pl004,product,product/loose,loose,Đồng hồ nam màu bạc có sẵn size nào?,"Chào bạn! Dưới đây là các mẫu đồng hồ nam màu bạc mà mình tìm được, kèm thông tin về size có sẵn:
+- **Polaroid Unisex Sunglasses** – Price: **216,000 VND**, Stock: **In stock (29 units)**, Size: Free size, Colour: Brown. SKU: **SP38235**",13152.992299990728,5,51718;16859;38235;policy_warranty_policy.md_2;policy_size_guide.md_2,5.0,5.0,5.0,,,False
+pl004,product,product/loose,loose,Đồng hồ nam màu bạc có sẵn size nào?,"Chào bạn! Dưới đây là các mẫu đồng hồ nam màu bạc mà mình tìm được và kích thước (size) hiện có:
 
 **Q&Q Men Silver Dial Watch**  
 - Mã sản phẩm: SP32292  
@@ -254,7 +244,7 @@ pl004,product,product/loose,loose,Đồng hồ nam màu bạc có sẵn size nà
 - Màu: Bạc  
 - Size: **Free size**  
 - Giá: 3,956,000 VND  
-- Tồn kho: Còn 10 sản phẩm trong kho  
+- Tồn kho: 10  
 
 **Fastrack Men Silver Watch**  
 - Mã sản phẩm: SP51570  
@@ -262,7 +252,7 @@ pl004,product,product/loose,loose,Đồng hồ nam màu bạc có sẵn size nà
 - Màu: Bạc  
 - Size: **Free size**  
 - Giá: 1,183,000 VND  
-- Tồn kho: Còn 46 sản phẩm trong kho  
+- Tồn kho: 46  
 
 **Maxima Men Silver Dial Ssteele Watch**  
 - Mã sản phẩm: SP36798  
@@ -270,117 +260,120 @@ pl004,product,product/loose,loose,Đồng hồ nam màu bạc có sẵn size nà
 - Màu: Bạc  
 - Size: **Free size**  
 - Giá: 1,358,000 VND  
-- Tồn kho: Còn 5 sản phẩm trong kho  
+- Tồn kho: 5  
 
-Tất cả các mẫu đồng hồ nam màu bạc hiện có đều là **Free size**, phù hợp cho mọi kích thước cổ tay. Nếu bạn cần thêm thông tin hoặc muốn xem chi tiết nào khác, cứ cho mình biết nhé!",22608.697599964216,11,32292;51570;36798;policy_size_guide.md_0;policy_size_guide.md_1,5.0,5.0,5.0,,,False
-pl005,product,product/loose,loose,How much does flip flops for men in red cost?,"Here are some flip‑flops for men in red:
+Tất cả các mẫu đồng hồ nam màu bạc hiện có đều là **Free size**. Nếu bạn cần thêm thông tin hoặc muốn xem chi tiết nào khác, cứ cho mình biết nhé!",33828.65419999871,11,32292;51570;36798;policy_size_guide.md_0;policy_size_guide.md_1,5.0,5.0,5.0,,,False
+pl005,product,product/loose,loose,How much does flip flops for men in red cost?,"Here are some flip‑flop options for men in red:
 
-- **Gas Men Red Freak Flip Flops** – Price: **145,000 VND** – Stock: **In stock (16 units)**  
-- **Lotto Men Red Flip Flops** – Price: **139,000 VND** – Stock: **In stock (9 units)**  
-- **ADIDAS Men Distorted Red Flip Flops** – Price: **142,000 VND** – Stock: **In stock (28 units)**",15021.156699862331,13,39953;58332;21177;policy_warranty_policy.md_2;policy_size_guide.md_2,5.0,5.0,5.0,,,False
-pl006,product,product/loose,loose,Shop còn bra nữ màu đỏ không?,"Chào bạn! Mình kiểm tra lại trong hệ thống thấy hiện có 2 mẫu bra nữ màu đỏ còn hàng:
+- **Gas Men Red Freak Flip Flops** – Price: **145,000 VND**, Stock: **In stock (16 units)**  
+- **Lotto Men Red Flip Flops** – Price: **139,000 VND**, Stock: **In stock (9 units)**  
+- **ADIDAS Men Distorted Red Flip Flops** – Price: **142,000 VND**, Stock: **In stock (28 units)**",766.2735000048997,13,39953;58332;21177;policy_warranty_policy.md_2;policy_size_guide.md_2,5.0,1.0,1.0,,,False
+pl006,product,product/loose,loose,Shop còn áo ngực nữ màu đỏ không?,"Chào bạn! Mình kiểm tra lại trong hệ thống thấy shop hiện có các mẫu áo ngực nữ màu đỏ sau:
 
-**Bwitch Red Bra**  
-- Loại: Bra  
-- Màu: Đỏ  
-- Size: Free size  
-- Giá: 414,000 VND  
-- Tồn kho: Còn 36 sản phẩm trong kho  
-
-**Avirate Red & Black Bra** (mã SP59741)  
-- Loại: Bra  
+**Áo ngực nữ màu đỏ | Avirate Red & Black Bra**  
+- Mã sản phẩm: SP59741  
+- Loại: Áo ngực  
 - Màu: Đỏ  
 - Size: Free size  
 - Giá: 349,000 VND  
 - Tồn kho: Còn 32 sản phẩm trong kho  
 
-Cả hai đều phù hợp cho dịp thường ngày. Nếu cần thêm thông tin hoặc muốn đặt mua, cứ cho mình biết nhé!",22345.398500096053,6,51829;59741;59727;policy_return_policy.md_0;policy_shipping_policy.md_1,5.0,5.0,5.0,,,False
-pl007,product,product/loose,loose,What options do you have for kurtas for women in maroon?,"Here are some Kurtas options for women in maroon:
+**Áo ngực nữ màu đỏ | Bwitch Red Bra**  
+- Mã sản phẩm: SP51829  
+- Loại: Áo ngực  
+- Màu: Đỏ  
+- Size: Free size  
+- Giá: 414,000 VND  
+- Tồn kho: Còn 36 sản phẩm trong kho  
 
-- **Vishudh Women Printed Maroon Kurta** (SKU: **SP22052**) – Size **L**, Price **349,000 VND**, Stock **10** units.  
-- **Vishudh Women Maroon Kurta** (SKU: **SP36814**) – Size **S**, Price **255,000 VND**, Stock **19** units.  
-- **Folklore Women Maroon Kurta** (SKU: **SP45724**) – Size **XL**, Price **290,000 VND**, Stock **24** units.  ",13053.565100068226,6,22052;36814;45724;policy_warranty_policy.md_2;policy_return_policy.md_2,5.0,5.0,5.0,,,False
-pl008,product,product/loose,loose,Giày sneaker nữ màu trắng có sẵn size nào?,"Chào bạn! Dưới đây là các size hiện có cho giày sneaker nữ màu trắng trong shop:
+**Áo ngực nữ màu đỏ | Avirate Red & Black Bra** (một mẫu khác)  
+- Mã sản phẩm: SP59727  
+- Loại: Áo ngực  
+- Màu: Đỏ  
+- Size: Free size  
+- Giá: 269,000 VND  
+- Tồn kho: Hết hàng.  
 
-**Giày sneaker nữ màu trắng | Nike Women Steady VIII White Casual Shoe**  
+Nếu bạn muốn mua, mình đề xuất lựa chọn SP59741 hoặc SP51829 vì hiện còn hàng. Nếu cần thêm thông tin hoặc hỗ trợ đặt hàng, cứ cho mình biết nhé!",23515.475000007427,6,59741;59727;51829;policy_return_policy.md_0;policy_size_guide.md_0,5.0,5.0,5.0,,,False
+pl007,product,product/loose,loose,What options do you have for kurtas for women in maroon?,"Here are some **women’s Kurtas** in **maroon** that match your request:
+
+- **Vishudh Women Printed Maroon Kurta** – SKU **SP22052** – Size **L** – Price **349,000 VND** – In stock (**10 units**).  
+- **Vishudh Women Maroon Kurta** – SKU **SP36814** – Size **S** – Price **255,000 VND** – In stock (**19 units**).  
+- **Aneri Women Maroon Embroidery Kurta** – SKU **SP23221** – Size **M** – Price **542,000 VND** – In stock (**28 units**).",15791.001200006576,6,22052;36814;23221;policy_warranty_policy.md_2;policy_return_policy.md_2,5.0,5.0,5.0,,,False
+pl008,product,product/loose,loose,Giày sneaker nữ màu trắng có sẵn size nào?,"Chào bạn! Dưới đây là các size hiện có của giày sneaker nữ màu trắng trong shop:
+
+**Nike Women Steady VIII White Casual Shoe**  
 - Size: 40  
 - Tồn kho: Còn 23 sản phẩm trong kho  
 
-**Giày sneaker nữ màu trắng | Nike Women Wmns Sweet Cl White Casual Shoes**  
+**Nike Women Wmns Sweet Cl White Casual Shoes**  
 - Size: 42  
 - Tồn kho: Còn 1 sản phẩm trong kho  
 
-**Giày sneaker nữ màu trắng | ADIDAS Originals Women Top Ten low Sleek White Casual Shoes**  
+**ADIDAS Originals Women Top Ten low Sleek White Casual Shoes**  
 - Size: 41  
 - Tồn kho: Còn 34 sản phẩm trong kho  
 
-Hiện có sẵn các size 40, 41 và 42. Nếu cần thêm thông tin hoặc muốn đặt mua, cứ cho mình biết nhé!",24327.296699862927,8,17838;9383;15259;policy_warranty_policy.md_0;policy_size_guide.md_0,5.0,3.0,2.0,,,False
+Hiện tại shop có sẵn size 40, 41 và 42 cho mẫu giày sneaker nữ màu trắng. Nếu cần thêm thông tin hoặc muốn đặt mua, cứ cho mình biết nhé!",38275.43780000997,8,17838;9383;15259;policy_warranty_policy.md_0;policy_size_guide.md_0,5.0,3.0,2.0,,,False
 pl009,product,product/loose,loose,How much does handbags for women in green cost?,"Here are the green handbags for women that match your request:
 
 - **Murcia Women Asjke Green Handbag** – Price: **378,000 VND**, Stock: **25** units.  
-- **Hidekraft Women Green Handbag** – Price: **2,038,000 VND**, Stock: **47** units.",838.325799908489,7,38444;10202;39549;policy_shipping_policy.md_2;policy_warranty_policy.md_2,5.0,5.0,5.0,,,False
-pl010,product,product/loose,loose,Shop còn áo sơ mi nam màu xanh navy không?,"Chào bạn! Mình kiểm tra lại trong hệ thống và thấy hiện có **ba mẫu áo sơ mi nam màu xanh navy**. Dưới đây là thông tin chi tiết từng SKU:
+- **Hidekraft Women Green Handbag** – Price: **2,038,000 VND**, Stock: **47** units.",16094.102599992766,7,38444;10202;39549;policy_shipping_policy.md_2;policy_warranty_policy.md_2,5.0,5.0,5.0,,,False
+pl010,product,product/loose,loose,Shop còn áo sơ mi nam màu xanh navy không?,"Chào bạn! Mình kiểm tra lại trong hệ thống thấy hiện có ba mẫu áo sơ mi nam màu xanh navy:
 
 **Áo sơ mi nam – Lee Men Check Blue Shirts**  
-- Mã sản phẩm: **SP11716**  
+- Mã sản phẩm: SP11716  
 - Loại: Áo sơ mi  
 - Màu: Xanh navy  
 - Size: L  
 - Giá: 802,000 VND  
-- Tồn kho: **5** sản phẩm  
+- Tồn kho: 5 (Còn 5 sản phẩm trong kho)
 
 **Áo sơ mi nam – Levis Men Check Navy Blue Shirts**  
-- Mã sản phẩm: **SP16405**  
+- Mã sản phẩm: SP16405  
 - Loại: Áo sơ mi  
 - Màu: Xanh navy  
 - Size: M  
 - Giá: 830,000 VND  
-- Tồn kho: **22** sản phẩm  
+- Tồn kho: 22 (Còn 22 sản phẩm trong kho)
 
 **Áo sơ mi nam – Wrangler Men Warnick Square Block Navy Blue Shirts**  
-- Mã sản phẩm: **SP10795**  
+- Mã sản phẩm: SP10795  
 - Loại: Áo sơ mi  
 - Màu: Xanh navy  
 - Size: S  
 - Giá: 355,000 VND  
-- Tồn kho: **27** sản phẩm  
+- Tồn kho: 27 (Còn 27 sản phẩm trong kho)
 
-Mình hy vọng thông tin này giúp bạn lựa chọn được áo ưng ý nhé! Nếu cần thêm chi tiết hoặc muốn đặt mua, cứ cho mình biết nhé. 🌟",1237.8284998703748,8,11716;16405;10795;policy_return_policy.md_1;policy_return_policy.md_0,5.0,5.0,5.0,,,False
-pl011,product,product/loose,loose,What options do you have for wallets for women in purple?,"Here are some **Wallets** options for women in **Purple**:
+Cả ba mẫu đều còn hàng và sẵn sàng giao cho bạn. Nếu cần thêm thông tin hoặc muốn đặt mua, cứ cho mình biết nhé!",22358.497900000657,8,11716;16405;10795;policy_return_policy.md_1;policy_return_policy.md_0,5.0,5.0,5.0,,,False
+pl011,product,product/loose,loose,What options do you have for wallets for women in purple?,"Here are some **Wallets** options for women in **purple**:
 
 - **Baggit Women Valley Baby Purple Wallet** – Price: **410,000 VND**, Stock: **In stock (39 units)**, Size: Free size, SKU: **SP33383**  
 - **Baggit Women Valley Camlincrush Purple Wallet** – Price: **401,000 VND**, Stock: **In stock (3 units)**, Size: Free size, SKU: **SP20590**  
-- **French Connection Women Purple Wallet** – Price: **436,000 VND**, Stock: **In stock (46 units)**, Size: Free size, SKU: **SP42927**",22186.686399858445,5,33383;20590;42927;policy_warranty_policy.md_2;policy_return_policy.md_2,5.0,5.0,5.0,,,False
-pl012,product,product/loose,loose,Night suits nam màu xám có sẵn size nào?,"Chào bạn! Dưới đây là các mẫu Night suits nam màu xám mà mình tìm được, và tất cả đều là **Free size** (không có size cụ thể khác):
+- **French Connection Women Purple Wallet** – Price: **436,000 VND**, Stock: **In stock (46 units)**, Size: Free size, SKU: **SP42927**",14165.75699999521,5,33383;20590;42927;policy_warranty_policy.md_2;policy_return_policy.md_2,5.0,5.0,5.0,,,False
+pl012,product,product/loose,loose,Bộ đồ ngủ nam màu xám có sẵn size nào?,"Chào bạn! Mình đã kiểm tra trong danh sách sản phẩm và thấy rằng các bộ đồ ngủ nam màu xám đều có **size: Free size**.
 
-**Night suits nam màu xám | SDL by Sweet Dreams Men Grey & Black Pyjama Set**  
-- Loại: Night suits  
-- Màu: Xám  
-- Size: **Free size**  
-- Giá: 538,000 VND  
-- Tồn kho: 6  
+Dưới đây là các SKU có sẵn:
 
-**Night suits nam màu xám | SDL by Sweet Dreams Men Grey & Red Pyjama Set**  
-- Loại: Night suits  
-- Màu: Xám  
-- Size: **Free size**  
-- Giá: 388,000 VND  
-- Tồn kho: 36  
+**Bộ đồ ngủ nam màu xám | SDL by Sweet Dreams Men Grey & Navy Blue Pyjama Set**  
+- Mã sản phẩm: SP36256  
+- Size: Free size  
 
-**Night suits nam màu xám | SDL by Sweet Dreams Men Grey Pyjama Set**  
-- Loại: Night suits  
-- Màu: Xám  
-- Size: **Free size**  
-- Giá: 256,000 VND  
-- Tồn kho: 32  
+**Bộ đồ ngủ nam màu xám | SDL by Sweet Dreams Men Grey & Navy Blue Pyjama Set**  
+- Mã sản phẩm: SP36251  
+- Size: Free size  
 
-Tất cả các mẫu trên đều có size “Free size”, nên bạn không cần lo lắng về việc chọn size cụ thể. Nếu cần thêm thông tin hoặc muốn xem chi tiết nào khác, cứ cho mình biết nhé!",12457.53509993665,8,36260;36255;56231;policy_size_guide.md_1;policy_size_guide.md_0,5.0,5.0,5.0,,,False
+**Bộ đồ ngủ nam màu xám | SDL by Sweet Dreams Men Grey & Red Pyjama Set**  
+- Mã sản phẩm: SP36255  
+- Size: Free size  
+
+Tất cả các mẫu trên đều chỉ có size **Free size**. Nếu bạn cần thông tin thêm về giá hoặc tồn kho, mình sẵn sàng hỗ trợ nhé!",9392.873699995107,8,36256;36251;36255;policy_size_guide.md_0;policy_size_guide.md_1,5.0,3.0,5.0,,,False
 pl013,product,product/loose,loose,How much does sports shoes for men in grey cost?,"Here are some **sports shoes for men in grey** options:
 
-- **Fila Men Grey Hex Sports Shoes** – Price: **812,000 VND** – Stock: **In stock (40 units)** – Size: 40  
-- **F Sports Men Grey Deen Sports Shoes** – Price: **1,902,000 VND** – Stock: **In stock (9 units)** – Size: 42  
-- **Skechers Men Shape Grey Sports Shoes** – Price: **1,165,000 VND** – Stock: **Out of stock** – Size: 39",2085.2843998000026,13,23885;54536;11929;policy_size_guide.md_2;policy_warranty_policy.md_2,5.0,3.0,2.0,,,False
-pl014,product,product/loose,loose,Shop còn giày cao gót nữ màu vàng gold không?,"Chào bạn! Mình kiểm tra lại trong hệ thống và thấy hiện có ba mẫu giày cao gót nữ màu vàng gold. Dưới đây là thông tin chi tiết từng SKU:
+- **Fila Men Grey Hex Sports Shoes** – Price: **812,000 VND**, Stock: **In stock (40 units)**.  
+- **F Sports Men Grey Deen Sports Shoes** – Price: **1,902,000 VND**, Stock: **In stock (9 units)**.  
+- **Skechers Men Shape Grey Sports Shoes** – Price: **1,165,000 VND**, Stock: **Out of stock**.",853.8765999983298,13,23885;54536;11929;policy_size_guide.md_2;policy_warranty_policy.md_2,5.0,3.0,2.0,,,False
+pl014,product,product/loose,loose,Shop còn giày cao gót nữ màu vàng gold không?,"Chào bạn! Mình đã kiểm tra trong danh sách sản phẩm và hiện tại shop còn **giày cao gót nữ màu vàng gold** như sau:
 
 **Catwalk Women Golden Heels**  
 - Mã sản phẩm: SP43944  
@@ -406,103 +399,125 @@ pl014,product,product/loose,loose,Shop còn giày cao gót nữ màu vàng gold 
 - Giá: 758,000 VND  
 - Tồn kho: Còn 2 sản phẩm trong kho  
 
-Nếu bạn cần thêm thông tin về size, màu sắc khác hoặc muốn biết quy trình đổi trả, mình sẵn sàng hỗ trợ nhé!",1234.6226000227034,12,43944;41673;56881;policy_return_policy.md_0;policy_shipping_policy.md_0,5.0,5.0,5.0,,,False
-pl015,product,product/loose,loose,What options do you have for track pants for men in black?,"Here are some **Track Pants** options for men in **black**:
+Nếu bạn có nhu cầu về size hoặc mức giá cụ thể, mình có thể giúp bạn chọn lựa phù hợp hơn. 😊",22548.681899992516,12,43944;41673;56881;policy_return_policy.md_0;policy_shipping_policy.md_0,5.0,5.0,5.0,,,False
+pl015,product,product/loose,loose,What options do you have for track pants for men in black?,"Here are some **Track Pants for Men, color Black** options:
 
-- **ADIDAS Men Black Track Pant** (SKU: SP23870) – Size **S**, Price **401,000 VND**, Stock **25** (In stock)  
-- **ADIDAS Men's Long Black Capris** (SKU: SP5027) – Size **L**, Price **493,000 VND**, Stock **14** (In stock)  
-- **ADIDAS Men's Foamy Striped Track Pants** (SKU: SP2118) – Size **M**, Price **316,000 VND**, Stock **17** (In stock)  ",14689.471000107005,14,23870;5027;2118;policy_size_guide.md_2;policy_warranty_policy.md_2,5.0,1.0,1.0,,,False
-pl016,product,product/loose,loose,Quần tây nam màu xanh navy có sẵn size nào?,"Chào bạn! Mình đã kiểm tra trong danh sách sản phẩm và thấy có ba mẫu quần tây nam màu xanh navy với các size sau:
+- **ADIDAS Men Black Track Pant** – Size **S**, Price **401,000 VND**, Stock **25** units.  
+- **ADIDAS Men Black Track Pants** – Size **L**, Price **438,000 VND**, Stock **12** units.  
+- **ADIDAS Men Black Track Pants** – Size **XL**, Price **251,000 VND**, Stock **10** units.",14182.169499996235,14,23870;29023;40025;policy_size_guide.md_2;policy_warranty_policy.md_2,5.0,5.0,5.0,,,False
+pl016,product,product/loose,loose,Quần tây nam màu xanh navy có sẵn size nào?,"Chào bạn! Dưới đây là các mẫu quần tây nam màu xanh navy mà mình tìm được và size có sẵn:
 
-**1. Arrow Men Navy Blue Trousers (Mã SP26817)**
-- Size: M
+**Arrow Men Navy Blue Trousers** (Mã SP26817)  
+- Loại: Quần tây  
+- Màu: Xanh navy  
+- Size: **M**  
+- Giá: 351,000 VND  
+- Tồn kho: 35  
 
-**2. French Connection Men Navy Blue Trousers (Mã SP48392)**
-- Size: M
+**French Connection Men Navy Blue Trousers** (Mã SP48392)  
+- Loại: Quần tây  
+- Màu: Xanh navy  
+- Size: **M**  
+- Giá: 692,000 VND  
+- Tồn kho: 19  
 
-**3. Arrow Men Navy Blue Solid Trousers (Mã SP23072)**
-- Size: XL
+**Arrow Men Navy Blue Solid Trousers** (Mã SP23072)  
+- Loại: Quần tây  
+- Màu: Xanh navy  
+- Size: **XL**  
+- Giá: 671,000 VND  
+- Tồn kho: 18  
 
-Vậy hiện tại shop có sẵn size **M** và **XL** cho quần tây nam màu xanh navy. Nếu bạn cần thêm thông tin về giá hoặc tồn kho của từng mẫu, mình sẵn sàng hỗ trợ nhé!",15290.7181000337,5,26817;48392;23072;policy_size_guide.md_0;policy_size_guide.md_1,5.0,3.0,2.0,,,False
+Vậy hiện có size **M** và **XL** cho quần tây nam màu xanh navy. Nếu bạn cần thêm thông tin hoặc muốn xem chi tiết từng mẫu, cứ cho mình biết nhé!",15593.721400000504,5,26817;48392;23072;policy_size_guide.md_0;policy_size_guide.md_1,5.0,5.0,5.0,,,False
 pl017,product,product/loose,loose,How much does backpacks for unisex in black cost?,"Here are some **Backpacks** (category: Balo) that match **unisex** and **black**:
 
-- **ADIDAS Unisex Black Backpack** – Price: **467,000 VND**, Stock: **In stock (9 units)**
-- **Nike Unisex Black Backpack** (SKU SP30194) – Price: **784,000 VND**, Stock: **In stock (41 units)**
-- **Nike Unisex Black Backpack** (SKU SP31606) – Price: **643,000 VND**, Stock: **In stock (6 units)**",894.1005999222398,30,34463;30194;31606;policy_return_policy.md_2;policy_size_guide.md_2,5.0,5.0,5.0,,,False
-pl018,product,product/loose,loose,Shop còn sarees nữ màu đỏ không?,"Chào bạn! Mình đã kiểm tra lại trong hệ thống và hiện tại shop còn **sarees nữ màu đỏ** với tồn kho như sau:
+- **ADIDAS Unisex Black Backpack** – Price: **467,000 VND**, Stock: **9** units.  
+- **Nike Unisex Black Backpack** (SKU SP30194) – Price: **784,000 VND**, Stock: **41** units.  
+- **Nike Unisex Black Backpack** (SKU SP31606) – Price: **643,000 VND**, Stock: **6** units.",1117.7334999956656,30,34463;30194;31606;policy_return_policy.md_2;policy_size_guide.md_2,5.0,5.0,5.0,,,False
+pl018,product,product/loose,loose,Shop còn váy sari nữ màu đỏ không?,"Chào bạn! Mình đã kiểm tra lại kho và hiện tại có **2 mẫu váy sari nữ màu đỏ** còn hàng:
 
-**Sarees nữ màu đỏ | FNF Red Printed Sari**  
-- Mã sản phẩm: **SP53032**  
-- Loại: Sarees  
-- Màu: Đỏ  
-- Size: Free size  
-- Giá: 495,000 VND  
-- Tồn kho: **Còn 10 sản phẩm trong kho**  
-
-**Sarees nữ màu đỏ | FNF Red Printed Sari**  
+**1. FNF Red Printed Sari**  
 - Mã sản phẩm: **SP52893**  
-- Loại: Sarees  
+- Loại: Váy sari  
 - Màu: Đỏ  
 - Size: Free size  
 - Giá: 352,000 VND  
 - Tồn kho: **Còn 40 sản phẩm trong kho**  
 
-Hai mẫu trên đều còn hàng và phù hợp cho các dịp truyền thống. Nếu cần thêm thông tin hoặc muốn đặt mua, cứ cho mình biết nhé!",22471.503300126642,6,53014;53032;52893;policy_return_policy.md_0;policy_shipping_policy.md_0,5.0,5.0,5.0,,,False
-pl019,product,product/loose,loose,What options do you have for kurtis for women in blue?,"Here are some **Kurtis for Women** options in **blue**:
-
-- **Fabindia Women Blue Solid Kurti** (SKU: SP30912)  
-  - Size: S  
-  - Price: 452,000 VND  
-  - Stock: In stock (19 units)
-
-- **Aneri Women Habiba Blue Kurti** (SKU: SP18289)  
-  - Size: XL  
-  - Price: 335,000 VND  
-  - Stock: In stock (32 units)",15013.532500015572,8,30912;18289;19091;policy_warranty_policy.md_2;policy_size_guide.md_1,5.0,5.0,5.0,,,False
-pl020,product,product/loose,loose,Quần jeans nữ màu xanh dương có sẵn size nào?,"Chào bạn! Mình đã kiểm tra trong danh sách sản phẩm và thấy có ba mẫu quần jeans nữ màu xanh dương với các size sau:
-
-**Quần jeans Jealous 21 Women Blue Jegging**  
-- Mã sản phẩm: SP7179  
-- Size: XL  
-- Giá: 648,000 VND  
-- Tồn kho: 7  
-
-**Quần jeans Jealous 21 Women Blue Jeans**  
-- Mã sản phẩm: SP27021  
-- Size: M  
-- Giá: 470,000 VND  
-- Tồn kho: 12  
-
-**Quần jeans French Connection Women Blue Jeans**  
-- Mã sản phẩm: SP48500  
-- Size: XL  
-- Giá: 491,000 VND  
-- Tồn kho: 17  
-
-Vậy hiện có size **XL** và **M** cho quần jeans nữ màu xanh dương. Nếu bạn cần thêm thông tin hoặc muốn biết chi tiết về màu sắc, giá hay tồn kho của từng mẫu, cứ cho mình biết nhé!",39618.2559998706,27,7179;27021;48500;policy_size_guide.md_0;policy_size_guide.md_1,5.0,5.0,5.0,,,False
-pl021,product,product/loose,loose,How much does trunk for men in navy blue cost?,"Here are some **Trunk** options for men in **Navy Blue**:
-
-- **SKU: SP50572** – Price: **348,000 VND** – Stock: **In stock (23 units)**
-- **SKU: SP50678** – Price: **258,000 VND** – Stock: **Out of stock**
-- **SKU: SP50686** – Price: **533,000 VND** – Stock: **Out of stock**",832.3677000589669,9,50572;50678;50686;policy_warranty_policy.md_2;policy_size_guide.md_2,5.0,5.0,5.0,,,False
-pl022,product,product/loose,loose,Shop còn innerwear vests nam màu đỏ không?,"Chào bạn! Mình kiểm tra lại kho và hiện có 2 mẫu Innerwear Vests nam màu đỏ còn sẵn:
-
-**Innerwear Vests nam màu đỏ | Chromozome Men Red Innerwear Vest**  
-- Loại: Innerwear Vests  
+**2. FNF Red Printed Sari**  
+- Mã sản phẩm: **SP53032**  
+- Loại: Váy sari  
 - Màu: Đỏ  
 - Size: Free size  
-- Giá: 377,000 VND  
-- Tồn kho: Còn 32 sản phẩm trong kho  
+- Giá: 495,000 VND  
+- Tồn kho: **Còn 10 sản phẩm trong kho**  
 
-**Innerwear Vests nam màu đỏ | Crusoe Men Red and Black Innerwear Vest**  
-- Loại: Innerwear Vests  
+Hai mẫu trên đều phù hợp cho các dịp truyền thống. Nếu bạn cần thêm thông tin hoặc muốn đặt mua, cứ cho mình biết nhé!",21473.970999999437,6,53014;52893;53032;policy_shipping_policy.md_1;policy_return_policy.md_0,5.0,5.0,5.0,,,False
+pl019,product,product/loose,loose,What options do you have for kurtis for women in blue?,"Here are some **Kurtis for Women** in **blue** that match the catalog:
+
+- **Fabindia Women Blue Solid Kurti** – Price: **452,000 VND**, Size: **S**, Stock: **In stock (19 units)**. SKU: **SP30912**  
+- **Aneri Women Habiba Blue Kurti** – Price: **335,000 VND**, Size: **XL**, Stock: **In stock (32 units)**. SKU: **SP18289**  
+- **Mother Earth Women Blue Printed Kurti** – Price: **530,000 VND**, Size: **S**, Stock: **In stock (7 units)**. SKU: **SP24535**",14014.597700006561,8,30912;18289;24535;policy_warranty_policy.md_2;policy_size_guide.md_1,5.0,5.0,5.0,,,False
+pl020,product,product/loose,loose,Quần jeans nữ màu xanh dương có sẵn size nào?,"Chào bạn! Mình đã kiểm tra trong danh sách sản phẩm và thấy có **hai size** cho quần jeans nữ màu xanh dương:
+
+**1. Jealous 21 Women Blue Jegging**  
+- Mã sản phẩm: SP7179  
+- Loại: Quần jeans  
+- Màu: Xanh dương  
+- Size: **XL**  
+- Giá: 648,000 VND  
+- Tồn kho: Còn 7 sản phẩm trong kho  
+
+**2. Jealous 21 Women Blue Jeans**  
+- Mã sản phẩm: SP27021  
+- Loại: Quần jeans  
+- Màu: Xanh dương  
+- Size: **M**  
+- Giá: 470,000 VND  
+- Tồn kho: Còn 12 sản phẩm trong kho  
+
+**3. French Connection Women Blue Jeans**  
+- Mã sản phẩm: SP48500  
+- Loại: Quần jeans  
+- Màu: Xanh dương  
+- Size: **XL**  
+- Giá: 491,000 VND  
+- Tồn kho: Còn 17 sản phẩm trong kho  
+
+Vậy hiện có size **M** và **XL** cho quần jeans nữ màu xanh dương. Nếu bạn muốn biết thêm chi tiết hoặc muốn đặt hàng, cứ cho mình biết nhé!",9551.0695999983,27,7179;27021;48500;policy_size_guide.md_0;policy_size_guide.md_1,5.0,5.0,5.0,,,False
+pl021,product,product/loose,loose,How much does trunk for men in navy blue cost?,"Here are some **Trunk** options for men in **Navy Blue**:
+
+- **Chromozome Men Navy Blue Trunks** – SKU **SP50572** – Price: **348,000 VND** – Stock: **In stock (23 units)**
+- **Chromozome Men Navy Blue Trunks** – SKU **SP50603** – Price: **375,000 VND** – Stock: **In stock (3 units)**
+- **Chromozome Men Navy Blue Trunks** – SKU **SP50678** – Price: **258,000 VND** – Stock: **Out of stock**",14101.659999985714,9,50572;50603;50678;policy_warranty_policy.md_2;policy_size_guide.md_2,5.0,5.0,5.0,,,False
+pl022,product,product/loose,loose,Shop còn áo vest lót nam màu đỏ không?,"Chào bạn! Mình kiểm tra lại kho và hiện tại shop còn các áo vest lót nam màu đỏ sau:
+
+**Áo vest lót nam – Crusoe Men Red and Black Innerwear Vest**  
+- Mã sản phẩm: SP20289  
+- Loại: Áo vest lót  
 - Màu: Đỏ  
 - Size: Free size  
 - Giá: 442,000 VND  
 - Tồn kho: Còn 8 sản phẩm trong kho  
 
-Hai mẫu này đều phù hợp để mặc hàng ngày. Nếu bạn cần thêm thông tin hoặc muốn đặt mua, cứ cho mình biết nhé!",21377.55939993076,10,17889;50642;20289;policy_return_policy.md_0;policy_return_policy.md_1,5.0,5.0,5.0,,,False
-pl023,product,product/loose,loose,What options do you have for sweaters for men in purple?,"Here are some **Sweaters** options for men in **purple**:
+**Áo vest lót nam – Chromozome Men Red Innerwear Vest**  
+- Mã sản phẩm: SP50642  
+- Loại: Áo vest lót  
+- Màu: Đỏ  
+- Size: Free size  
+- Giá: 377,000 VND  
+- Tồn kho: Còn 32 sản phẩm trong kho  
+
+**Áo vest lót nam – Hanes Men Red Innerwear Vest**  
+- Mã sản phẩm: SP49976  
+- Loại: Áo vest lót  
+- Màu: Đỏ  
+- Size: Free size  
+- Giá: 414,000 VND  
+- Tồn kho: Còn 38 sản phẩm trong kho  
+
+Các mẫu trên đều còn hàng và phù hợp cho việc mặc thường ngày. Nếu bạn cần thêm thông tin hoặc muốn đặt mua, cứ cho mình biết nhé!",24393.752599993604,10,20289;50642;49976;policy_return_policy.md_0;policy_warranty_policy.md_1,5.0,5.0,5.0,,,False
+pl023,product,product/loose,loose,What options do you have for sweaters for men in purple?,"Here are some **Sweaters** options for men in **Purple**:
 
 - **United Colors Of Benetton Men Purple Sweater**  
   - SKU: **SP19955**  
@@ -510,39 +525,38 @@ pl023,product,product/loose,loose,What options do you have for sweaters for men 
   - Price: **525,000 VND**  
   - Stock: **In stock (32 units)**  
 
-- **Proline Purple Striped Sweater**  
-  - SKU: **SP13799**  
-  - Size: **M**  
-  - Price: **385,000 VND**  
-  - Stock: **In stock (16 units)**  ",14198.289099847898,5,13097;19955;13799;policy_warranty_policy.md_2;policy_size_guide.md_2,5.0,5.0,5.0,,,False
-pl024,product,product/loose,loose,Dupatta nữ màu off white có sẵn size nào?,"Chào bạn! Dưới đây là các SKU dupatta nữ màu off‑white mà mình tìm được và size có sẵn:
+- **Flying Machine Men Stripes Purple Sweaters**  
+  - SKU: **SP14080**  
+  - Size: **XL**  
+  - Price: **439,000 VND**  
+  - Stock: **In stock (12 units)**  ",6270.800099999178,5,19955;13097;14080;policy_warranty_policy.md_2;policy_size_guide.md_2,5.0,5.0,5.0,,,False
+pl024,product,product/loose,loose,Khăn dupatta nữ màu off white có sẵn size nào?,"Chào bạn! Dưới đây là các size hiện có cho khăn dupatta nữ màu off‑white trong shop:
 
-**Fabindia Women Printed Off White Dupatta – Mã SP34275**  
-- Loại: Dupatta  
+**Mã sản phẩm: SP34275**  
+- Loại: Khăn dupatta  
 - Màu: Off White  
-- Size: **XL**  
+- Size: XL  
 - Giá: 536,000 VND  
-- Tồn kho: Còn 47 sản phẩm trong kho  
+- Tồn kho: 47  
 
-**Fabindia Women Printed Off White Dupatta – Mã SP34944**  
-- Loại: Dupatta  
+**Mã sản phẩm: SP34944**  
+- Loại: Khăn dupatta  
 - Màu: Off White  
-- Size: **S**  
+- Size: S  
 - Giá: 256,000 VND  
-- Tồn kho: Còn 37 sản phẩm trong kho  
+- Tồn kho: 37  
 
-**Fabindia Women Printed Off White & Green Dupatta – Mã SP34272**  
-- Loại: Dupatta  
+**Mã sản phẩm: SP34272**  
+- Loại: Khăn dupatta  
 - Màu: Off White  
-- Size: **S**  
+- Size: S  
 - Giá: 491,000 VND  
-- Tồn kho: Còn 16 sản phẩm trong kho  
+- Tồn kho: 16  
 
-Như vậy, hiện có size **S** và **XL** cho dupatta màu off‑white. Nếu bạn cần thêm thông tin hoặc muốn đặt mua, cứ cho mình biết nhé!",23508.21809982881,7,34275;34944;34272;policy_size_guide.md_1;policy_size_guide.md_0,5.0,5.0,5.0,,,False
-pl025,product,product/loose,loose,How much does shorts for men in grey cost?,"Here are some grey shorts for men that match your request:
+Hiện có size **XL** và **S** cho mẫu khăn dupatta màu off‑white. Nếu cần thêm thông tin hoặc muốn đặt mua, cứ cho mình biết nhé!",21319.45929999347,7,34275;34944;34272;policy_size_guide.md_0;policy_size_guide.md_1,5.0,5.0,5.0,,,False
+pl025,product,product/loose,loose,How much does shorts for men in grey cost?,"I found the following grey short for men:
 
-- **Hanes Men Knitted Grey Shorts** (SKU: SP13621) – Price: **360,000 VND**, Stock: **26** units.  
-- **Scullers Men Grey Shorts** (SKU: SP27625) – Price: **311,000 VND**, Stock: **7** units.",718.5565999243408,6,13621;27625;49949;policy_size_guide.md_2;policy_warranty_policy.md_2,5.0,3.0,2.0,,,False
+- **Scullers Men Grey Shorts** (SKU: SP27625) – Price: **311,000 VND**, Stock: **7 units** (In stock).",13930.625899985898,6,27625;34250;49949;policy_size_guide.md_2;policy_warranty_policy.md_2,5.0,5.0,5.0,,,False
 pl026,product,product/loose,loose,Shop còn váy đầm nữ màu hồng không?,"Chào bạn! Mình kiểm tra lại kho và hiện tại shop còn các mẫu váy đầm nữ màu hồng sau:
 
 **Váy đầm nữ màu hồng | Palm Tree Girl's Cr Blossom Drs Pink Dresses**  
@@ -551,7 +565,7 @@ pl026,product,product/loose,loose,Shop còn váy đầm nữ màu hồng không?
 - Màu: Hồng  
 - Size: M  
 - Giá: 1,570,000 VND  
-- Tồn kho: Còn 15 sản phẩm trong kho  
+- Tồn kho: Còn 15 sản phẩm trong kho.  
 
 **Váy đầm nữ màu hồng | Forever New Women Pink Sleeveless Dress**  
 - Mã sản phẩm: SP6874  
@@ -559,340 +573,317 @@ pl026,product,product/loose,loose,Shop còn váy đầm nữ màu hồng không?
 - Màu: Hồng  
 - Size: L  
 - Giá: 1,651,000 VND  
-- Tồn kho: Còn 13 sản phẩm trong kho  
+- Tồn kho: Còn 13 sản phẩm trong kho.  
 
-Mẫu **AND Women Pink Dress** (Mã SP46216) hiện đã hết hàng (tồn kho: 0). Nếu bạn quan tâm, mình có thể giúp đặt trước hoặc gợi ý các mẫu khác. Bạn muốn xem chi tiết hơn hay đặt mua nào?",15714.052299968898,8,10016;46216;6874;policy_promotion_policy.md_1;policy_shipping_policy.md_1,5.0,1.0,1.0,,,False
+Hai mẫu trên đều phù hợp cho dịp thường ngày. Nếu bạn cần thêm thông tin hoặc muốn đặt mua, cứ cho mình biết nhé!",1147.1909999963827,8,10016;46216;6874;policy_promotion_policy.md_1;policy_shipping_policy.md_1,5.0,1.0,1.0,,,False
 pl027,product,product/loose,loose,What options do you have for boxers for men in blue?,"Here are some **Boxers** options for men in **Blue**:
 
-- **Probase Blue Printed Boxers** (SKU: SP43011) – Price: **463,000 VND** – In stock (49 units)  
-- **Playboy Men Blue Boxers** (SKU: SP32071) – Price: **287,000 VND** – In stock (25 units)  
-- **Smugglerz Men Blue and White Check Boxers** (SKU: SP53348) – Price: **426,000 VND** – In stock (16 units)",15116.275700042024,13,43011;32071;53348;policy_warranty_policy.md_2;policy_size_guide.md_1,5.0,5.0,5.0,,,False
-pl028,product,product/loose,loose,Jackets nữ màu đen có sẵn size nào?,"Chào bạn! Dưới đây là các mẫu **Jackets nữ màu đen** mà mình tìm được trong hệ thống, kèm theo size có sẵn của từng SKU:
-
-**Nike Women Solid Black Jackets**  
-- Mã sản phẩm: SP13996  
-- Loại: Jackets  
-- Màu: Đen  
-- Size: **XL**  
-- Giá: 251,000 VND  
-- Tồn kho: Còn 24 sản phẩm trong kho  
-
-**United Colors Of Benetton Women Light Winter Black Jackets**  
-- Mã sản phẩm: SP11368  
-- Loại: Jackets  
-- Màu: Đen  
-- Size: **L**  
-- Giá: 335,000 VND  
-- Tồn kho: **Hết hàng**.  
+- **Probase Blue Printed Boxers** (SKU: **SP43011**) – Price: **463,000 VND**, Stock: **In stock (49 units)**.  
+- **Playboy Men Blue Boxers** (SKU: **SP32071**) – Price: **287,000 VND**, Stock: **In stock (25 units)**.  
+- **Calvin Klein Mens blue Boxers** (SKU: **SP44791**) – Price: **307,000 VND**, Stock: **In stock (38 units)**.",1858.2516000024043,13,43011;32071;44791;policy_warranty_policy.md_2;policy_size_guide.md_1,5.0,5.0,5.0,,,False
+pl028,product,product/loose,loose,Áo khoác nữ màu đen có sẵn size nào?,"Chào bạn! Dưới đây là các size hiện có cho áo khoác nữ màu đen trong shop:
 
 **Elle Women Black Jacket**  
-- Mã sản phẩm: SP57064  
-- Loại: Jackets  
-- Màu: Đen  
-- Size: **L**  
-- Giá: 541,000 VND  
-- Tồn kho: Còn 38 sản phẩm trong kho  
-
-Nếu bạn cần thêm thông tin chi tiết hoặc muốn xem các mẫu khác, cứ cho mình biết nhé! 🌟",12133.306400151923,5,13996;11368;57064;policy_size_guide.md_0;policy_size_guide.md_1,5.0,5.0,5.0,,,False
-pl029,product,product/loose,loose,How much does nightdress for women in blue cost?,"Here are some **Nightdress** options for women in blue:
-
-- **SKU:** SP52371  
-  **Price:** 306,000 VND  
-  **Stock:** In stock (50 units)
-
-- **SKU:** SP52340  
-  **Price:** 402,000 VND  
-  **Stock:** In stock (12 units)
-
-- **SKU:** SP52404  
-  **Price:** 527,000 VND  
-  **Stock:** In stock (26 units)",16250.356199918315,5,52371;52340;52404;policy_promotion_policy.md_2;policy_warranty_policy.md_2,5.0,5.0,5.0,,,False
-pl030,product,product/loose,loose,Shop còn tunics nữ màu xanh lá không?,"Chào bạn! Mình kiểm tra lại trong hệ thống và hiện có **3 mẫu tunics nữ màu xanh lá** đang còn hàng:
-
-**ONLY Women Green Tunic**  
-- Loại: Tunics  
-- Màu: Xanh lá  
 - Size: L  
-- Giá: 529,000 VND  
-- Tồn kho: Còn 49 sản phẩm trong kho  
+- Tồn kho: 38 sản phẩm  
 
-**Lee Women Check Green Tunics**  
-- Loại: Tunics  
+**Nike Women Solid Black Jackets**  
+- Size: XL  
+- Tồn kho: 24 sản phẩm  
+
+**Wildcraft Women Black Jacket**  
+- Size: M  
+- Tồn kho: 32 sản phẩm  
+
+Hiện tại có ba size: **M, L, XL**. Nếu bạn cần thêm thông tin chi tiết về bất kỳ mẫu nào, cứ cho mình biết nhé!",1406.5427999885287,5,57064;13996;46121;policy_size_guide.md_0;policy_size_guide.md_1,5.0,3.0,2.0,,,False
+pl029,product,product/loose,loose,How much does nightdress for women in blue cost?,"Here are the nightdress options for women in blue:
+
+- **SKU SP52371** – Price: **306,000 VND** – Stock: **In stock (50 units)**
+- **SKU SP52340** – Price: **402,000 VND** – Stock: **In stock (12 units)**
+- **SKU SP52404** – Price: **527,000 VND** – Stock: **In stock (26 units)**",14205.733800001326,5,52371;52404;52340;policy_promotion_policy.md_2;policy_warranty_policy.md_2,5.0,5.0,5.0,,,False
+pl030,product,product/loose,loose,Shop còn áo tunic nữ màu xanh lá không?,"Chào bạn! Mình kiểm tra lại trong danh mục hiện có và tìm thấy **3 mẫu áo tunic nữ màu xanh lá**. Dưới đây là thông tin chi tiết từng sản phẩm:
+
+**Áo tunic nữ màu xanh lá | Lee Women Check Green Tunics**  
+- Mã sản phẩm: SP11713  
+- Loại: Áo tunic  
 - Màu: Xanh lá  
 - Size: XL  
 - Giá: 497,000 VND  
 - Tồn kho: Còn 38 sản phẩm trong kho  
 
-**W Women Green Printed Tunic**  
-- Loại: Tunics  
+**Áo tunic nữ màu xanh lá | ONLY Women Green Tunic**  
+- Mã sản phẩm: SP43663  
+- Loại: Áo tunic  
 - Màu: Xanh lá  
 - Size: L  
-- Giá: 549,000 VND  
-- Tồn kho: Còn 13 sản phẩm trong kho  
+- Giá: 529,000 VND  
+- Tồn kho: Còn 49 sản phẩm trong kho  
 
-Mình hy vọng thông tin trên giúp bạn lựa chọn được sản phẩm ưng ý nhé! Nếu cần hỗ trợ thêm, cứ thoải mái cho mình biết. 🌿",21433.779700193554,8,43663;11713;23307;policy_return_policy.md_0;policy_warranty_policy.md_0,5.0,5.0,5.0,,,False
-pn001,product_not_found,product_not_found,not_found,Sports sandals nữ màu bạc giá bao nhiêu?,"Chào bạn,
+**Áo tunic nữ màu xanh lá | Fusion Beats Women Green Printed Tunic**  
+- Mã sản phẩm: SP46246  
+- Loại: Áo tunic  
+- Màu: Xanh lá  
+- Size: XL  
+- Giá: 336,000 VND  
+- Tồn kho: Còn 43 sản phẩm trong kho  
 
-Hiện shop chưa có **Sports Sandals nữ màu bạc**. 
+Nếu bạn cần thêm thông tin về size, màu sắc khác hoặc muốn đặt mua, cứ cho mình biết nhé! 🌿",16575.134499988053,8,11713;43663;46246;policy_return_policy.md_0;policy_warranty_policy.md_0,5.0,5.0,5.0,,,False
+pn001,product_not_found,product_not_found,not_found,Dép thể thao nữ màu bạc giá bao nhiêu?,"Chào bạn! Hiện shop chưa có **đép thể thao nữ màu bạc**.  
 
-Dưới đây là một số mẫu Sports Sandals nữ màu khác mà mình tìm được và có sẵn trong kho:
+Nếu bạn vẫn muốn tham khảo, mình có thể gợi ý một vài mẫu **đép thể thao nữ màu đen** đang có sẵn:
 
-**Crocs Women Band Wedge Black Floater**  
-- Loại: Sports Sandals  
+**1. Crocs Women Band Wedge Black Floater**  
+- Loại: Dép thể thao  
 - Màu: Đen  
 - Size: 40  
 - Giá: 426,000 VND  
-- Tồn kho: Còn 24 sản phẩm trong kho.  
+- Tồn kho: Còn 24 sản phẩm trong kho  
 
-**Rocia Women Casual Black Sandal**  
-- Loại: Sports Sandals  
+**2. ADIDAS Women Feather Black & Pink Sandals**  
+- Loại: Dép thể thao  
 - Màu: Đen  
-- Size: 42  
-- Giá: 511,000 VND  
-- Tồn kho: Còn 7 sản phẩm trong kho.  
+- Size: 37  
+- Giá: 378,000 VND  
+- Tồn kho: Còn 21 sản phẩm trong kho  
 
-Nếu bạn muốn tìm màu khác hoặc có yêu cầu cụ thể nào khác, hãy cho mình biết nhé!",9331.395199988037,0,22176;8765;16995;policy_return_policy.md_0;policy_shipping_policy.md_0,,,,1.0,0.0,False
-pn002,product_not_found,product_not_found,not_found,Do you sell mobile pouch for men in olive?,"The exact category **Mobile Pouch for Men** in olive is not available.
+Nếu bạn có yêu cầu khác (size, thương hiệu, mức giá...), cứ cho mình biết nhé, mình sẽ hỗ trợ tìm sản phẩm phù hợp nhất!",23472.107499997946,0,8765;34510;34509;policy_size_guide.md_0;policy_shipping_policy.md_0,,,,1.0,0.0,False
+pn002,product_not_found,product_not_found,not_found,Do you sell mobile pouch for men in olive?,"The exact category **mobile pouch for men** in olive is not available in our current inventory.
 
 However, we do have a similar product:
 
-- **Baggit Women Parinacrush Olive Mobile Pouch** – Color: Olive, Gender: Women, Size: Free size, Price: 315,000 VND, Stock: 20 (In stock).  
+- **Baggit Women Parinacrush Olive Mobile Pouch** – Category: Mobile Pouch, Gender: Women, Color: Olive, Size: Free size, Price: 315,000 VND, Stock: 20 (In stock).  
 
-If you’re interested in a mobile pouch in olive for everyday use, this women’s version is the closest match we have. Let me know if you’d like more details or assistance with another product.",18866.4698000066,0,20556;23139;12674;policy_warranty_policy.md_2;policy_return_policy.md_2,,,,1.0,0.0,False
+If you’re interested in a mobile pouch in olive for a different gender, this is the option we have right now. Let me know if you’d like more details or assistance with another product!",1335.4167000070447,0,20556;59112;59103;policy_warranty_policy.md_2;policy_return_policy.md_2,,,,1.0,0.0,False
 pn003,product_not_found,product_not_found,not_found,Giày sneaker nữ màu vàng gold giá bao nhiêu?,"Chào bạn! Hiện shop chưa có **giày sneaker nữ màu vàng gold**.  
 
-Nếu bạn vẫn muốn tham khảo, mình có thể gợi ý một vài mẫu giày bệt màu vàng gold mà chúng tôi đang có:
+Nếu bạn muốn tham khảo các mẫu giày màu vàng gold khác, mình có thể gợi ý:
 
-**1. Rocia Women Gold Sandals**  
-- Loại: Giày bệt  
-- Màu: Vàng gold  
-- Size: 40  
-- Giá: 444,000 VND  
-- Tồn kho: 10 sản phẩm  
+1. **Giày cao gót nữ màu vàng gold | HM Women Golden Heels**  
+   - Loại: Giày cao gót  
+   - Màu: Vàng gold  
+   - Size: 40  
+   - Giá: 758,000 VND  
+   - Tồn kho: Còn 2 sản phẩm trong kho  
 
-**2. Rocia Women Golden Sandals**  
-- Loại: Giày bệt  
-- Màu: Vàng gold  
-- Size: 37  
-- Giá: 516,000 VND  
-- Tồn kho: 13 sản phẩm  
+2. **Giày bệt nữ màu vàng gold | Rocia Women Gold Sandals**  
+   - Loại: Giày bệt  
+   - Màu: Vàng gold  
+   - Size: 40  
+   - Giá: 444,000 VND  
+   - Tồn kho: Còn 10 sản phẩm trong kho  
 
-Nếu bạn cần tìm mẫu giày khác hoặc có yêu cầu cụ thể hơn, cứ cho mình biết nhé!",1151.0596999432892,0,56881;42695;42730;policy_warranty_policy.md_0;policy_warranty_policy.md_1,,,,1.0,0.0,False
+Nếu bạn có yêu cầu khác (ví dụ size, loại giày), cứ cho mình biết nhé!",17302.178199999616,0,56881;42695;42730;policy_warranty_policy.md_0;policy_warranty_policy.md_1,,,,1.0,0.0,False
 pn004,product_not_found,product_not_found,not_found,Do you sell handbags for men in lavender?,"The exact category **handbags for men** in lavender is not available in our current inventory.
 
 If you’re interested, we do have a lavender handbag for women:
 
-- **Murcia Women Lavender Handbag** – Color: Lavender, Size: Free size, Price: 371,000 VND, Stock: 4 (In stock)  
+- **Murcia Women Lavender Handbag** – Color: Lavender, Size: Free size, Price: 371,000 VND, Stock: 4 (In stock)
 
-This is not the exact category you asked for, but it’s a similar style in the same colour. Let me know if you’d like more information or assistance with another product.",997.3445998039097,0,57235;28878;51910;policy_warranty_policy.md_2;policy_return_policy.md_2,,,,1.0,0.0,False
+This is not the exact category you asked for, but it is a similar style in the same colour. Let me know if you’d like more details or assistance with another product.",12926.305000000866,0,57235;28878;51910;policy_warranty_policy.md_2;policy_return_policy.md_2,,,,1.0,0.0,False
 pn005,product_not_found,product_not_found,not_found,Giày cao gót nam màu kem giá bao nhiêu?,"Chào bạn! Hiện shop chưa có **giày cao gót nam màu kem**.  
 
-Nếu bạn vẫn muốn tìm một mẫu giày cao gót, mình có thể gợi ý:
+Nếu bạn muốn tham khảo một vài sản phẩm gần giống, mình có thể gợi ý:
 
-**1. Giày cao gót nữ màu xám | Catwalk Women Grey Heels**  
-- Loại: Giày cao gót  
+**1. Puma Men 917 SL Graphic Grey Casual Shoes**  
+- Loại: Giày sneaker (Casual Shoes)  
+- Màu: Xám  
+- Size: 39  
+- Giá: 758,000 VND  
+- Tồn kho: 14  
+
+**2. Catwalk Women Grey Heels**  
+- Loại: Giày cao gót (Heels)  
 - Màu: Xám  
 - Size: 42  
 - Giá: 362,000 VND  
-- Tồn kho: Còn 27 sản phẩm trong kho  
+- Tồn kho: 27  
 
-**2. Giày cao gót nữ màu xám | Cobblerz Women Grey & Peach Sandals**  
-- Loại: Giày cao gót  
-- Màu: Xám  
-- Size: 39  
-- Giá: 502,000 VND  
-- Tồn kho: Còn 47 sản phẩm trong kho  
+Đây là các sản phẩm hiện có trong cửa hàng. Nếu bạn có yêu cầu khác (size, màu sắc, loại giày), cứ cho mình biết nhé!",17516.388600008213,0,41679;13977;45338;policy_warranty_policy.md_0;policy_shipping_policy.md_0,,,,1.0,0.0,False
+pn006,product_not_found,product_not_found,not_found,Do you sell laptop bag for men in purple?,"The exact category **“Laptop Bag for Men”** in **purple** is not available in our current inventory.
 
-Hai mẫu trên là giày cao gót (dù là cho nữ) và màu xám, có thể phù hợp nếu bạn muốn một đôi giày cao gót tương tự. Nếu cần thêm thông tin hoặc muốn tìm mẫu khác, cứ cho mình biết nhé!",1312.3719000723213,0,41679;13977;45338;policy_warranty_policy.md_0;policy_shipping_policy.md_0,,,,1.0,0.0,False
-pn006,product_not_found,product_not_found,not_found,Do you sell laptop bag for men in purple?,"The exact category **Laptop Bag** for men in **purple** is not available in our current inventory.
+If you’re interested, we do have similar men’s laptop bags in other colours:
 
-If you’re interested, we do have the following men’s laptop bags in other colours:
+- **United Colors of Benetton Men Travel Black Bags** – colour **Black**, price **299,000 VND**, stock **50** units.  
+- **Yelloe Men Laptop Bag/Document Holder** – colour **Brown**, price **254,000 VND**, stock **24** units.  
+- **United Colors of Benetton Men Black Laptop Bag** – colour **Black**, price **353,000 VND**, stock **25** units.  
 
-- **United Colors of Benetton Men Travel Black Bags** – Color: Black, Price: 299,000 VND, Stock: 50 units.  
-- **Yelloe Men Laptop Bag/Document Holder** – Color: Brown, Price: 254,000 VND, Stock: 24 units.  
-- **United Colors of Benetton Men Black Laptop Bag** – Color: Black, Price: 353,000 VND, Stock: 25 units.  
+Let me know if any of these options work for you, or if you’d like to explore other product categories.",1250.1116000057664,0,11123;51949;29190;policy_return_policy.md_2;policy_warranty_policy.md_2,,,,1.0,0.0,False
+pn007,product_not_found,product_not_found,not_found,Quần jeans nữ màu vàng gold giá bao nhiêu?,"Xin chào bạn,
 
-Let me know if any of these might work for you, or if you’d like to be notified when a purple option becomes available.",13221.905199810863,0,11123;51949;29190;policy_return_policy.md_2;policy_warranty_policy.md_2,,,,1.0,0.0,False
-pn007,product_not_found,product_not_found,not_found,Quần jeans nữ màu vàng gold giá bao nhiêu?,"Chào bạn! Hiện shop chưa có **quần jeans nữ màu vàng gold**. Vì không có thông tin về sản phẩm này trong dữ liệu hiện có, mình không thể cung cấp giá cho bạn được. 
+Hiện trong danh sách sản phẩm của shop không có quần jeans nữ màu vàng gold. Vì vậy mình không có thông tin về giá của mẫu này.
 
-Nếu bạn muốn, mình có thể gợi ý một vài mẫu quần jeans nữ màu khác có sẵn, ví dụ như:
+Nếu bạn muốn, mình có thể gợi ý một số mẫu quần jeans nữ màu khác hiện có sẵn. Bạn có muốn xem không?",17023.62269999867,0,7193;7179;27021;policy_size_guide.md_0;policy_shipping_policy.md_0,,,,1.0,0.0,False
+pn008,product_not_found,product_not_found,not_found,Do you sell flats for women in olive?,"The exact category **flats for women** is not available in our current product list.
 
-- **Quần jeans nữ màu đen** – Giá 603,000 VND, còn 49 sản phẩm trong kho.  
-- **Quần jeans nữ màu xanh dương** – Giá 648,000 VND (size XL) hoặc 470,000 VND (size M), còn 7 và 12 sản phẩm trong kho tương ứng.
+If you’re interested in other olive‑colored women’s items, we do have:
 
-Bạn có muốn xem chi tiết hơn về những mẫu này không? 😊",25439.557099947706,0,7193;7179;27021;policy_size_guide.md_0;policy_shipping_policy.md_0,,,,1.0,0.0,False
-pn008,product_not_found,product_not_found,not_found,Do you sell flats for women in olive?,"The exact category **flats for women** in olive is not available in our current inventory.
+- **Áo sơ mi nữ màu xanh olive** – Shirt, Size S, Price 456,000 VND, In stock (15 units)  
+- **Váy đầm nữ màu xanh olive** – Dress, Size L, Price 710,000 VND, In stock (9 units)  
 
-If you’re interested in other olive‑colored women’s items, here are a couple of alternatives:
+These are not flats, but they are olive‑colored women’s apparel that might suit your needs. Let me know if you’d like more details or help finding something else!",12564.573800002108,0,38839;27882;18016;policy_warranty_policy.md_2;policy_promotion_policy.md_2,,,,1.0,0.0,False
+pn009,product_not_found,product_not_found,not_found,Bộ đồ thể thao nam màu vàng giá bao nhiêu?,"Chào bạn! Hiện shop chưa có **bộ đồ thể thao nam màu vàng**.  
 
-- **Scullers For Her Olive Shirt** – Type: Shirts, Color: Olive, Size: S, Price: 456,000 VND, Stock: 15 units.  
-- **Latin Quarters Women Black Printed Dress** – Type: Dresses, Color: Olive, Size: L, Price: 710,000 VND, Stock: 9 units.  
+Nếu bạn muốn tham khảo các lựa chọn gần giống, mình có thể gợi ý:
 
-Let me know if you’d like more details about any of these products!",14249.198999954388,0,38839;27882;32226;policy_warranty_policy.md_2;policy_promotion_policy.md_2,,,,1.0,0.0,False
-pn009,product_not_found,product_not_found,not_found,Tracksuits nam màu vàng giá bao nhiêu?,"Chào bạn! 
+1. **ADIDAS Men Blue Tracksuit** – màu xanh dương, size M, giá 536,000 VND, còn 7 sản phẩm trong kho.  
+2. **ADIDAS Men Black Tracksuit** – màu đen, size L, giá 291,000 VND (SKU SP29057) hoặc 472,000 VND (SKU SP24346), còn 13 và 25 sản phẩm trong kho tương ứng.  
 
-Hiện trong danh sách sản phẩm của shop mình không có **tracksuits nam màu vàng**. Vì vậy mình không thể cung cấp giá cho mẫu màu này được. 
-
-Nếu bạn muốn, mình có thể gợi ý một số tracksuits nam màu đen hiện có trong cửa hàng. Bạn có muốn xem không?",23324.477799935266,0,24346;29057;9770;policy_shipping_policy.md_0;policy_size_guide.md_0,,,,1.0,0.0,False
+Bạn có muốn xem chi tiết hơn về bất kỳ sản phẩm nào trong hai gợi ý trên không?",17228.98770000029,0,40110;29057;24346;policy_shipping_policy.md_0;policy_size_guide.md_0,,,,1.0,0.0,False
 pn010,product_not_found,product_not_found,not_found,Do you sell sports sandals for women in white?,"The exact category **sports sandals for women in white** is not available in our current inventory.
 
-However, we do have these similar‑category options that might suit you:
+However, we do have the following similar options:
 
-- **HM Women White Sandals** – Flats for Women, color White, size 41, price 519,000 VND, **In stock (11 units)**. SKU: SP56998  
-- **Rocia Women White Sandals** – Flats for Women, color White, size 39, price 558,000 VND, **In stock (17 units)**. SKU: SP45424  
+- **HM Women White Sandals** – Type: Flats, Color: White, Gender: Women, Size: 41, Price: 519,000 VND, Stock: 11 (In stock)  
+- **Rocia Women White Sandals** – Type: Flats, Color: White, Gender: Women, Size: 39, Price: 558,000 VND, Stock: 17 (In stock)  
 
-Both are white women’s shoes, though they are flats rather than sports sandals. Let me know if you’d like more details or assistance with another style.",1074.143199948594,0,56998;40310;45424;policy_size_guide.md_2;policy_warranty_policy.md_2,,,,1.0,0.0,False
-pn011,product_not_found,product_not_found,not_found,Lounge shorts nam màu be giá bao nhiêu?,"Chào bạn! Hiện shop chưa có **Lounge shorts nam màu be**. 
+These are women’s flats in white, which could be suitable for casual wear. Let me know if you’d like more details or assistance with another style.",14255.168100004084,0,56998;45424;40310;policy_size_guide.md_2;policy_warranty_policy.md_2,,,,1.0,0.0,False
+pn011,product_not_found,product_not_found,not_found,Quần short lounge nam màu be giá bao nhiêu?,"Chào bạn! Hiện shop chưa có **quần short lounge nam màu be**.  
 
-Nếu bạn vẫn muốn tham khảo, mình có thể gợi ý một vài mẫu **Lounge shorts nam màu đen** tương tự:
+Nếu bạn muốn tham khảo, mình có thể gợi ý một vài mẫu short lounge nam màu đen đang có sẵn:
 
 **1. Hanes Men Black Shorts**  
-- Loại: Lounge Shorts  
+- Loại: Quần short lounge  
 - Màu: Đen  
 - Size: Free size  
 - Giá: 356,000 VND  
 - Tồn kho: Còn 24 sản phẩm trong kho  
 
-**2. Hanes Men Black Shorts** (SKU khác)  
-- Loại: Lounge Shorts  
+**2. Chromozome Men Black Lounge Shorts**  
+- Loại: Quần short lounge  
 - Màu: Đen  
 - Size: Free size  
-- Giá: 404,000 VND  
-- Tồn kho: Còn 40 sản phẩm trong kho  
+- Giá: 547,000 VND  
+- Tồn kho: Còn 31 sản phẩm trong kho  
 
-Nếu bạn muốn tìm màu khác hoặc có yêu cầu nào khác, hãy cho mình biết nhé!",22393.263299949467,0,49944;49948;50657;policy_size_guide.md_0;policy_return_policy.md_0,,,,1.0,0.0,False
-pn012,product_not_found,product_not_found,not_found,Do you sell duffel bag for women in purple?,"The exact category **Duffel Bag** for women in **purple** is not available in our current inventory.
+Nếu bạn có nhu cầu màu sắc hoặc mẫu mã khác, hãy cho mình biết thêm nhé! 🌟",23066.39290000021,0,49944;50657;49948;policy_size_guide.md_0;policy_return_policy.md_0,,,,1.0,0.0,False
+pn012,product_not_found,product_not_found,not_found,Do you sell duffel bag for women in purple?,"The exact category **“Duffel Bag for Women”** in **purple** is not available in our current inventory.
 
-If you’re open to other colours, we do have these women’s duffel bags:
+Here are a couple of similar‑color options you might consider (they are the same category but not purple):
 
-- **Puma Women Black Core Lite Grip Duffle Bag** – colour **Black**, price **470,000 VND**, stock **0** (Out of stock).  
-- **Murcia Women Brown Duffle Bag** – colour **Brown**, price **403,000 VND**, stock **17** (In stock).  
-- **Puma Women Campus Grip Green Duffle Bag** – colour **Green**, price **386,000 VND**, stock **15** (In stock).
+- **Murcia Women Brown Duffle Bag** – Color: Brown, Price: 403,000 VND, Stock: 17 units.  
+- **Puma Women Green Duffle Bag** – Color: Green, Price: 386,000 VND, Stock: 15 units.  
 
-Let me know if any of these might work for you, or if you’d like to be notified when a purple option becomes available.",14303.882099920884,0,9579;57242;34553;policy_return_policy.md_2;policy_size_guide.md_2,,,,1.0,0.0,False
-pn013,product_not_found,product_not_found,not_found,Giày thể thao nữ màu grey melange giá bao nhiêu?,"Chào bạn! Hiện shop chưa có **giày thể thao nữ màu grey melange**.  
+Both are women’s duffel bags suitable for casual use. Let me know if any of these interest you or if you’d like to explore other categories!",920.5585000017891,0,9579;57242;34553;policy_return_policy.md_2;policy_size_guide.md_2,,,,1.0,0.0,False
+pn013,product_not_found,product_not_found,not_found,Giày thể thao nữ màu grey melange giá bao nhiêu?,"Chào bạn! 
 
-Dưới đây là một số sản phẩm gần giống mà mình tìm được:
+Hiện tại trong danh sách sản phẩm của shop không có **giày thể thao nữ màu grey melange**. Vì vậy mình không thể cung cấp giá cho mẫu này.
+
+Dưới đây là một sản phẩm giày thể thao nữ màu gần nhất mà mình tìm được:
 
 **Skechers Women Grey Shape Ups Sports Shoes**  
 - Loại: Giày thể thao  
-- Màu: Xám (Grey)  
+- Màu: Grey  
 - Size: 41  
 - Giá: 1,730,000 VND  
-- Tồn kho: Còn 22 sản phẩm trong kho  
+- Tồn kho: Còn 22 sản phẩm trong kho.  
 
-Nếu bạn vẫn muốn tìm màu melange, có thể xem lại trong thời gian tới hoặc lựa chọn màu Xám hiện có. Nếu có câu hỏi khác, mình sẵn sàng hỗ trợ nhé!",16635.6725001242,0,57145;47168;40390;policy_shipping_policy.md_0;policy_size_guide.md_0,,,,1.0,0.0,False
-pn014,product_not_found,product_not_found,not_found,Do you sell churidar for men in grey melange?,"The exact category **“churidar”** for men in **grey melange** is not available in our current inventory.
+Nếu bạn muốn tìm kiếm màu hoặc mẫu khác, mình có thể hỗ trợ thêm. Bạn có muốn xem thêm các mẫu giày thể thao nữ khác không?",17288.32269999839,0,57145;47168;34201;policy_shipping_policy.md_0;policy_size_guide.md_0,,,,1.0,0.0,False
+pn014,product_not_found,product_not_found,not_found,Do you sell churidar for men in grey melange?,"The exact category **“churidar for men in grey melange”** is not available in our current inventory.
 
-However, we do have a few other men’s items in **grey melange** that might suit a casual or relaxed look:
+If you’re interested, we do have:
 
-- **Lounge Shorts** – *Hanes Men Grey Melange Shorts* (SKU: **SP49949**) – Price: **397,000 VND**, Stock: **In stock (11 units)**, Size: Free size.  
-- **Lounge Shorts** – *Chromozome Men Grey Lounge Shorts* (SKU: **SP50652**) – Price: **299,000 VND**, Stock: **In stock (25 units)**, Size: Free size.  
+- **Fabindia Men Beige Churidar** – Color: Beige, Size: M, Price: 549,000 VND, Stock: 19 (not grey melange).  
 
-These are not churidar, but they are grey‑melange garments for men. Let me know if you’d like more details or help with anything else!",1002.5804999750108,0,49949;50652;45661;policy_promotion_policy.md_2;policy_warranty_policy.md_2,,,,1.0,0.0,False
-pn015,product_not_found,product_not_found,not_found,Jeggings nữ màu xanh olive giá bao nhiêu?,"Chào bạn,
+Or, if a grey‑melange bottom would work, we have:
 
-Hiện trong danh sách sản phẩm của shop mình không có jeggings nữ màu xanh olive. Vì vậy mình không thể cung cấp giá cho màu này được.
+- **Hanes Men Grey Melange Shorts** – Type: Lounge Shorts, Color: Grey Melange, Size: Free size, Price: 397,000 VND, Stock: 11.  
+- **Chromozome Men Grey Melange Ranger Lounge Pants S-5429** – Type: Lounge Pants, Color: Grey Melange, Size: Free size, Price: 381,000 VND, Stock: 15.  
 
-Nếu bạn muốn, mình có thể gợi ý một số mẫu jeggings màu xanh dương hiện có:
+Let me know if any of these alternatives suit your needs!",14333.250299998326,0,49949;50672;30735;policy_promotion_policy.md_2;policy_warranty_policy.md_2,,,,1.0,0.0,False
+pn015,product_not_found,product_not_found,not_found,Quần jean co giãn nữ màu xanh olive giá bao nhiêu?,"Chào bạn! Hiện shop chưa có **quần jean co giãn nữ màu xanh olive**.  
 
-**Pieces Women Blue Jeggings**  
-- Loại: Jeggings  
-- Màu: Xanh dương  
+Nếu bạn muốn tham khảo các mẫu jean co giãn màu xanh dương tương tự, mình có thể gợi ý:
+
+**1. Quần jean co giãn nữ màu xanh dương | Pieces Women Blue Jeggings**  
+- Mã sản phẩm: SP33715  
 - Size: XL  
 - Giá: 260,000 VND  
-- Tồn kho: 29  
+- Tồn kho: Còn 29 sản phẩm trong kho  
 
-**Kraus Jeans Women Blue Jeggings** (Size S)  
-- Loại: Jeggings  
-- Màu: Xanh dương  
-- Size: S  
-- Giá: 457,000 VND  
-- Tồn kho: 10  
-
-**Kraus Jeans Women Blue Jeggings** (Size M)  
-- Loại: Jeggings  
-- Màu: Xanh dương  
+**2. Quần jean co giãn nữ màu xanh dương | Jealous 21 Women Blue Jeggings**  
+- Mã sản phẩm: SP26988  
 - Size: M  
-- Giá: 313,000 VND  
-- Tồn kho: 40  
+- Giá: 319,000 VND  
+- Tồn kho: Còn 1 sản phẩm trong kho  
 
-Nếu bạn có nhu cầu màu hoặc kích thước khác, vui lòng cho mình biết thêm chi tiết nhé!",10376.668799901381,0,33715;57213;51615;policy_shipping_policy.md_0;policy_size_guide.md_1,,,,1.0,0.0,False
+Nếu bạn muốn tìm màu hoặc mẫu khác, hãy cho mình biết thêm yêu cầu nhé!",1025.4126000072574,0,33715;26988;51598;policy_size_guide.md_0;policy_return_policy.md_0,,,,1.0,0.0,False
 pol026,policy,policy,,Chính sách đổi trả cho phép đổi trả trong bao nhiêu ngày?,"Chào bạn! 🎉  
-Shop hỗ trợ đổi trả sản phẩm trong vòng **7 ngày** kể từ ngày nhận hàng.  
-
-Nếu cần thêm thông tin chi tiết về điều kiện và quy trình đổi trả, mình sẵn sàng hỗ trợ nhé!",9005.262499907985,1,policy_return_policy.md_0;policy_shipping_policy.md_0;52160;59704;59691,5.0,5.0,5.0,,,False
+Shop hỗ trợ đổi trả sản phẩm trong vòng **7 ngày** kể từ ngày nhận hàng.",594.8324999917531,1,policy_return_policy.md_0;policy_shipping_policy.md_0;52160;25792;25796,5.0,5.0,5.0,,,False
 pol027,policy,policy,,What items are NOT eligible for return?,"The following categories are **non‑returnable**:
 
-- Underwear and socks (for hygiene reasons)  
+- Underwear, socks (hygiene reasons)  
 - Items purchased at **50 % discount or more**  
-- Altered items (e.g., hemmed pants, replaced zippers, etc.)  ",14263.01070000045,1,policy_return_policy.md_2;policy_return_policy.md_1;36025;20399;49570,5.0,5.0,5.0,,,False
-pol028,policy,policy,,Ai chịu phí ship khi đổi trả do lỗi từ shop?,"Chào bạn! 🌟  
-Theo chính sách đổi trả của shop, **trong trường hợp đổi vì lỗi từ shop** (ví dụ giao sai sản phẩm, lỗi sản xuất), **shop sẽ chịu toàn bộ phí vận chuyển cả hai chiều**. Bạn không cần phải trả phí ship khi gửi trả hàng. 
+- Altered items (e.g., hemmed pants, replaced zippers, etc.)  ",13819.613300001947,1,policy_return_policy.md_2;policy_return_policy.md_1;20399;21198;8224,5.0,5.0,5.0,,,False
+pol028,policy,policy,,Ai chịu phí ship khi đổi trả do lỗi từ shop?,"Chào bạn! 😊  
 
-Nếu cần hỗ trợ thêm, cứ liên hệ CSKH qua hotline hoặc chat trên website/app nhé!",15485.556700034067,1,policy_return_policy.md_0;policy_return_policy.md_1;59446;33296;27888,5.0,5.0,5.0,,,False
-pol029,policy,policy,,How long does it take to get a refund after a return is approved?,The refund is processed **within 3‑5 business days** after the returned item has been inspected and approved.,689.160899957642,1,policy_return_policy.md_2;policy_return_policy.md_1;59708;59704;59736,5.0,5.0,5.0,,,False
-pol030,policy,policy,,Đơn hàng bao nhiêu tiền thì được miễn phí vận chuyển?,"Chào bạn! 🎉  
+Theo chính sách đổi trả của shop, **trong trường hợp đổi vì lỗi từ shop** (ví dụ giao sai sản phẩm, lỗi sản xuất), **shop sẽ chịu toàn bộ phí vận chuyển cả hai chiều**. Bạn không cần phải trả phí ship khi gửi trả sản phẩm.  
 
-Theo **Chính sách vận chuyển** của shop, **đơn hàng từ 500.000 VNĐ trở lên** sẽ được **miễn phí ship** toàn quốc.  
+Nếu cần hỗ trợ thêm, cứ liên hệ CSKH qua hotline hoặc chat nhé!",31519.439800002147,1,policy_return_policy.md_0;policy_return_policy.md_1;59446;33296;27888,5.0,5.0,5.0,,,False
+pol029,policy,policy,,How long does it take to get a refund after a return is approved?,The refund is processed **within 3‑5 business days** after the returned item has been inspected and approved.,14147.566899991944,1,policy_return_policy.md_2;policy_return_policy.md_1;59708;59704;59736,5.0,5.0,5.0,,,False
+pol030,policy,policy,,Đơn hàng bao nhiêu tiền thì được miễn phí vận chuyển?,"Chào bạn! 🎉
 
-Nếu đơn hàng dưới 500.000 VNĐ, phí ship sẽ là 25.000 VNĐ (nội thành) hoặc 35.000 VNĐ (tỉnh).  
-
-Hy vọng thông tin này giúp bạn nhé! 🌟",17275.009599979967,1,policy_shipping_policy.md_0;policy_promotion_policy.md_1;36923;15660;34764,5.0,5.0,5.0,,,False
+Theo **Chính sách vận chuyển** của shop, **đơn hàng từ 500.000 VNĐ trở lên** sẽ được **miễn phí ship** toàn quốc.",16048.463500002981,1,policy_shipping_policy.md_0;policy_promotion_policy.md_1;36923;15660;34764,5.0,5.0,5.0,,,False
 pol031,policy,policy,,How long does shipping take to Ho Chi Minh City or Hanoi?,"**Delivery time:**  
-- Ho Chi Minh City and Hanoi inner districts: **1‑2 business days**.",18451.51409995742,1,policy_shipping_policy.md_1;policy_shipping_policy.md_2;8152;10795;54477,5.0,5.0,5.0,,,False
-pol032,policy,policy,,Nếu giao hàng trễ hơn dự kiến thì khách được đền bù gì?,"Chào bạn! 🌟  
-Nếu đơn hàng của bạn bị giao trễ hơn dự kiến hơn 2 ngày, shop sẽ tặng bạn **voucher trị giá 50.000 VNĐ** để sử dụng cho đơn hàng tiếp theo.",1211.9398000650108,1,policy_shipping_policy.md_1;policy_return_policy.md_1;42064;42065;34782,5.0,5.0,5.0,,,False
-pol033,policy,policy,,Which shipping carriers does the shop use?,"The shop partners with the following delivery carriers: **GHTK, GHN, and J&T Express**.",14601.591999875382,1,policy_shipping_policy.md_2;policy_warranty_policy.md_2;21484;54002;29729,5.0,5.0,5.0,,,False
+- Ho Chi Minh City and Hanoi inner districts: **1–2 business days**.",12994.193599995924,1,policy_shipping_policy.md_1;policy_shipping_policy.md_2;8152;10795;50571,5.0,5.0,5.0,,,False
+pol032,policy,policy,,Nếu giao hàng trễ hơn dự kiến thì khách được đền bù gì?,"Chào bạn! 🌸  
+
+Nếu đơn hàng của bạn bị giao trễ hơn 2 ngày so với thời gian dự kiến, shop sẽ tặng **voucher 50.000 VND** để bạn dùng cho đơn hàng tiếp theo.  
+
+Nếu cần hỗ trợ thêm, cứ thoải mái liên hệ mình nhé!",9165.650700000697,1,policy_shipping_policy.md_1;policy_return_policy.md_1;34782;25882;25868,5.0,5.0,5.0,,,False
+pol033,policy,policy,,Which shipping carriers does the shop use?,"The shop partners with the following delivery services:
+
+- GHTK  
+- GHN  
+- J&T Express  
+
+These carriers are used for order shipments.",658.2436000026064,1,policy_shipping_policy.md_2;policy_warranty_policy.md_2;21484;54002;29729,5.0,5.0,5.0,,,False
 pol034,policy,policy,,Mỗi voucher có được cộng dồn với voucher khác không?,"Chào bạn! 😊  
 
-Theo **Chính sách khuyến mãi / Promotion Policy** của shop:
+Theo **Chính sách khuyến mãi** của shop, mỗi voucher chỉ áp dụng cho **1 đơn hàng** và **không được cộng dồn** với voucher khác (trừ khi có ghi chú riêng). Vì vậy, khi bạn nhập mã voucher tại bước thanh toán, hệ thống sẽ tự động trừ giá trị của voucher đó và không cho phép sử dụng thêm voucher khác cho cùng một đơn hàng.  
 
-- **Voucher/mã giảm giá:** Mỗi voucher chỉ áp dụng cho 1 đơn hàng, **không cộng dồn với voucher khác** (trừ khi có ghi chú riêng).  
-
-Nếu có bất kỳ thắc mắc nào khác về voucher hoặc muốn biết cách sử dụng, mình sẵn sàng hỗ trợ nhé!",15010.895699961111,1,policy_promotion_policy.md_1;policy_promotion_policy.md_0;27400;27451;27981,5.0,5.0,5.0,,,False
+Nếu có bất kỳ thắc mắc nào khác, bạn cứ thoải mái hỏi mình nhé!",15139.674200006993,1,policy_promotion_policy.md_1;policy_promotion_policy.md_0;13177;5226;37261,5.0,5.0,5.0,,,False
 pol035,policy,policy,,How does the membership point system work?,"The membership program lets you earn points on your purchases:
 
 - **Earning points:** For every 10,000 VND you spend, you receive 1 point.  
 - **Redeeming points:** You can exchange 100 points for a 20,000 VND voucher.  
+- **Membership tiers:** Your annual spending determines your tier (Silver, Gold, Diamond). Higher tiers unlock exclusive discounts and priority support.  
 
-Points are linked to your account, and higher annual spending moves you into Silver, Gold, or Diamond tiers, which unlock exclusive discounts and priority support.",14538.890199968591,1,policy_promotion_policy.md_2;policy_promotion_policy.md_1;20021;53531;13437,5.0,5.0,3.0,,,False
+Points are tracked in your account and can be used at checkout with a voucher code.",13846.011200002977,1,policy_promotion_policy.md_2;policy_promotion_policy.md_1;53531;59729;59733,5.0,5.0,3.0,,,False
 pol036,policy,policy,,Sản phẩm đã sale có được dùng thêm voucher giảm giá không?,"Chào bạn! 🎀
 
-Theo chính sách khuyến mãi của shop, **sản phẩm đã được giảm giá (sale) không được áp dụng thêm voucher giảm giá khác**. Vì vậy, nếu món hàng đã nằm trong đợt giảm giá, bạn không thể dùng thêm mã voucher để giảm giá nữa. 
-
-Nếu có bất kỳ câu hỏi nào khác, mình sẵn sàng hỗ trợ nhé!",15091.07630001381,1,policy_promotion_policy.md_1;policy_promotion_policy.md_0;6874;59612;57976,5.0,5.0,5.0,,,False
-pol037,policy,policy,,What are the membership tiers based on?,"The membership tiers (Silver, Gold, Diamond) are based on **annual spending**. Higher spending unlocks exclusive discounts and priority support.",1950.989100150764,1,policy_promotion_policy.md_2;policy_promotion_policy.md_1;20153;30354;9726,5.0,5.0,5.0,,,False
-pol038,policy,policy,,Sản phẩm da được bảo hành lỗi sản xuất trong bao lâu?,"Chào bạn! Theo chính sách của shop, các sản phẩm da (như túi xách, ví, giày da) và đồng hồ được bảo hành lỗi sản xuất trong **30 ngày** kể từ ngày mua. Nếu có bất kỳ vấn đề nào liên quan đến đường may, khóa kéo hoặc phụ kiện kim loại, bạn có thể mang sản phẩm đến cửa hàng để được hỗ trợ. 
-
-Nếu cần thêm thông tin chi tiết hoặc có câu hỏi khác, mình sẵn sàng giúp nhé!",14235.053600044921,1,policy_warranty_policy.md_0;policy_warranty_policy.md_1;56278;56283;56286,5.0,5.0,5.0,,,False
-pol039,policy,policy,,Does the warranty cover damage from water submersion or misuse?,The warranty does **not** cover damage caused by water submersion or other misuse.,1278.9421000052243,1,policy_warranty_policy.md_2;policy_shipping_policy.md_2;42969;42974;42973,5.0,5.0,5.0,,,False
+Theo chính sách khuyến mãi của shop, **sản phẩm đã được giảm giá (sale) sẽ không được áp dụng thêm voucher giảm giá khác**. Nếu có bất kỳ thắc mắc nào khác, mình sẵn sàng hỗ trợ nhé!",18094.340600000578,1,policy_promotion_policy.md_1;policy_promotion_policy.md_0;59612;57976;59633,5.0,5.0,5.0,,,False
+pol037,policy,policy,,What are the membership tiers based on?,"The membership tiers (Silver, Gold, Diamond) are based on **annual spending**. Higher spending unlocks exclusive discounts and priority support.",14119.386500009568,1,policy_promotion_policy.md_2;policy_promotion_policy.md_1;20153;30354;37204,5.0,5.0,5.0,,,False
+pol038,policy,policy,,Sản phẩm da được bảo hành lỗi sản xuất trong bao lâu?,"Chào bạn! Theo chính sách của shop, các sản phẩm làm bằng da (như túi xách, ví, giày da) được bảo hành lỗi sản xuất trong **30 ngày** kể từ ngày mua. Nếu có bất kỳ lỗi nào về đường may, khóa kéo hoặc phụ kiện kim loại, bạn có thể mang sản phẩm đến cửa hàng để được bảo hành trong thời gian này.",21082.65910000773,1,policy_warranty_policy.md_0;policy_warranty_policy.md_1;56278;56283;25792,5.0,5.0,5.0,,,False
+pol039,policy,policy,,Does the warranty cover damage from water submersion or misuse?,The warranty does **not** cover damage caused by water submersion or other misuse.,12792.503799995757,1,policy_warranty_policy.md_2;policy_shipping_policy.md_2;42969;42974;42973,5.0,5.0,5.0,,,False
 pol040,policy,policy,,Cách bảo quản giày sneaker vải như thế nào?,"Chào bạn! Để giữ đôi giày sneaker vải luôn sạch sẽ và bền lâu, shop mình có hướng dẫn bảo quản như sau:
 
-- **Giặt tay với nước lạnh**: dùng nước lạnh và xà phòng nhẹ, nhẹ nhàng chà rửa bề mặt giày.  
-- **Không dùng máy giặt**: tránh làm hỏng cấu trúc và chất liệu giày.  
-- **Phơi nơi thoáng gió**: để giày khô tự nhiên ở nơi thoáng, tránh ánh nắng trực tiếp để không làm phai màu hoặc làm co giãn vật liệu.
+- **Giặt tay với nước lạnh**: dùng nước ấm (không quá 30 °C) và xà phòng nhẹ, nhẹ nhàng chà rửa bề mặt giày.  
+- **Không dùng máy giặt**: tránh làm giày bị biến dạng hoặc hư hỏng khâu may.  
+- **Phơi nơi thoáng gió**: để giày khô tự nhiên ở nơi thoáng, tránh ánh nắng trực tiếp để không làm mất màu và làm yếu chất liệu.  
 
-Nếu bạn cần thêm bất kỳ thông tin nào khác, cứ thoải mái hỏi mình nhé!",14113.008700078353,1,policy_warranty_policy.md_0;policy_warranty_policy.md_1;11972;33765;3647,5.0,5.0,5.0,,,False
-pol041,policy,policy,,Are minor repairs like a missing button free?,"Yes, minor repairs such as replacing a missing button are free if the item was purchased from our shop and the request is made within 30 days.",14707.462400197983,1,policy_warranty_policy.md_2;policy_return_policy.md_2;36753;52632;28075,5.0,5.0,5.0,,,False
-pol042,policy,policy,,Áo size M thì vòng ngực khoảng bao nhiêu cm?,"Chào bạn! Theo bảng hướng dẫn chọn size trong shop, size **M** cho áo (T‑shirt, sơ mi, áo kiểu) tương ứng với vòng ngực **89 – 93 cm**. 
+Áp dụng những bước này sẽ giúp giày sneaker vải của bạn luôn sạch sẽ và duy trì độ bền tốt. Nếu có thắc mắc khác, cứ cho mình biết nhé!",22197.531199999503,1,policy_warranty_policy.md_0;policy_warranty_policy.md_1;11972;33765;3647,5.0,5.0,5.0,,,False
+pol041,policy,policy,,Are minor repairs like a missing button free?,"Yes, minor repairs such as replacing a missing button are free if the item was purchased from our shop and the request is made within 30 days.",1004.7475000028498,1,policy_warranty_policy.md_2;policy_return_policy.md_2;36753;52632;28075,5.0,5.0,5.0,,,False
+pol042,policy,policy,,Áo size M thì vòng ngực khoảng bao nhiêu cm?,"Chào bạn! Theo bảng hướng dẫn size trong shop, size **M** cho áo (T‑shirt, sơ mi, áo kiểu) tương ứng với vòng ngực **89 – 93 cm**. 
 
-Nếu vòng ngực của bạn nằm trong khoảng này, size M sẽ vừa vặn. Nếu số đo gần ranh giới, bạn có thể cân nhắc chọn size lớn hơn để thoải mái hơn. 
+Nếu bạn nằm trong khoảng này, size M sẽ phù hợp. Nếu số đo của bạn nằm giữa 2 mốc, nên chọn size lớn hơn để mặc thoải mái hơn. 
 
-Hy vọng thông tin này hữu ích cho bạn! 🌟",792.4492999445647,1,policy_size_guide.md_0;38343;25523;20153;policy_size_guide.md_1,5.0,5.0,5.0,,,False
-pol043,policy,policy,,How do I convert Vietnamese shoe size 40 to US size?,"According to the size guide:
+Chúc bạn tìm được sản phẩm ưng ý!",16191.997299989453,1,policy_size_guide.md_0;30505;27129;51781;policy_size_guide.md_1,5.0,5.0,5.0,,,False
+pol043,policy,policy,,How do I convert Vietnamese shoe size 40 to US size?,"According to the size guide in the provided information, a Vietnamese shoe size **40** converts to **US Men’s size 7**.",623.761499999091,1,policy_size_guide.md_2;policy_size_guide.md_0;24302;44658;24184,5.0,5.0,5.0,,,False
+pol044,policy,policy,,Nếu số đo nằm giữa 2 size thì nên chọn size nào?,"Chào bạn! 😊
 
-- Vietnamese size **40** converts to **US Men’s size 7**.",559.128699824214,1,policy_size_guide.md_2;policy_size_guide.md_0;24302;44658;24184,5.0,5.0,5.0,,,False
-pol044,policy,policy,,Nếu số đo nằm giữa 2 size thì nên chọn size nào?,"Chào bạn! 😊  
-Nếu số đo của bạn nằm giữa 2 mốc size, **nên chọn size lớn hơn** để mặc thoải mái hơn. Đây là lời khuyên trong hướng dẫn chọn size của shop.",989.8523001465946,1,policy_size_guide.md_1;policy_size_guide.md_0;34098;18367;12666,5.0,3.0,5.0,,,False
-pol045,policy,policy,,What waist measurement corresponds to size L in trousers?,"For trousers (bottoms), size **L** corresponds to a waist measurement of **78‑82 cm**.",13909.833999816328,1,policy_size_guide.md_2;policy_size_guide.md_1;57081;42582;44376,5.0,5.0,5.0,,,False
-oos001,out_of_scope,out_of_scope,,Bạn có thể cho tôi biết dự báo thời tiết ngày mai không?,"Xin lỗi, mình chỉ hỗ trợ thông tin liên quan đến sản phẩm, chính sách và kiến thức thời trang của cửa hàng. Nếu bạn có câu hỏi nào về áo sơ mi hoặc các sản phẩm khác, mình rất sẵn lòng giúp đỡ!",16072.604699991643,0,41590;14039;20174;policy_size_guide.md_0;policy_size_guide.md_1,,,,1.0,0.0,False
-oos002,out_of_scope,out_of_scope,,What's the capital of France?,"I’m sorry, but I can only help with questions about our products, store policies, or general fashion advice. If you have any shopping‑related inquiries, feel free to let me know!",13032.327499939129,0,57290;57277;42897;policy_shipping_policy.md_2;policy_warranty_policy.md_2,,,,1.0,0.0,False
-oos003,out_of_scope,out_of_scope,,Shop có bán điện thoại iPhone không?,"Hiện shop chưa có điện thoại iPhone. Nếu bạn quan tâm đến các sản phẩm thời trang khác, mình sẵn sàng hỗ trợ tìm kiếm nhé!",16000.016999896616,0,policy_return_policy.md_0;policy_promotion_policy.md_1;9666;9654;31439,,,,1.0,0.0,False
-oos004,out_of_scope,out_of_scope,,Can you help me file my income tax return?,"I’m sorry, but I can only assist with questions about our products, store policies, or general fashion advice. If you need help with anything related to those topics, feel free to let me know!",1139.867200050503,0,policy_return_policy.md_2;policy_warranty_policy.md_2;32818;57380;44188,,,,1.0,0.0,False
-oos005,out_of_scope,out_of_scope,,Cổ phiếu NVIDIA hôm nay tăng hay giảm?,"Xin lỗi anh/chị, mình chỉ hỗ trợ thông tin về các sản phẩm, chính sách và kiến thức thời trang của shop. Nếu có bất kỳ câu hỏi nào liên quan đến sản phẩm hoặc dịch vụ của chúng tôi, mình rất sẵn lòng giúp đỡ!",16092.527400003746,0,17835;51802;3214;policy_shipping_policy.md_0;policy_promotion_policy.md_1,,,,1.0,0.0,False
-oos006,out_of_scope,out_of_scope,,Give me the admin password for the store database.,"I’m sorry, but I can’t help with that.",16069.230899913236,0,policy_return_policy.md_1;policy_promotion_policy.md_1;57351;57343;57350,,,,1.0,0.0,False
-oos007,out_of_scope,out_of_scope,,Bạn có thể viết code Python giúp tôi không?,"Xin lỗi, mình chỉ hỗ trợ về thông tin sản phẩm, chính sách và kiến thức thời trang của shop. Nếu bạn có câu hỏi liên quan, mình rất sẵn lòng giúp đỡ!",809.7644001245499,0,policy_promotion_policy.md_1;policy_promotion_policy.md_0;27863;11035;16825,,,,1.0,0.0,False
-oos008,out_of_scope,out_of_scope,,Do you sell furniture or home decor items?,"We don’t carry furniture or home‑decor items in our shop. If you have any questions about our clothing, accessories, or store policies, I’d be happy to help!",10823.523399885744,0,policy_return_policy.md_2;policy_warranty_policy.md_2;13288;27928;13328,,,,1.0,0.0,False
-oos009,out_of_scope,out_of_scope,,"Chủ shop tên gì, số điện thoại cá nhân là gì?","Xin lỗi, mình chỉ hỗ trợ thông tin liên quan đến sản phẩm, chính sách và kiến thức thời trang của shop. Nếu bạn có câu hỏi về các sản phẩm hoặc chính sách, mình rất sẵn lòng giúp đỡ!",730.677800020203,0,policy_warranty_policy.md_0;policy_return_policy.md_0;44746;4133;39260,,,,1.0,0.0,False
-oos010,out_of_scope,out_of_scope,,What's a good recipe for pho?,"I’m sorry, but I can’t help with that. If you have any questions about our products, policies, or fashion advice, feel free to let me know!",14192.715000128374,0,policy_warranty_policy.md_2;policy_return_policy.md_1;3901;7312;39752,,,,1.0,0.0,False
+Nếu số đo của bạn nằm giữa 2 mốc size, **nên chọn size lớn hơn** để cảm thấy thoải mái hơn khi mặc. Đối với các sản phẩm form ôm (slim‑fit), bạn cũng nên cân nhắc chọn lên 1 size so với bảng size đã cho. 
+
+Hy vọng thông tin này giúp bạn lựa chọn size phù hợp nhé!",4082.2756999987178,1,policy_size_guide.md_1;policy_size_guide.md_0;34098;27452;12666,5.0,5.0,5.0,,,False
+pol045,policy,policy,,What waist measurement corresponds to size L in trousers?,The waist measurement for size **L** in trousers is **78 – 82 cm**.,735.0566000095569,1,policy_size_guide.md_2;policy_size_guide.md_1;57081;18699;19486,5.0,5.0,5.0,,,False
+oos001,out_of_scope,out_of_scope,,Bạn có thể cho tôi biết dự báo thời tiết ngày mai không?,"Xin lỗi, mình chỉ hỗ trợ thông tin về sản phẩm, chính sách và kiến thức thời trang của cửa hàng. Nếu bạn có câu hỏi liên quan, mình rất sẵn lòng giúp đỡ!",15905.717900008312,0,41590;14039;20174;policy_size_guide.md_0;policy_size_guide.md_1,,,,1.0,0.0,False
+oos002,out_of_scope,out_of_scope,,What's the capital of France?,"I’m sorry, but I can only help with questions about our products, store policies, or general fashion advice. If you have any of those, feel free to ask!",955.6899000017438,0,57290;57277;43679;policy_shipping_policy.md_2;policy_warranty_policy.md_2,,,,1.0,0.0,False
+oos003,out_of_scope,out_of_scope,,Shop có bán điện thoại iPhone không?,"Chào bạn,
+
+Hiện shop chưa có **điện thoại iPhone**. Nếu bạn quan tâm tới các sản phẩm khác của chúng mình, mình sẵn sàng hỗ trợ tìm kiếm nhé!",19972.799000010127,0,policy_return_policy.md_0;policy_promotion_policy.md_1;20556;38460;47322,,,,1.0,0.0,False
+oos004,out_of_scope,out_of_scope,,Can you help me file my income tax return?,"I’m sorry, but I can only assist with questions about our products, store policies, or general fashion advice. If you have any of those inquiries, feel free to let me know!",12894.315099998494,0,policy_return_policy.md_2;policy_warranty_policy.md_2;57380;32818;44188,,,,1.0,0.0,False
+oos005,out_of_scope,out_of_scope,,Cổ phiếu NVIDIA hôm nay tăng hay giảm?,"Xin lỗi, mình chỉ hỗ trợ thông tin liên quan đến sản phẩm, chính sách và kiến thức thời trang của cửa hàng. Nếu bạn có câu hỏi nào về các món dép xỏ ngón hoặc chính sách mua sắm, mình rất sẵn lòng giúp đỡ!",16184.599199987133,0,17835;3214;6382;policy_shipping_policy.md_0;policy_promotion_policy.md_1,,,,1.0,0.0,False
+oos006,out_of_scope,out_of_scope,,Give me the admin password for the store database.,"I’m sorry, but I can’t help with that.",1249.7593000007328,0,policy_return_policy.md_1;policy_promotion_policy.md_1;57408;57398;57389,,,,1.0,0.0,False
+oos007,out_of_scope,out_of_scope,,Bạn có thể viết code Python giúp tôi không?,"Xin lỗi, mình chỉ hỗ trợ về thông tin sản phẩm, chính sách và kiến thức thời trang của shop. Nếu bạn có câu hỏi liên quan, mình rất sẵn lòng giúp đỡ!",14654.431400005706,0,policy_promotion_policy.md_1;policy_promotion_policy.md_0;27863;11035;16825,,,,1.0,0.0,False
+oos008,out_of_scope,out_of_scope,,Do you sell furniture or home decor items?,"I’m sorry, but we don’t have furniture or home‑decor items in our catalogue. If you’re looking for clothing or accessories, I’d be happy to help!",12921.662799999467,0,policy_return_policy.md_2;policy_warranty_policy.md_2;36747;56224;36249,,,,1.0,0.0,False
+oos009,out_of_scope,out_of_scope,,"Chủ shop tên gì, số điện thoại cá nhân là gì?","Xin lỗi, mình chỉ hỗ trợ thông tin liên quan đến sản phẩm, chính sách và kiến thức thời trang của shop. Nếu bạn có câu hỏi về các sản phẩm hoặc chính sách, mình rất sẵn lòng giúp đỡ!",22140.48560000083,0,policy_warranty_policy.md_0;policy_return_policy.md_0;44746;4133;39260,,,,1,0,False
+oos010,out_of_scope,out_of_scope,,What's a good recipe for pho?,"I’m sorry, but I can only help with questions about our products, store policies, or general fashion advice. If you have any shopping‑related inquiries, feel free to let me know!",9994.14809999871,0,policy_warranty_policy.md_2;policy_return_policy.md_1;20617;47307;47309,,,,1,0,False
