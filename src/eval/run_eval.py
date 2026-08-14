@@ -410,7 +410,7 @@ async def _process_row(row, hits, generator, judge_client, sem, counters):
                 out.update(await judge_refusal(judge_client, row, answer, context))
             else:
                 out.update(await judge_quality(judge_client, row, answer))
-                
+
         if not gen_failed and out["relevance"] is None and out["invented"] is None:
             counters["fail"] += 1
         else:
@@ -484,7 +484,8 @@ def load_existing_results(path=None):
     Đọc kết quả đã chấm từ lần chạy trước (nếu file tồn tại), phục vụ cơ chế resume.
     Chỉ chạy tiếp các câu chưa có kết quả thay vì chạy lại từ đầu và tốn lại token/quota cho các câu đã xong.
     Chỉ giữ lại các row có giá trị 'answer' (tức đã thực sự gọi Groq thành công), bỏ qua row rỗng (vd từ recall-only run). 
-    Convert các field số về float/None.
+    Convert các field số về float/None, và 'gen_failed' về bool (CSV lưu dạng chuỗi "True"/"False",
+    chuỗi không rỗng luôn truthy nên phải convert tường minh, nếu không mọi row cũ đều bị tính nhầm là lỗi).
     """
     path = path or RESULTS_PATH
     if not os.path.exists(path):
@@ -497,6 +498,7 @@ def load_existing_results(path=None):
             for k in _NUMERIC_FIELDS:
                 v = row.get(k)
                 row[k] = float(v) if v not in (None, "") else None
+            row["gen_failed"] = row.get("gen_failed") == "True"
             out[row["id"]] = row
     return out
 
