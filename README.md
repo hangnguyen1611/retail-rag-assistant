@@ -187,7 +187,7 @@ Số liệu dưới đây tính trực tiếp từ `data/eval/results.csv` (105/
 |---|---|---|---|
 | `policy` | 100% [84–100%] | 100% [84–100%] | 20 |
 | `product/strict` | 100% [89–100%] | 100% [89–100%] | 30 |
-| `product/loose` | 90% [74–97%] | 100% [89–100%] | 30 |
+| `product/loose` | 97% [83–99%] | 100% [89–100%] | 30 |
 
 `policy` đạt 100% nhờ giữ slot riêng theo `doc_type` (`SPLIT_BY_DOC_TYPE`) — nếu gộp chung top-k, 15 chunk policy dễ bị 5.000 chunk sản phẩm nhấn chìm bất cứ khi nào câu hỏi policy dùng từ vựng thuộc miền sản phẩm (vd "shoe size 40" khớp `Size: 40` của một SKU cụ thể).
 
@@ -195,9 +195,9 @@ Số liệu dưới đây tính trực tiếp từ `data/eval/results.csv` (105/
 
 | Nhóm | Relevance | Correctness | Faithfulness | n |
 |------|----------:|------------:|-------------:|--:|
-| policy | **5.00** | **4.90** | **4.90** | 20 |
-| product/strict | **5.00** | **4.97** | **4.67** | 30 |
-| product/loose | **5.00** | **4.47** | **4.33** | 30 |
+| policy | **5.00** | **5.00** | **4.90** | 20 |
+| product/strict | **5.00** | **4.93** | **4.53** | 30 |
+| product/loose | **5.00** | **4.47** | **4.43** | 30 |
 
 - **Relevance**: mức độ trả lời đúng ý định người dùng.
 - **Correctness**: mức độ chính xác của thông tin so với dữ liệu thật.
@@ -207,9 +207,9 @@ Số liệu dưới đây tính trực tiếp từ `data/eval/results.csv` (105/
 ### Refusal / Hallucination
 
 | Nhóm | Refused | Invented | n |
-|------|---------:|----------:|--:|
-| product_not_found | **100%** | **0%** | 15 |
-| out_of_scope | **100%** | **0%** | 10 |
+|------|---------|----------|--|
+| product_not_found | **100%**  [95% CI 80%-100%]| **0%** [95% CI 0%-20%]| 15 |
+| out_of_scope | **100%** [95% CI 72%-100%]| **0%** [95% CI 0%-28%]| 10 |
 
 Hệ thống từ chối đúng trong toàn bộ câu hỏi ngoài phạm vi và câu hỏi về tổ hợp sản phẩm không tồn tại.
 
@@ -220,13 +220,13 @@ Hệ thống từ chối đúng trong toàn bộ câu hỏi ngoài phạm vi và
 | Metric | Giá trị |
 |---------|---------:|
 | p50 | **~15.0 s** |
-| p95 | **~23.0 s** |
+| p95 | **~30.0 s** |
 
 Phần lớn thời gian nằm ở bước sinh câu trả lời bằng Groq; retriever và ChromaDB chỉ chiếm một phần nhỏ. Độ trễ này cao hơn đáng kể so với một pipeline retrieval-only, chủ yếu do có thêm lượt gọi condense cho các câu có lịch sử hội thoại.
 
 ### Kết luận
 
-- Recall@3 **100%** trên cả ba nhóm; Recall@1 **90–100%**, thấp nhất ở `product/loose` do nhiều SKU cùng khớp filter.
+- Recall@3 **100%** trên cả ba nhóm; Recall@1 **97–100%**, thấp nhất ở `product/loose` do nhiều SKU cùng khớp filter.
 - Hallucination **0%** trên cả hai nhóm cần từ chối (`product_not_found`, `out_of_scope`).
 - Faithfulness **4.33–4.9/5**, Correctness thấp nhất cũng ở `product/loose` (4.47/5) — cùng nguyên nhân: nhiều SKU khớp cùng lúc, model đôi khi trình bày chưa đầy đủ thuộc tính từng SKU.
 
