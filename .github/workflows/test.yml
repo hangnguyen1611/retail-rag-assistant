@@ -33,12 +33,12 @@ jobs:
         with:
           python-version: "3.11"
 
-      # Cài riêng pytest thay vì `pip install -r requirements.txt`: các unit test hiện tại (tests/test_query_filter.py) chỉ test logic thuần Python
-      # (regex/parse), không import sentence-transformers/chromadb/groq (nặng, kéo theo torch, chậm và tốn CI minutes không cần thiết).
-      # Nếu sau này thêm test cần import những module đó (vd test Retriever với 1 ChromaDB tạm/in-memory), đổi dòng dưới thành:
-      #   pip install -r requirements.txt pytest
-      - name: Install pytest
-        run: pip install pytest
+      # Cài riêng pytest + fastapi thay vì `pip install -r requirements.txt`:
+      # tests/test_query_filter.py chỉ test logic thuần Python (stdlib re), nhưng tests/test_chat_retrieve.py import từ api/routers/chat.py nên
+      # cần fastapi (nhẹ). Vẫn tránh cài sentence-transformers/chromadb/groq (nặng, kéo theo torch, không cần thiết cho unit test).
+      # Nếu sau này thêm test cần Retriever/Generator thật, đổi dòng dưới thành: pip install -r requirements.txt pytest
+      - name: Install dependencies
+        run: pip install pytest "fastapi>=0.115,<1.0"
 
       - name: Run unit tests
         run: pytest tests/ -v
