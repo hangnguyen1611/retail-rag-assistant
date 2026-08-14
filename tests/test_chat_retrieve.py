@@ -1,5 +1,7 @@
 """
 Unit test cho _has_product_hit trong api/routers/chat.py.
+Chạy:
+    pytest tests/test_chat_retrieve.py -v
 
 _has_product_hit() tách riêng việc kiểm tra product-slot để fallback quyết định đúng. 
 Test này không cần Groq/ChromaDB thật, chỉ cần list dict giả lập đúng shape mà retriever.search() trả về.
