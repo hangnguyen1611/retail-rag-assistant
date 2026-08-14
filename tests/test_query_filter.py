@@ -3,12 +3,13 @@ Unit test cho src/rag/query_filter.py
 
 Chạy: pytest tests/test_query_filter.py -v
 
-Test riêng từng hàm pure (_to_vnd, _parse_price, _parse_color, _parse_gender, _parse_size) và 
-hàm entry point (extract_product_filter). Không gọi Groq, không gọi ChromaDB, không cần .env — chạy được offline trong CI.
+Test riêng từng hàm pure (_to_vnd, _parse_price, _parse_color, _parse_gender, _parse_size) và hàm entry point (extract_product_filter). 
+Không gọi Groq, không gọi ChromaDB, không cần .env — chạy được offline trong CI.
 """
 import pytest
 
 from src.rag.query_filter import (
+    _parse_article_type,
     _parse_color,
     _parse_gender,
     _parse_price,
@@ -130,6 +131,42 @@ class TestParseSize:
 
 
 # ---------------------------------------------------------------------------
+# _parse_article_type: category filter, khớp theo articleType gốc (tiếng Anh, lowercase)
+# ---------------------------------------------------------------------------
+class TestParseArticleType:
+    def test_exact_english_term(self):
+        assert _parse_article_type("waistcoat") == {"article_type_lower": "waistcoat"}
+
+    def test_vietnamese_colloquial_alias(self):
+        # "áo ghi lê" là từ tiếng Việt thông dụng cho waistcoat -- đây chính là câu hỏi
+        # thực tế từng bị miss (không match string nào trong data) trước khi có alias này.
+        assert _parse_article_type("áo ghi lê") == {"article_type_lower": "waistcoat"}
+
+    def test_ambiguous_vest_term_maps_to_waistcoat_not_suits(self):
+        # "áo vest" dễ gây nhầm với "suits" (bộ vest) -- phải map đúng về waistcoat theo
+        # _ARTICLE_TYPE_ALIASES, không lẫn sang suits.
+        assert _parse_article_type("áo vest") == {"article_type_lower": "waistcoat"}
+
+    def test_multi_type_alias_returns_in_clause(self):
+        # "áo khoác" ánh xạ tới nhiều articleType (jackets, rain jacket, nehru jackets)
+        # -> phải dùng $in, không phải so bằng trực tiếp.
+        result = _parse_article_type("áo khoác")
+        assert result == {
+            "article_type_lower": {"$in": ["jackets", "rain jacket", "nehru jackets"]}
+        }
+
+    def test_longer_phrase_priority_over_shorter(self):
+        # "áo khoác mưa" phải khớp cụm dài "áo khoác mưa" (-> chỉ rain jacket), KHÔNG bị cụm
+        # ngắn "áo khoác" (-> cả 3 loại) nuốt mất trước.
+        assert _parse_article_type("áo khoác mưa màu đen") == {
+            "article_type_lower": "rain jacket"
+        }
+
+    def test_no_category_mentioned(self):
+        assert _parse_article_type("màu đen size m dưới 300k") is None
+
+
+# ---------------------------------------------------------------------------
 # extract_product_filter: entry point, gộp nhiều điều kiện bằng $and
 # ---------------------------------------------------------------------------
 class TestExtractProductFilter:
@@ -152,10 +189,9 @@ class TestExtractProductFilter:
         assert {"size": "L"} in result["$and"]
 
     def test_query_is_lowercased_before_parsing(self):
-        # màu/giới tính viết hoa vẫn phải khớp vì hàm tự lowercase trước.
-        # Không assert đúng thứ tự trong $and (order = price, color, gender, size
-        # theo thứ tự gọi trong extract_product_filter) -> so sánh bằng set để test
-        # không vỡ nếu thứ tự nội bộ đổi.
+        # Màu/giới tính viết hoa vẫn phải khớp vì hàm tự lowercase trước
+        # Không assert đúng thứ tự trong $and (order = price, color, gender, size theo thứ tự gọi trong extract_product_filter)
+        # -> so sánh bằng set để test, không vỡ nếu thứ tự nội bộ đổi
         result = extract_product_filter("Áo NAM Màu Đen")
         assert result is not None
         assert {"gender_lower": "men"} in result["$and"]

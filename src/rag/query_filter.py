@@ -34,6 +34,99 @@ _GENDER_VI_TO_EN = {
     "unisex": "unisex",
 }
 
+# Khớp với articleType gốc (tiếng Anh, viết thường) lưu trong metadata article_type_lower, không phải type_vi
+# 1 cụm từ có thể khớp nhiều articleType (vd "áo khoác" khớp cả "jackets" lẫn "rain jacket") -> dùng $in để filter theo danh sách.
+# Không cố phủ hết 142 articleType trong catalog, chỉ cover các nhóm quần áo/giày/túi phổ biến nhất
+_ARTICLE_TYPE_ALIASES = {
+    # Áo khoác ngoài
+    "áo ghi lê": ["waistcoat"],
+    "áo gile": ["waistcoat"],
+    "áo vest": ["waistcoat"],
+    "waistcoat": ["waistcoat"],
+    "bộ vest": ["suits"],
+    "suits": ["suits"],
+    "suit": ["suits"],
+    "áo blazer": ["blazers"],
+    "blazers": ["blazers"],
+    "blazer": ["blazers"],
+    "áo khoác mưa": ["rain jacket"],
+    "rain jacket": ["rain jacket"],
+    "áo khoác nehru": ["nehru jackets"],
+    "nehru jacket": ["nehru jackets"],
+    "áo khoác": ["jackets", "rain jacket", "nehru jackets"],
+    "jackets": ["jackets", "rain jacket", "nehru jackets"],
+    "jacket": ["jackets", "rain jacket", "nehru jackets"],
+    # Áo
+    "áo sơ mi": ["shirts"],
+    "shirts": ["shirts"],
+    "shirt": ["shirts"],
+    "áo thun": ["tshirts"],
+    "t-shirt": ["tshirts"],
+    "tshirts": ["tshirts"],
+    "tshirt": ["tshirts"],
+    "áo len": ["sweaters"],
+    "sweaters": ["sweaters"],
+    "sweater": ["sweaters"],
+    "áo nỉ": ["sweatshirts"],
+    "sweatshirts": ["sweatshirts"],
+    "sweatshirt": ["sweatshirts"],
+    "áo kiểu": ["tops"],
+    "tops": ["tops"],
+    # Quần
+    "quần jean co giãn": ["jeggings"],
+    "jeggings": ["jeggings"],
+    "quần jean": ["jeans"],
+    "jeans": ["jeans"],
+    "quần short": ["shorts"],
+    "shorts": ["shorts"],
+    "quần tây": ["trousers"],
+    "trousers": ["trousers"],
+    "trouser": ["trousers"],
+    "quần legging": ["leggings"],
+    "leggings": ["leggings"],
+    "legging": ["leggings"],
+    # Váy/đầm
+    "váy đầm": ["dresses"],
+    "đầm": ["dresses"],
+    "dresses": ["dresses"],
+    "dress": ["dresses"],
+    "váy": ["skirts"],
+    "skirts": ["skirts"],
+    "skirt": ["skirts"],
+    # Giày
+    "giày sneaker": ["casual shoes"],
+    "giày thể thao": ["sports shoes"],
+    "sports shoes": ["sports shoes"],
+    "giày tây": ["formal shoes"],
+    "formal shoes": ["formal shoes"],
+    "giày cao gót": ["heels"],
+    "heels": ["heels"],
+    "giày bệt": ["flats"],
+    "flats": ["flats"],
+    "dép xỏ ngón": ["flip flops"],
+    "flip flops": ["flip flops"],
+    "sandal": ["sandals"],
+    "sandals": ["sandals"],
+    # Túi & phụ kiện
+    "túi xách": ["handbags"],
+    "handbags": ["handbags"],
+    "handbag": ["handbags"],
+    "balo": ["backpacks"],
+    "backpacks": ["backpacks"],
+    "backpack": ["backpacks"],
+    "ví": ["wallets"],
+    "wallets": ["wallets"],
+    "wallet": ["wallets"],
+    "thắt lưng": ["belts"],
+    "belts": ["belts"],
+    "belt": ["belts"],
+    "kính râm": ["sunglasses"],
+    "sunglasses": ["sunglasses"],
+    "đồng hồ": ["watches"],
+    "watches": ["watches"],
+    "watch": ["watches"],
+}
+
 _SIZE_TOKENS = {"s", "m", "l", "xl", "xxl", "37", "38", "39", "40", "41", "42"}
 
 
@@ -133,12 +226,31 @@ def _parse_size(q):
     return {"size": token.upper() if token.isalpha() else token}
 
 
+def _parse_article_type(q):
+    """
+    Trích điều kiện lọc category (articleType) từ câu hỏi bằng keyword matching.
+
+    Giống _parse_color(): ưu tiên khớp cụm DÀI trước cụm NGẮN (vd "áo khoác mưa" phải thử khớp
+    trước "áo khoác" để không bị cụm ngắn nuốt mất, dẫn tới lọc sai/quá rộng).
+
+    1 cụm có thể ánh xạ tới NHIỀU articleType (vd "áo khoác" -> jackets + rain jacket + nehru
+    jackets), nên dùng $in thay vì so bằng trực tiếp.
+    """
+    for phrase in sorted(_ARTICLE_TYPE_ALIASES, key=len, reverse=True):
+        if phrase in q:
+            types = _ARTICLE_TYPE_ALIASES[phrase]
+            if len(types) == 1:
+                return {"article_type_lower": types[0]}
+            return {"article_type_lower": {"$in": types}}
+    return None
+
+
 def extract_product_filter(query):
     """
     Trả về ChromaDB `where` clause hoặc None nếu không tìm thấy điều kiện nào. Best-effort, KHÔNG đảm bảo bắt hết mọi cách diễn đạt.
 
     Đây là điểm vào (entry point) duy nhất của module, được gọi bởi tầng API (api/routers/chat.py) trước khi gọi Retriever.search(). 
-    Gộp cả 4 loại điều kiện (giá, màu, giới tính, size) nếu tìm thấy, kết hợp bằng $and nếu có nhiều hơn 1. 
+    Gộp cả 5 loại điều kiện (category, giá, màu, giới tính, size) nếu tìm thấy, kết hợp bằng $and nếu có nhiều hơn 1. 
     QUAN TRỌNG: nơi gọi hàm này bắt buộc phải có cơ chế fallback về tìm kiếm KHÔNG filter nếu kết quả filter trả về rỗng — vì đây chỉ 
     là parse heuristic, có thể sai/thiếu, không nên để 1 lần parse sai làm mất hoàn toàn kết quả tìm kiếm.
     """
@@ -146,6 +258,7 @@ def extract_product_filter(query):
 
     clauses = [
         c for c in (
+            _parse_article_type(q),
             _parse_price(q),
             _parse_color(q),
             _parse_gender(q),
