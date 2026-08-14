@@ -33,12 +33,11 @@ jobs:
         with:
           python-version: "3.11"
 
-      # Cài riêng pytest + fastapi thay vì `pip install -r requirements.txt`:
-      # tests/test_query_filter.py chỉ test logic thuần Python (stdlib re), nhưng tests/test_chat_retrieve.py import từ api/routers/chat.py nên
-      # cần fastapi (nhẹ). Vẫn tránh cài sentence-transformers/chromadb/groq (nặng, kéo theo torch, không cần thiết cho unit test).
+      # Cài riêng pytest + các dep nhẹ mà api/routers/chat.py cần khi import (fastapi và qua config/backend.py: numpy, python-dotenv)
+      # thay vì `pip install -r requirements.txt`, vẫn tránh sentence-transformers/chromadb/groq
       # Nếu sau này thêm test cần Retriever/Generator thật, đổi dòng dưới thành: pip install -r requirements.txt pytest
       - name: Install dependencies
-        run: pip install pytest "fastapi>=0.115,<1.0"
+        run: pip install pytest "fastapi>=0.115,<1.0" numpy python-dotenv
 
       - name: Run unit tests
         run: pytest tests/ -v
