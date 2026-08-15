@@ -171,7 +171,14 @@ _PRICE_RE = re.compile(
 
 
 def _parse_price(q):
-    """Trích điều kiện lọc giá từ câu hỏi, trả về ChromaDB where-clause."""
+    """
+    Trích điều kiện lọc giá từ câu hỏi, trả về ChromaDB where-clause.
+
+    "dưới X" -> $lt (loại trừ đúng giá X, đúng nghĩa "dưới").
+    "trên X" -> $gt (loại trừ đúng giá X, đúng nghĩa "trên", tương tự "dưới").
+    "từ X"   -> $gte (bao gồm đúng giá X, vì "từ X" nghĩa là "bắt đầu từ X trở lên" —
+    khác "trên X", "từ" không loại trừ giá trị biên).
+    """
     m = _PRICE_RE.search(q)
     if not m:
         return None
@@ -181,7 +188,15 @@ def _parse_price(q):
     direction = m.group("dir").lower()
     if direction in ("dưới", "duoi"):
         return {"price": {"$lt": value}}
+    if direction in ("từ", "tu"):
+        return {"price": {"$gte": value}}
     return {"price": {"$gt": value}}
+
+
+# Các âm tiết màu ngắn, trùng với từ tiếng Việt phổ biến khác ngoài nghĩa màu sắc
+_AMBIGUOUS_COLOR_PHRASES = {"cam", "be", "kem", "bạc", "vàng", "hồng"}
+
+_COLOR_CUE_RE = re.compile(r"\b(màu|color|colour)\b")
 
 
 def _parse_color(q):
@@ -189,11 +204,21 @@ def _parse_color(q):
     Trích điều kiện lọc màu sắc từ câu hỏi bằng keyword matching.
     Ưu tiên khớp cụm từ DÀI trước cụm NGẮN (Vd "xanh navy" phải được thử khớp trước "xanh lá"/"xanh dương" đơn lẻ nếu chúng có phần chung),
     để tránh khớp nhầm phần đầu của 1 cụm dài với 1 màu đơn giản hơn.
+
+    Dùng word boundary (\\b) như _parse_gender(), không phải substring thuần — giúp tránh khớp nhầm khi
+    1 màu là substring bên trong 1 từ KHÔNG có dấu cách (vd "cam" bên trong "camera").
+    Nhưng \\b không giúp được khi màu ngắn trùng với 1 từ tiếng Việt khác ĐỨNG RIÊNG (vd "cam" trong
+    "cam kết" cũng là 1 "từ" hoàn chỉnh theo boundary) -> với các phrase trong _AMBIGUOUS_COLOR_PHRASES,
+    bắt buộc phải có từ khoá "màu"/"color" xuất hiện đâu đó trong câu mới nhận, giống cách _parse_size()
+    bắt buộc từ khoá "size" đứng trước token.
     """
     # Ưu tiên cụm dài trước
     for phrase in sorted(_COLOR_VI_TO_EN, key=len, reverse=True):
-        if phrase in q:
-            return {"base_colour_lower": _COLOR_VI_TO_EN[phrase]}
+        if not re.search(rf"\b{re.escape(phrase)}\b", q):
+            continue
+        if phrase in _AMBIGUOUS_COLOR_PHRASES and not _COLOR_CUE_RE.search(q):
+            continue
+        return {"base_colour_lower": _COLOR_VI_TO_EN[phrase]}
     return None
 
 
@@ -231,13 +256,14 @@ def _parse_article_type(q):
     Trích điều kiện lọc category (articleType) từ câu hỏi bằng keyword matching.
 
     Giống _parse_color(): ưu tiên khớp cụm DÀI trước cụm NGẮN (vd "áo khoác mưa" phải thử khớp
-    trước "áo khoác" để không bị cụm ngắn nuốt mất, dẫn tới lọc sai/quá rộng).
+    trước "áo khoác" để không bị cụm ngắn nuốt mất, dẫn tới lọc sai/quá rộng). Cũng dùng word
+    boundary (\\b) như _parse_gender()/_parse_color() để tránh khớp nhầm vào giữa 1 từ khác.
 
     1 cụm có thể ánh xạ tới NHIỀU articleType (vd "áo khoác" -> jackets + rain jacket + nehru
     jackets), nên dùng $in thay vì so bằng trực tiếp.
     """
     for phrase in sorted(_ARTICLE_TYPE_ALIASES, key=len, reverse=True):
-        if phrase in q:
+        if re.search(rf"\b{re.escape(phrase)}\b", q):
             types = _ARTICLE_TYPE_ALIASES[phrase]
             if len(types) == 1:
                 return {"article_type_lower": types[0]}
@@ -247,11 +273,11 @@ def _parse_article_type(q):
 
 def extract_product_filter(query):
     """
-    Trả về ChromaDB `where` clause hoặc None nếu không tìm thấy điều kiện nào. Best-effort, KHÔNG đảm bảo bắt hết mọi cách diễn đạt.
+    Trả về ChromaDB `where` clause hoặc None nếu không tìm thấy điều kiện nào. Best-effort, không đảm bảo bắt hết mọi cách diễn đạt.
 
     Đây là điểm vào (entry point) duy nhất của module, được gọi bởi tầng API (api/routers/chat.py) trước khi gọi Retriever.search(). 
     Gộp cả 5 loại điều kiện (category, giá, màu, giới tính, size) nếu tìm thấy, kết hợp bằng $and nếu có nhiều hơn 1. 
-    QUAN TRỌNG: nơi gọi hàm này bắt buộc phải có cơ chế fallback về tìm kiếm KHÔNG filter nếu kết quả filter trả về rỗng — vì đây chỉ 
+    Nơi gọi hàm này bắt buộc phải có cơ chế fallback về tìm kiếm KHÔNG filter nếu kết quả filter trả về rỗng — vì đây chỉ 
     là parse heuristic, có thể sai/thiếu, không nên để 1 lần parse sai làm mất hoàn toàn kết quả tìm kiếm.
     """
     q = (query or "").lower()

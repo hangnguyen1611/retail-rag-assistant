@@ -9,12 +9,11 @@ def init_dependencies():
     """
     Khởi tạo Retriever và Generator, gán vào biến toàn cục module.
 
-    Gọi hàm này ĐÚNG 1 LẦN lúc ứng dụng FastAPI khởi động (thường trong lifespan/startup event của app), trước khi bất kỳ request nào được
-    xử lý. Sau khi gọi, get_retriever()/get_generator() sẽ trả về các instance đã khởi tạo sẵn, tránh phải load lại model embedding
-    (SentenceTransformer) hoặc kết nối lại ChromaDB/Groq client mỗi request — chi phí khởi tạo model embedding đặc biệt cao (vài giây),
-    không thể chấp nhận được nếu lặp lại cho mỗi request.
+    Gọi hàm này đúng 1 lần lúc FastAPI khởi động, trước khi bất kỳ request nào được xử lý. Sau khi gọi, get_retriever()/get_generator() sẽ trả
+    về các instance đã khởi tạo sẵn, tránh phải load lại model embedding (SentenceTransformer) hoặc kết nối lại ChromaDB/Groq client mỗi request,
+    chi phí khởi tạo model embedding đặc biệt cao (vài giây), không thể chấp nhận được nếu lặp lại cho mỗi request.
 
-    Import Generator/Retriever được đặt BÊN TRONG hàm (lazy import) thay vì đầu file, để tránh import các thư viện nặng (sentence_transformers,
+    Import Generator/Retriever được đặt bên trong hàm thay vì đầu file để tránh import các thư viện nặng (sentence_transformers,
     chromadb, groq...) ngay khi module dependencies.py được import — chỉ thực sự tải chúng khi init_dependencies() được gọi (thường lúc app
     khởi động thật, không phải lúc chỉ import module để test/kiểm tra routing).
 
@@ -53,8 +52,16 @@ def get_generator():
     Trả về instance Generator đã khởi tạo sẵn (dependency cho FastAPI).
     Tương tự get_retriever(), dùng làm Depends(get_generator) trong route handler. Cùng yêu cầu init_dependencies() phải được gọi trước đó.
     """
+    if _generator is None:
+        raise RuntimeError("init_dependencies() chưa được gọi trước khi xử lý request.")
     return _generator
 
 
 def get_condenser():
+    """
+    Trả về instance QueryCondenser đã khởi tạo sẵn (dependency cho FastAPI).
+    Tương tự get_retriever()/get_generator(), cùng yêu cầu init_dependencies() phải được gọi trước đó.
+    """
+    if _condenser is None:
+        raise RuntimeError("init_dependencies() chưa được gọi trước khi xử lý request.")
     return _condenser

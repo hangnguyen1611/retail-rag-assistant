@@ -3,7 +3,7 @@ import os
 from dotenv import load_dotenv
 from groq import AsyncGroq
 
-from config.backend import CONDENSE_MODEL
+from config.backend import CONDENSE_MODEL, MAX_HISTORY_TURNS
 
 load_dotenv()
 
@@ -40,8 +40,12 @@ Last question: {query}
 Standalone question:"""
 
 
-def _format_history(history, max_turns=6):
-    """Format list các lượt hội thoại thành text đơn giản cho prompt"""
+def _format_history(history, max_turns=MAX_HISTORY_TURNS):
+    """
+    Format list các lượt hội thoại thành text đơn giản cho prompt.
+    Dùng chung MAX_HISTORY_TURNS với chat.py._messages_from_history() thay vì hardcode riêng,
+    để condense model và generation model luôn thấy cùng độ dài ngữ cảnh trong 1 request.
+    """
     recent = history[-max_turns:] if history else []
     lines = []
     for turn in recent:

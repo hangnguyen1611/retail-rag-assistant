@@ -71,9 +71,12 @@ class TestParsePrice:
     def test_no_price_mentioned(self):
         assert _parse_price("áo sơ mi màu đen") is None
 
-    def test_tu_treated_as_gt(self):
-        # regex hiện tại gộp "từ" vào cùng nhánh direction != duoi -> $gt
-        assert _parse_price("áo từ 200k") == {"price": {"$gt": 200_000}}
+    def test_tu_treated_as_gte(self):
+        # "từ X" bao gồm đúng giá X (>=), khác "trên X" (>) loại trừ đúng giá X
+        assert _parse_price("áo từ 200k") == {"price": {"$gte": 200_000}}
+
+    def test_tren_treated_as_gt(self):
+        assert _parse_price("áo trên 200k") == {"price": {"$gt": 200_000}}
 
 
 # ---------------------------------------------------------------------------
@@ -92,6 +95,21 @@ class TestParseColor:
 
     def test_no_color_mentioned(self):
         assert _parse_color("áo size m giá dưới 300k") is None
+
+    def test_ambiguous_color_without_cue_not_matched(self):
+        # "cam" trong "cam kết" không phải màu -> không có từ khoá "màu" đi kèm nên không nhận
+        assert _parse_color("tôi cam kết mua sản phẩm này") is None
+
+    def test_ambiguous_color_with_cue_matched(self):
+        assert _parse_color("áo khoác màu cam size m") == {"base_colour_lower": "orange"}
+
+    def test_ambiguous_color_kem_without_cue_not_matched(self):
+        # "kem" ở đây là món ăn (ice cream), không phải màu kem
+        assert _parse_color("đi ăn kem với bạn") is None
+
+    def test_unambiguous_color_without_cue_still_matched(self):
+        # màu dài/rõ nghĩa (không nằm trong _AMBIGUOUS_COLOR_PHRASES) vẫn nhận dù không có từ khoá "màu"
+        assert _parse_color("áo đen size m") == {"base_colour_lower": "black"}
 
 
 # ---------------------------------------------------------------------------
